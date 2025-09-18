@@ -94,7 +94,7 @@
 
     <div class="countdown-container">
         <div class="time-unit">
-            <span class="time-value" id="days">45</span>
+            <span class="time-value" id="days">25</span>
             <div class="time-label">Days</div>
         </div>
         <span class="separator">:</span>
@@ -120,7 +120,7 @@
     <script>
         // Set your target date here (example: 45 days from now)
         const targetDate = new Date();
-        targetDate.setDate(targetDate.getDate() + 45);
+        targetDate.setDate(targetDate.getDate() + 25);
         targetDate.setHours(targetDate.getHours() + 17);
         targetDate.setMinutes(targetDate.getMinutes() + 21);
         targetDate.setSeconds(targetDate.getSeconds() + 7);
@@ -156,6 +156,142 @@
         // Optional: Set a custom target date
         // To set a specific date, uncomment and modify the line below:
         // const targetDate = new Date('2024-12-31 23:59:59');
+    </script>
+
+
+<div class="about-container">
+        <div class="about-header">
+            <h1>About Rise Up Patriots Conference 2.0</h1>
+        </div>
+        
+        <div class="about-content">
+            <div class="about-image-section">
+                <div class="about-main-image-container" id="aboutMainImageContainer">
+                    <img src="assets/untitled-246 2.png" id="aboutMainImage" class="about-main-image" alt="Conference Image">
+                </div>
+                
+                <div class="about-thumbnail-container">
+                    <div class="about-thumbnail active" data-image="image1" onclick="changeImage('image1', this)">
+                        <img src="assets/Rectangle 14.png" alt="Thumbnail 1">
+                    </div>
+                    <div class="about-thumbnail" data-image="image2" onclick="changeImage('image2', this)">
+                        <img src="assets/untitled-246 2.png" alt="Thumbnail 2">
+                    </div>
+                    <div class="about-thumbnail" data-image="image3" onclick="changeImage('image3', this)">
+                        <img src="assets/Rectangle 15.png"  alt="Thumbnail 3">
+                    </div>
+                </div>
+            </div>
+            
+            <div class="about-text-section">
+                <div class="about-text-content">
+                    <p>The <span class="theme-text">"Rise Up, Patriots Conference 2.0"</span> of the Unveiling and Rebranding Nigeria Initiative (URNI) is themed <span class="theme-text">"Projecting the Positive Image of Nigeria through the Creative Ecosystems"</span>.</p>
+                    
+                    <p>This annual forum brings together policymakers, thought leaders, creatives (entertainers, content creators, journalists, photographers and experts in AI) and over 500 young Nigerians for robust conversations on patriotism, governance, and national development.</p>
+                    
+                    <p>This significant event, themed <span class="theme-text">"Rise up Patriot Conference 2.0"</span> marks a pivotal moment in our collective journey to inspire patriotism and foster national pride among Nigerians.</p>
+                </div>
+                
+                <a href="#" class="register-btn" onclick="handleRegistration()">Register for event</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Function to change the main image when thumbnail is clicked
+        function changeImage(imageId, thumbnailElement) {
+            // Remove active class from all thumbnails
+            document.querySelectorAll('.about-thumbnail').forEach(thumb => {
+                thumb.classList.remove('active');
+            });
+            
+            // Add active class to clicked thumbnail
+            thumbnailElement.classList.add('active');
+            
+            // Here you would typically change the main image source
+            // For now, we'll just update the placeholder text to show which image is selected
+            const aboutMainImageContainer = document.getElementById('aboutMainImageContainer');
+            const aboutPlaceholderText = aboutMainImageContainer.querySelector('.about-placeholder-text');
+            
+            if (aboutPlaceholderText) {
+                aboutPlaceholderText.textContent = `${imageId.replace('image', 'Image ')} Placeholder - Main Display`;
+            }
+            
+            // Add a subtle animation effect
+            aboutMainImageContainer.style.opacity = '0.7';
+            setTimeout(() => {
+                aboutMainImageContainer.style.opacity = '1';
+            }, 150);
+            
+            console.log(`Switched to ${imageId}`);
+        }
+        
+        // Function to handle registration button click
+        function handleRegistration() {
+            alert('Registration functionality would be implemented here. This could redirect to a registration form or open a modal.');
+        }
+        
+        // Add some interactive feedback for better UX
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to thumbnails
+            const aboutThumbnails = document.querySelectorAll('.about-thumbnail');
+            aboutThumbnails.forEach(thumbnail => {
+                thumbnail.addEventListener('mouseenter', function() {
+                    if (!this.classList.contains('active')) {
+                        this.style.transform = 'scale(1.05)';
+                    }
+                });
+                
+                thumbnail.addEventListener('mouseleave', function() {
+                    if (!this.classList.contains('active')) {
+                        this.style.transform = 'scale(1)';
+                    }
+                });
+            });
+            
+            // Add click animation to register button
+            const registerBtn = document.querySelector('.register-btn');
+            registerBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                this.style.transform = 'scale(0.98)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                    handleRegistration();
+                }, 150);
+            });
+        });
+        
+        // Function to load images when you add them
+        // You can call this function after adding your images
+        function loadAboutImages(mainImageSrc, thumbnail1Src, thumbnail2Src, thumbnail3Src) {
+            // Load main image
+            const aboutMainImg = document.getElementById('aboutMainImage');
+            const aboutPlaceholderText = document.querySelector('.about-placeholder-text');
+            
+            if (mainImageSrc) {
+                aboutMainImg.src = mainImageSrc;
+                aboutMainImg.style.display = 'block';
+                if (aboutPlaceholderText) aboutPlaceholderText.style.display = 'none';
+            }
+            
+            // Load thumbnail images
+            const aboutThumbnails = document.querySelectorAll('.about-thumbnail');
+            const imageSources = [thumbnail1Src, thumbnail2Src, thumbnail3Src];
+            
+            aboutThumbnails.forEach((thumbnail, index) => {
+                if (imageSources[index]) {
+                    const img = thumbnail.querySelector('img');
+                    const placeholder = thumbnail.querySelector('.about-thumbnail-placeholder');
+                    
+                    img.src = imageSources[index];
+                    img.style.display = 'block';
+                    if (placeholder) placeholder.style.display = 'none';
+                }
+            });
+        }
+        
+        // Example of how to use the loadImages function:
+        // loadImages('main-image.jpg', 'thumb1.jpg', 'thumb2.jpg', 'thumb3.jpg');
     </script>
 
     <div class="panelist-container">
