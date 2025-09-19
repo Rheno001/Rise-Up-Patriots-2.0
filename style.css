@@ -133,13 +133,13 @@ body {
 }
 
 .time-value {
-    background: rgba(255, 255, 255, 0.9);
-    color: #2d5a3d;
-    font-size: 30px;
+    background: rgba(255, 255, 255, 0.5);
+    color: #fff;
+    font-size: 25px;
     font-weight: 700;
-    padding: 20px 25px;
+    padding: 20px 10px;
     border-radius: 15px;
-    min-width: 100px;
+    min-width: 80px;
     display: block;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
     backdrop-filter: blur(5px);

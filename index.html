@@ -44,41 +44,22 @@
                             <a class="nav-link" href="/index.html">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/about.html">About Us</a>
-                        </li>
-                        <!--<li class="nav-item">
-                            <a class="nav-link" href="/projects.html">Projects</a>
-                        </li>
-                       <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="exploreDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Explore Nigeria
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="exploreDropdown">
-                                <li><a class="dropdown-item" href="#">Culture</a></li>
-                                <li><a class="dropdown-item" href="#">Tourism</a></li>
-                                <li><a class="dropdown-item" href="#">People</a></li>
-                            </ul>
-                        </li>-->
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="newsDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-expanded="false">
-                                Media
-                            </a>
-                            <ul class="dropdown-menu" aria-labelledby="newsDropdown">
-                                <li><a class="dropdown-item" href="/news.html">News</a></li>
-                                <!--<li><a class="dropdown-item" href="/events.html">Events</a></li>-->
-                                <li><a class="dropdown-item" href="/blog.html">Blogs</a></li>
-                            </ul>
+                            <a class="nav-link" href="/about.html">About</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/gallery.html">Gallery</a>
+                            <a class="nav-link" href="/">Location</a>
                         </li>
-                        <!--<li class="nav-item">
-                            <a class="nav-link" href="FAQ.html">FAQ</a>
-                        </li>-->
                         <li class="nav-item">
-                            <a class="nav-link" href="/contact.html">Contact Us</a>
+                            <a class="nav-link" href="/">Speakers</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">FAQ</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Partners</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/">Contact Us</a>
                         </li>
                     </ul>
 
@@ -198,6 +179,13 @@
     </div>
 
     <script>
+        // Image mapping object
+        const imageMap = {
+            'image1': 'assets/Rectangle 14.png',
+            'image2': 'assets/untitled-246 2.png',
+            'image3': 'assets/Rectangle 15.png'
+        };
+
         // Function to change the main image when thumbnail is clicked
         function changeImage(imageId, thumbnailElement) {
             // Remove active class from all thumbnails
@@ -208,22 +196,22 @@
             // Add active class to clicked thumbnail
             thumbnailElement.classList.add('active');
             
-            // Here you would typically change the main image source
-            // For now, we'll just update the placeholder text to show which image is selected
+            // Get the main image element
+            const mainImage = document.getElementById('aboutMainImage');
             const aboutMainImageContainer = document.getElementById('aboutMainImageContainer');
-            const aboutPlaceholderText = aboutMainImageContainer.querySelector('.about-placeholder-text');
-            
-            if (aboutPlaceholderText) {
-                aboutPlaceholderText.textContent = `${imageId.replace('image', 'Image ')} Placeholder - Main Display`;
-            }
             
             // Add a subtle animation effect
             aboutMainImageContainer.style.opacity = '0.7';
+            
+            // Change the main image source after the fade effect
             setTimeout(() => {
+                if (imageMap[imageId]) {
+                    mainImage.src = imageMap[imageId];
+                }
                 aboutMainImageContainer.style.opacity = '1';
             }, 150);
             
-            console.log(`Switched to ${imageId}`);
+            console.log(`Switched to ${imageId} - ${imageMap[imageId]}`);
         }
         
         // Function to handle registration button click
@@ -266,7 +254,6 @@
         function loadAboutImages(mainImageSrc, thumbnail1Src, thumbnail2Src, thumbnail3Src) {
             // Load main image
             const aboutMainImg = document.getElementById('aboutMainImage');
-            const aboutPlaceholderText = document.querySelector('.about-placeholder-text');
             
             if (mainImageSrc) {
                 aboutMainImg.src = mainImageSrc;
@@ -290,8 +277,6 @@
             });
         }
         
-        // Example of how to use the loadImages function:
-        // loadImages('main-image.jpg', 'thumb1.jpg', 'thumb2.jpg', 'thumb3.jpg');
     </script>
 
     <div class="panelist-container">
@@ -347,7 +332,7 @@
                 <div class="panelist-photo">
                     <img src="assets/NASBOI.png" alt="Lawal Micahel (Nasboi)">
                 </div>
-                <div class="panelist-name">Lawal Micahel<br>(Nasboi)</div>
+                <div class="panelist-name">Lawal Michael<br>(Nasboi)</div>
             </div>
             
             <div class="panelist-item">
