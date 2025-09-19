@@ -301,6 +301,32 @@ body {
     color: #2d5a3d;
 }
 
+.Location{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 60px 5%;
+    text-align: center;
+}
+.location-header{
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.location-image img{
+    width: 100%;
+    max-width: 887px;
+    height: auto;
+}
+.location-name{
+    color: #025836;
+    font-size: 32px;
+    margin-top: 10px;
+}
+
+
 /* ===== PANELIST SECTION ===== */
 .panelist-container {
     background-color: #025836;

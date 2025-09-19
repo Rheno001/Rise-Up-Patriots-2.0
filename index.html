@@ -140,17 +140,18 @@
     </script>
 
 
-<div class="about-container" id="About">
+    <div class="about-container" id="About">
         <div class="about-header">
             <h1>About Rise Up Patriots Conference 2.0</h1>
         </div>
-        
+
         <div class="about-content">
             <div class="about-image-section">
                 <div class="about-main-image-container" id="aboutMainImageContainer">
-                    <img src="assets/untitled-246 2.png" id="aboutMainImage" class="about-main-image" alt="Conference Image">
+                    <img src="assets/untitled-246 2.png" id="aboutMainImage" class="about-main-image"
+                        alt="Conference Image">
                 </div>
-                
+
                 <div class="about-thumbnail-container">
                     <div class="about-thumbnail active" data-image="image1" onclick="changeImage('image1', this)">
                         <img src="assets/Rectangle 14.png" alt="Thumbnail 1">
@@ -159,20 +160,26 @@
                         <img src="assets/untitled-246 2.png" alt="Thumbnail 2">
                     </div>
                     <div class="about-thumbnail" data-image="image3" onclick="changeImage('image3', this)">
-                        <img src="assets/Rectangle 15.png"  alt="Thumbnail 3">
+                        <img src="assets/Rectangle 15.png" alt="Thumbnail 3">
                     </div>
                 </div>
             </div>
-            
+
             <div class="about-text-section">
                 <div class="about-text-content">
-                    <p>The <span class="theme-text">"Rise Up, Patriots Conference 2.0"</span> of the Unveiling and Rebranding Nigeria Initiative (URNI) is themed <span class="theme-text">"Projecting the Positive Image of Nigeria through the Creative Ecosystems"</span>.</p>
-                    
-                    <p>This annual forum brings together policymakers, thought leaders, creatives (entertainers, content creators, journalists, photographers and experts in AI) and over 500 young Nigerians for robust conversations on patriotism, governance, and national development.</p>
-                    
-                    <p>This significant event, themed <span class="theme-text">"Rise up Patriot Conference 2.0"</span> marks a pivotal moment in our collective journey to inspire patriotism and foster national pride among Nigerians.</p>
+                    <p>The <span class="theme-text">"Rise Up, Patriots Conference 2.0"</span> of the Unveiling and
+                        Rebranding Nigeria Initiative (URNI) is themed <span class="theme-text">"Projecting the Positive
+                            Image of Nigeria through the Creative Ecosystems"</span>.</p>
+
+                    <p>This annual forum brings together policymakers, thought leaders, creatives (entertainers, content
+                        creators, journalists, photographers and experts in AI) and over 500 young Nigerians for robust
+                        conversations on patriotism, governance, and national development.</p>
+
+                    <p>This significant event, themed <span class="theme-text">"Rise up Patriot Conference 2.0"</span>
+                        marks a pivotal moment in our collective journey to inspire patriotism and foster national pride
+                        among Nigerians.</p>
                 </div>
-                
+
                 <a href="#" class="register-btn" onclick="handleRegistration()">Register for event</a>
             </div>
         </div>
@@ -192,17 +199,17 @@
             document.querySelectorAll('.about-thumbnail').forEach(thumb => {
                 thumb.classList.remove('active');
             });
-            
+
             // Add active class to clicked thumbnail
             thumbnailElement.classList.add('active');
-            
+
             // Get the main image element
             const mainImage = document.getElementById('aboutMainImage');
             const aboutMainImageContainer = document.getElementById('aboutMainImageContainer');
-            
+
             // Add a subtle animation effect
             aboutMainImageContainer.style.opacity = '0.7';
-            
+
             // Change the main image source after the fade effect
             setTimeout(() => {
                 if (imageMap[imageId]) {
@@ -210,36 +217,36 @@
                 }
                 aboutMainImageContainer.style.opacity = '1';
             }, 150);
-            
+
             console.log(`Switched to ${imageId} - ${imageMap[imageId]}`);
         }
-        
+
         // Function to handle registration button click
         function handleRegistration() {
             alert('Registration functionality would be implemented here. This could redirect to a registration form or open a modal.');
         }
-        
+
         // Add some interactive feedback for better UX
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             // Add hover effects to thumbnails
             const aboutThumbnails = document.querySelectorAll('.about-thumbnail');
             aboutThumbnails.forEach(thumbnail => {
-                thumbnail.addEventListener('mouseenter', function() {
+                thumbnail.addEventListener('mouseenter', function () {
                     if (!this.classList.contains('active')) {
                         this.style.transform = 'scale(1.05)';
                     }
                 });
-                
-                thumbnail.addEventListener('mouseleave', function() {
+
+                thumbnail.addEventListener('mouseleave', function () {
                     if (!this.classList.contains('active')) {
                         this.style.transform = 'scale(1)';
                     }
                 });
             });
-            
+
             // Add click animation to register button
             const registerBtn = document.querySelector('.register-btn');
-            registerBtn.addEventListener('click', function(e) {
+            registerBtn.addEventListener('click', function (e) {
                 e.preventDefault();
                 this.style.transform = 'scale(0.98)';
                 setTimeout(() => {
@@ -248,40 +255,53 @@
                 }, 150);
             });
         });
-        
+
         // Function to load images when you add them
         // You can call this function after adding your images
         function loadAboutImages(mainImageSrc, thumbnail1Src, thumbnail2Src, thumbnail3Src) {
             // Load main image
             const aboutMainImg = document.getElementById('aboutMainImage');
-            
+
             if (mainImageSrc) {
                 aboutMainImg.src = mainImageSrc;
                 aboutMainImg.style.display = 'block';
                 if (aboutPlaceholderText) aboutPlaceholderText.style.display = 'none';
             }
-            
+
             // Load thumbnail images
             const aboutThumbnails = document.querySelectorAll('.about-thumbnail');
             const imageSources = [thumbnail1Src, thumbnail2Src, thumbnail3Src];
-            
+
             aboutThumbnails.forEach((thumbnail, index) => {
                 if (imageSources[index]) {
                     const img = thumbnail.querySelector('img');
                     const placeholder = thumbnail.querySelector('.about-thumbnail-placeholder');
-                    
+
                     img.src = imageSources[index];
                     img.style.display = 'block';
                     if (placeholder) placeholder.style.display = 'none';
                 }
             });
         }
-        
+
     </script>
+
+
+    <section class="Location" id="Location">
+        <div class="location-header">
+            <h1>The Venue</h1>
+        </div>
+        <div class="location-image">
+            <img src="assets/Venue.png" alt="">
+        </div>
+        <div class="location-name">
+            <h2>Shehu Musa Yar’adua Center, Abuja</h2>
+        </div>
+    </section>
 
     <div class="panelist-container" id="Panelist">
         <h1 class="panelist-title">Our Panelist</h1>
-        
+
         <!-- All 10 panelists in one grid -->
         <div class="panelist-grid">
             <!-- First Row -->
@@ -291,35 +311,35 @@
                 </div>
                 <div class="panelist-name">Hadiza<br>Bala Usman</div>
             </div>
-            
+
             <div class="panelist-item">
                 <div class="panelist-photo">
                     <img src="assets/Stanley-Alieke.png" alt="Stanley Alieke">
                 </div>
                 <div class="panelist-name">Stanley Alieke</div>
             </div>
-            
+
             <div class="panelist-item">
                 <div class="panelist-photo">
                     <img src="assets/Chioma-Agwu.png" alt="Chioma Agwuegbo">
                 </div>
                 <div class="panelist-name">Chioma<br>Agwuegbo</div>
             </div>
-            
+
             <div class="panelist-item">
                 <div class="panelist-photo">
                     <img src="moses-longe.jpg" alt="Barr. Moses Longe">
                 </div>
                 <div class="panelist-name">Barr. Moses<br>Longe</div>
             </div>
-            
+
             <div class="panelist-item">
                 <div class="panelist-photo">
                     <img src="roy-maduka.jpg" alt="Prof. Roy Maduka">
                 </div>
                 <div class="panelist-name">Prof. Roy<br>Maduka</div>
             </div>
-            
+
             <!-- Second Row -->
             <div class="panelist-item">
                 <div class="panelist-photo">
@@ -327,28 +347,28 @@
                 </div>
                 <div class="panelist-name">Seun Okinbaloye</div>
             </div>
-            
+
             <div class="panelist-item">
                 <div class="panelist-photo">
                     <img src="assets/NASBOI.png" alt="Lawal Micahel (Nasboi)">
                 </div>
                 <div class="panelist-name">Lawal Michael<br>(Nasboi)</div>
             </div>
-            
+
             <div class="panelist-item">
                 <div class="panelist-photo">
                     <img src="assets/Momodu.png" alt="Momodu Sadiq">
                 </div>
                 <div class="panelist-name">Momodu Sadiq</div>
             </div>
-            
+
             <div class="panelist-item">
                 <div class="panelist-photo">
                     <img src="assets/brainjotter.png" alt="Chukwuebuka Amuze (Brain Jotter)">
                 </div>
                 <div class="panelist-name">Chukwuebuka<br>Amuze<br>(Brain Jotter)</div>
             </div>
-            
+
             <div class="panelist-item">
                 <div class="panelist-photo">
                     <img src="celestine-achi.jpg" alt="Celestine Achi">
@@ -362,7 +382,8 @@
     <div class="faq-container" id="Faq">
         <div class="faq-header">
             <h1 class="faq-title">Frequently Asked Questions</h1>
-            <p class="faq-subtitle">Find answers to common questions about the URNI Rise Up Patriot Conference 2.0 below.</p>
+            <p class="faq-subtitle">Find answers to common questions about the URNI Rise Up Patriot Conference 2.0
+                below.</p>
         </div>
 
         <div class="faq-list">
@@ -372,7 +393,10 @@
                     <span class="plus-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>The URNI Rise Up Patriots Conference 2.0 is a comprehensive gathering focused on patriotic values, community building, and national discourse. This conference brings together thought leaders, activists, and citizens to discuss important issues facing our nation and explore solutions for positive change.</p>
+                    <p>The URNI Rise Up Patriots Conference 2.0 is a comprehensive gathering focused on patriotic
+                        values, community building, and national discourse. This conference brings together thought
+                        leaders, activists, and citizens to discuss important issues facing our nation and explore
+                        solutions for positive change.</p>
                 </div>
             </div>
 
@@ -382,7 +406,9 @@
                     <span class="plus-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>The conference is open to all citizens who are passionate about patriotic values and community engagement. We welcome individuals from all backgrounds, professions, and walks of life who are interested in constructive dialogue and positive action for our country.</p>
+                    <p>The conference is open to all citizens who are passionate about patriotic values and community
+                        engagement. We welcome individuals from all backgrounds, professions, and walks of life who are
+                        interested in constructive dialogue and positive action for our country.</p>
                 </div>
             </div>
 
@@ -392,7 +418,8 @@
                     <span class="plus-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Registration can be completed online through our official website. Simply visit the registration page, fill out the required information, and complete your payment. Early bird discounts are available for registrations completed before the deadline.</p>
+                    <p>Registration can be completed online through our official website. Simply visit the registration
+                        page, fill out the required information.</p>
                 </div>
             </div>
 
@@ -402,7 +429,8 @@
                     <span class="plus-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Ticket prices vary based on the package selected. General admission starts at $99, with premium packages including additional benefits like VIP seating, exclusive networking sessions, and conference materials. Student and group discounts are also available.</p>
+                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut, repellat quia ex, provident 
+                        vitae nisi inventore unde fuga officia adipisci tenetur sit ratione, at neque.</p>
                 </div>
             </div>
 
@@ -412,21 +440,22 @@
                     <span class="plus-icon">+</span>
                 </button>
                 <div class="faq-answer">
-                    <p>Yes, we offer a hybrid experience that includes virtual attendance options. Virtual attendees will have access to live streaming of all main sessions, digital materials, and online networking opportunities. Virtual tickets are available at a reduced rate.</p>
+                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Delectus, consequatur ducimus, 
+                        molestias voluptate doloribus totam tempore culpa neque nemo eius sit officia eos porro fuga.</p>
                 </div>
             </div>
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             const faqItems = document.querySelectorAll('.faq-item');
 
             faqItems.forEach(item => {
                 const question = item.querySelector('.faq-question');
                 const answer = item.querySelector('.faq-answer');
 
-                question.addEventListener('click', function() {
+                question.addEventListener('click', function () {
                     // Close all other items
                     faqItems.forEach(otherItem => {
                         if (otherItem !== item) {
