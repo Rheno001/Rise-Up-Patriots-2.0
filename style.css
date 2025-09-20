@@ -10,14 +10,178 @@ body {
     overflow-x: hidden;
 }
 
-/* ===== COMMON BUTTON STYLES ===== */
-.btn-base {
-    padding: 0.5rem 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    border: none;
-    text-decoration: none;
-    transition: all 0.3s ease;
+.preloader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s ease, visibility 0.5s ease;
+}
+
+.preloader.hide {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.preloader-logo {
+    max-width: 200px;
+    width: 100%;
+    height: auto;
+    margin-bottom: 30px;
+    animation: pulse 3s ease-in-out infinite;
+}
+
+.preloader-spinner {
+    width: 50px;
+    height: 50px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-top: 3px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Hide main content until loaded */
+.main-content {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.main-content.show {
+    opacity: 1;
+}
+
+/* Responsive preloader */
+@media screen and (max-width: 768px) {
+    .preloader-logo {
+        max-width: 150px;
+        margin-bottom: 20px;
+    }
+
+    .preloader-spinner {
+        width: 40px;
+        height: 40px;
+        border-width: 2px;
+    }
+}
+
+/* Scroll Animations */
+.animate-hidden {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: all 0.8s ease-out;
+}
+
+.animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Staggered animations for different sections */
+
+.about-container.animate-hidden {
+    transform: translateY(60px);
+}
+
+.Location.animate-hidden {
+    transform: translateY(60px);
+}
+
+.panelist-container.animate-hidden {
+    transform: translateY(60px);
+}
+
+.faq-container.animate-hidden {
+    transform: translateY(60px);
+}
+
+.partners.animate-hidden {
+    transform: translateY(60px);
+}
+
+.footer.animate-hidden {
+    transform: translateY(60px);
+}
+
+/* Hero section elements animation */
+.hero-animate-hidden {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s ease-out;
+}
+
+.hero-animate-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Delay for hero elements */
+.top.hero-animate-hidden {
+    transition-delay: 0.2s;
+}
+
+.bottom.hero-animate-hidden {
+    transition-delay: 0.4s;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* Hide main content until loaded */
+.main-content {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.main-content.show {
+    opacity: 1;
 }
 
 .btn-volunteer {
@@ -215,9 +379,9 @@ body {
 .date-time-loc {
     display: flex;
     align-items: center;
+    justify-content: center;
     padding: 10px;
-    justify-content: space-between;
-    gap: 20px;
+    gap: 10px;
     background-color: white;
 }
 
@@ -283,7 +447,28 @@ body {
 
 
 /* Mobile Responsiveness - Targets screens smaller than tablets */
+
+@media screen and (max-width: 1024px) {
+
+    .title-image,
+    .theme-image {
+        width: 400px;
+    }
+
+    .speaker {
+        height: 230px;
+    }
+
+    .hero-btn-1,
+    .hero-btn-2 {
+        padding: 0.5rem 1rem;
+        font-size: 12px;
+        width: 100%;
+    }
+}
+
 @media screen and (max-width: 858px) {
+
     .top {
         flex-direction: column;
         gap: 20px;
@@ -313,6 +498,16 @@ body {
     }
 
     /* Responsive text */
+    .date-time-loc {
+        padding: 5px 5px 5px 10px;
+        gap: 5px;
+        flex-direction: column;
+    }
+
+    .date-time-loc span {
+        gap: 8px;
+    }
+
     .date-time-loc span {
         font-size: clamp(10px, 2.5vw, 14px);
     }
@@ -320,7 +515,7 @@ body {
     .date-time-loc span img {
         width: clamp(16px, 2.5vw, 35px);
     }
-    
+
     .hero-btn-1,
     .hero-btn-2 {
         padding: 0.5rem 1rem;
@@ -921,6 +1116,13 @@ body {
     .panelist-grid {
         grid-template-columns: repeat(4, 1fr);
         grid-template-rows: auto;
+    }
+
+    .about-text-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
     }
 }
 

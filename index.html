@@ -13,94 +13,486 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/29a8691164.js" crossorigin="anonymous"></script>
     <script src="lazy.js"></script>
+    
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg p-4 sticky-top">
-        <div class="max-w-1500 w-100 mx-auto">
-            <div class="container-fluid justify-content-between align-items-center">
-                <div class="d-flex w-100 justify-content-between align-items-center d-lg-none mb-2">
-                    <!--Logo-->
-                    <a class="navbar-brand" href="index.html">
-                        <img src="assets/URNI-logo.png" alt="URNI-logo" class="logo-img" />
-                    </a>
+    <!-- Preloader -->
+    <div class="preloader" id="preloader">
+        <img src="assets/RISE UP PATRIOTS CONFERENCE LOGO 1.png" alt="URNI Logo" class="preloader-logo" onerror="this.style.display='none'">
+        <div class="preloader-spinner"></div>
+    </div>
 
-                    <!--Toggle for mobile-->
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#urniNavbar"
-                        aria-controls="urniNavbar" aria-expanded="false" aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+    <!-- Main Content -->
+    <div class="main-content" id="mainContent">
+        <nav class="navbar navbar-expand-lg p-4 sticky-top">
+            <div class="max-w-1500 w-100 mx-auto">
+                <div class="container-fluid justify-content-between align-items-center">
+                    <div class="d-flex w-100 justify-content-between align-items-center d-lg-none mb-2">
+                        <!--Logo-->
+                        <a class="navbar-brand" href="index.html">
+                            <img src="assets/URNI-logo.png" alt="URNI-logo" class="logo-img" />
+                        </a>
+
+                        <!--Toggle for mobile-->
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#urniNavbar"
+                            aria-controls="urniNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                    </div>
+
+                    <!--Nav/Buttons Container-->
+                    <div class="collapse navbar-collapse justify-content-between align-items-center" id="urniNavbar">
+                        <a class="lg-navbar-brand d-none d-lg-block" href="index.html">
+                            <img src="assets/URNI-logo.png" alt="URNI-logo" class="logo-img" />
+                        </a>
+                        <!--Nav Items-->
+                        <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-4">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/index.html">Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#About">About</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">Location</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#Panelist">Speakers</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#Faq">FAQ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#Partners">Partners</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/">Contact Us</a>
+                            </li>
+                        </ul>
+
+                        <!--Buttons-->
+                        <div class="d-flex justify-content-center align-items-center gap-2 ms-lg-3">
+                            <a href="/registration.html"><button class="btn-volunteer">Register</button></a>
+                            <a href="/"><button class="btn-donate">Sponsor</button></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+
+        <div class="countdown-container animate-on-scroll">
+            <div class="time-unit">
+                <span class="time-value" id="days">25</span>
+                <div class="time-label">Days</div>
+            </div>
+            <span class="separator">:</span>
+
+            <div class="time-unit">
+                <span class="time-value" id="hours">17</span>
+                <div class="time-label">Hours</div>
+            </div>
+            <span class="separator">:</span>
+
+            <div class="time-unit">
+                <span class="time-value" id="minutes">21</span>
+                <div class="time-label">Minutes</div>
+            </div>
+            <span class="separator">:</span>
+
+            <div class="time-unit">
+                <span class="time-value" id="seconds">07</span>
+                <div class="time-label">Seconds</div>
+            </div>
+        </div>
+
+        <section id="hero">
+            <div class="top hero-animate-hidden">
+                <div class="theme">
+                    <img class="title-image" src="assets/RISE UP PATRIOTS CONFERENCE LOGO 1.png" alt="">
+                    <img class="theme-image" src="assets/RISE UP PATRIOTS CONFERENCE THEME LOGO.png" alt="">
+                </div>
+                <div class="speakers">
+                    <img class="speaker" src="assets/RISE UP PATRIOTS CONFERENCE BEN MURRAY-BRUCE.png" alt="">
+                    <img class="speaker" src="assets/RISE UP PATRIOTS CONFERENCE PAT UTOMI.png" alt="">
+                </div>
+            </div>
+            <div class="bottom hero-animate-hidden">
+                <div class="date-time-loc">
+                    <span><img src="assets/RISE UP PATRIOTS CONFERENCE DATE ICON.svg" alt="">
+                        <p>SATURDAY 25TH OCTOBER 2025</p>
+                    </span>
+                    <span style="margin: 0 10px;"><img src="assets/RISE UP PATRIOTS CONFERENCE TIME ICON.svg" alt="">
+                        <p>10:00AM</p>
+                    </span>
+                    <span><img src="assets/RISE UP PATRIOTS CONFERENCE LOCATION ICON.svg" alt="">
+                        <p>SHEHU MUSA YAR'ADUA CENTRE, ABUJA</p>
+                    </span>
+                </div>
+                <div class="buttons">
+                    <a href="/registration.html"><button class="hero-btn-1">Register for Event</button></a>
+                    <a href="/"><button class="hero-btn-2">Watch the Teaser <span class="play">▶</span></button></a>
+                </div>
+            </div>
+        </section>
+
+        <div class="about-container animate-on-scroll" id="About">
+            <div class="about-header">
+                <h1>About Rise Up Patriots Conference 2.0</h1>
+            </div>
+
+            <div class="about-content">
+                <div class="about-image-section">
+                    <div class="about-main-image-container" id="aboutMainImageContainer">
+                        <img src="assets/untitled-246 2.png" id="aboutMainImage" class="about-main-image"
+                            alt="Conference Image">
+                    </div>
+
+                    <div class="about-thumbnail-container">
+                        <div class="about-thumbnail active" data-image="image1" onclick="changeImage('image1', this)">
+                            <img src="assets/Rectangle 14.png" alt="Thumbnail 1">
+                        </div>
+                        <div class="about-thumbnail" data-image="image2" onclick="changeImage('image2', this)">
+                            <img src="assets/untitled-246 2.png" alt="Thumbnail 2">
+                        </div>
+                        <div class="about-thumbnail" data-image="image3" onclick="changeImage('image3', this)">
+                            <img src="assets/Rectangle 15.png" alt="Thumbnail 3">
+                        </div>
+                    </div>
                 </div>
 
+                <div class="about-text-section">
+                    <div class="about-text-content">
+                        <p>The <span class="theme-text">"Rise Up, Patriots Conference 2.0"</span> of the Unveiling and
+                            Rebranding Nigeria Initiative (URNI) is themed <span class="theme-text">"Projecting the Positive
+                                Image of Nigeria through the Creative Ecosystems"</span>.</p>
 
-                <!--Nav/Buttons Container-->
-                <div class="collapse navbar-collapse justify-content-between align-items-center" id="urniNavbar">
-                    <a class="lg-navbar-brand d-none d-lg-block" href="index.html">
-                        <img src="assets/URNI-logo.png" alt="URNI-logo" class="logo-img" />
-                    </a>
-                    <!--Nav Items-->
-                    <ul class="navbar-nav mx-auto mb-2 mb-lg-0 gap-lg-4">
-                        <li class="nav-item">
-                            <a class="nav-link" href="/index.html">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#About">About</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Location</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#Panelist">Speakers</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#Faq">FAQ</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#Partners">Partners</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="/">Contact Us</a>
-                        </li>
-                    </ul>
+                        <p>This annual forum brings together policymakers, thought leaders, creatives (entertainers, content
+                            creators, journalists, photographers and experts in AI) and over 500 young Nigerians for robust
+                            conversations on patriotism, governance, and national development.</p>
 
-                    <!--Buttons-->
-                    <div class="d-flex justify-content-center align-items-center gap-2 ms-lg-3">
-                        <a href="/registration.html"><button class="btn-volunteer">Register</button></a>
-                        <a href="/"><button class="btn-donate">Sponsor</button></a>
+                        <p>This significant event, themed <span class="theme-text">"Rise up Patriot Conference 2.0"</span>
+                            marks a pivotal moment in our collective journey to inspire patriotism and foster national pride
+                            among Nigerians.</p>
+                    </div>
+
+                    <a href="/registration.html" class="register-btn">Register for event</a>
+                </div>
+            </div>
+        </div>
+
+        <section class="Location animate-on-scroll" id="Location">
+            <div class="location-header">
+                <h1>The Venue</h1>
+            </div>
+            <div class="location-image">
+                <img src="assets/Venue.png" alt="">
+            </div>
+            <div class="location-name">
+                <h2>Shehu Musa Yar'adua Center, Abuja</h2>
+            </div>
+        </section>
+
+        <div class="panelist-container animate-on-scroll" id="Panelist">
+            <h1 class="panelist-title">Our Panelist</h1>
+
+            <div class="panelist-grid">
+                <div class="panelist-item">
+                    <div class="panelist-photo">
+                        <img src="assets/Hadiza-Bala.png" alt="Hadiza Bala Usman">
+                    </div>
+                    <div class="panelist-name">Hadiza<br>Bala Usman</div>
+                </div>
+
+                <div class="panelist-item">
+                    <div class="panelist-photo">
+                        <img src="assets/Stanley-Alieke.png" alt="Stanley Alieke">
+                    </div>
+                    <div class="panelist-name">Stanley Alieke</div>
+                </div>
+
+                <div class="panelist-item">
+                    <div class="panelist-photo">
+                        <img src="assets/Chioma-Agwu.png" alt="Chioma Agwuegbo">
+                    </div>
+                    <div class="panelist-name">Chioma<br>Agwuegbo</div>
+                </div>
+
+                <div class="panelist-item">
+                    <div class="panelist-photo">
+                        <img src="moses-longe.jpg" alt="Barr. Moses Longe">
+                    </div>
+                    <div class="panelist-name">Barr. Moses<br>Longe</div>
+                </div>
+
+                <div class="panelist-item">
+                    <div class="panelist-photo">
+                        <img src="roy-maduka.jpg" alt="Prof. Roy Maduka">
+                    </div>
+                    <div class="panelist-name">Prof. Roy<br>Maduka</div>
+                </div>
+
+                <div class="panelist-item">
+                    <div class="panelist-photo">
+                        <img src="assets/Seun.png" alt="Seun Okinbaloye">
+                    </div>
+                    <div class="panelist-name">Seun Okinbaloye</div>
+                </div>
+
+                <div class="panelist-item">
+                    <div class="panelist-photo">
+                        <img src="assets/NASBOI.png" alt="Lawal Micahel (Nasboi)">
+                    </div>
+                    <div class="panelist-name">Lawal Michael<br>(Nasboi)</div>
+                </div>
+
+                <div class="panelist-item">
+                    <div class="panelist-photo">
+                        <img src="assets/Momodu.png" alt="Momodu Sadiq">
+                    </div>
+                    <div class="panelist-name">Momodu Sadiq</div>
+                </div>
+
+                <div class="panelist-item">
+                    <div class="panelist-photo">
+                        <img src="assets/brainjotter.png" alt="Chukwuebuka Amuze (Brain Jotter)">
+                    </div>
+                    <div class="panelist-name">Chukwuebuka<br>Amuze<br>(Brain Jotter)</div>
+                </div>
+
+                <div class="panelist-item">
+                    <div class="panelist-photo">
+                        <img src="celestine-achi.jpg" alt="Celestine Achi">
+                    </div>
+                    <div class="panelist-name">Celestine Achi</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="faq-container animate-on-scroll" id="Faq">
+            <div class="faq-header">
+                <h1 class="faq-title">Frequently Asked Questions</h1>
+                <p class="faq-subtitle">Find answers to common questions about the URNI Rise Up Patriot Conference 2.0
+                    below.</p>
+            </div>
+
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What is the URNI Rise Up Patriots Conference 2.0?
+                        <span class="plus-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>The URNI Rise Up Patriots Conference 2.0 is a comprehensive gathering focused on patriotic
+                            values, community building, and national discourse. This conference brings together thought
+                            leaders, activists, and citizens to discuss important issues facing our nation and explore
+                            solutions for positive change.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Who can attend the event?
+                        <span class="plus-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>The conference is open to all citizens who are passionate about patriotic values and community
+                            engagement. We welcome individuals from all backgrounds, professions, and walks of life who are
+                            interested in constructive dialogue and positive action for our country.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How do I register for the event?
+                        <span class="plus-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Registration can be completed online through our official website. Simply visit the registration
+                            page, fill out the required information.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        What is the cost of attendance?
+                        <span class="plus-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut, repellat quia ex, provident
+                            vitae nisi inventore unde fuga officia adipisci tenetur sit ratione, at neque.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Will there be a virtual attendance option?
+                        <span class="plus-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Delectus, consequatur ducimus,
+                            molestias voluptate doloribus totam tempore culpa neque nemo eius sit officia eos porro fuga.
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
-    </nav>
 
+        <section class="partners animate-on-scroll" id="Partners">
+            <div class="container text-center">
+                <div class="title">
+                    <h2>Our Partners</h2>
+                    <p>
+                        Through the gracious support and commitment of our partners, we are
+                        able to spotlight Nigeria's true <br />
+                        story as we empower communities, celebrate culture, and reshape
+                        perceptions across the nation.
+                    </p>
+                </div>
 
-    <div class="countdown-container">
-        <div class="time-unit">
-            <span class="time-value" id="days">25</span>
-            <div class="time-label">Days</div>
-        </div>
-        <span class="separator">:</span>
+                <div class="logo-carousel-wrapper position-relative">
+                    <div class="logo-carousel d-flex align-items-center">
+                        <img src="assets/Wema-Bank-Logo.png" alt="Wema bank logo" />
+                        <img src="assets/NOA 1.png" alt="Noa Logo" />
+                        <img src="assets/flag-foundation.jpeg" alt="flag-foundation logo" />
+                        <img src="assets/CGS-logo.png" alt="CGS logo" />
+                        <img src="assets/DE MIPOS LUXURY SUITE.png" alt="De mipos logo" />
+                        <img src="assets/EAGLENET LOGISTICS.png" alt="EAGLENET logo" />
+                        <img src="assets/ARISE NEWS.png" alt="Arise News logo" />
 
-        <div class="time-unit">
-            <span class="time-value" id="hours">17</span>
-            <div class="time-label">Hours</div>
-        </div>
-        <span class="separator">:</span>
+                        <img src="assets/Wema-Bank-Logo.png" alt="Wema bank logo" />
+                        <img src="assets/NOA 1.png" alt="Noa Logo" />
+                        <img src="assets/flag-foundation.jpeg" alt="flag-foundation logo" />
+                        <img src="assets/CGS-logo.png" alt="CGS logo" />
+                        <img src="assets/DE MIPOS LUXURY SUITE.png" alt="De mipos logo" />
+                        <img src="assets/EAGLENET LOGISTICS.png" alt="EAGLENET logo" />
+                        <img src="assets/ARISE NEWS.png" alt="Arise News logo" />
 
-        <div class="time-unit">
-            <span class="time-value" id="minutes">21</span>
-            <div class="time-label">Minutes</div>
-        </div>
-        <span class="separator">:</span>
+                        <img src="assets/Wema-Bank-Logo.png" alt="Wema bank logo" />
+                        <img src="assets/NOA 1.png" alt="Noa Logo" />
+                        <img src="assets/flag-foundation.jpeg" alt="flag-foundation logo" />
+                        <img src="assets/CGS-logo.png" alt="CGS logo" />
+                        <img src="assets/DE MIPOS LUXURY SUITE.png" alt="De mipos logo" />
+                        <img src="assets/EAGLENET LOGISTICS.png" alt="EAGLENET logo" />
+                        <img src="assets/ARISE NEWS.png" alt="Arise News logo" />
+                    </div>
+                </div>
+            </div>
+        </section>
 
-        <div class="time-unit">
-            <span class="time-value" id="seconds">07</span>
-            <div class="time-label">Seconds</div>
-        </div>
+        <footer class="footer animate-on-scroll">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <img src="assets/Footer-logo.png" alt="" />
+                    <div class="office-contact">
+                        <li><i class="fa-solid fa-phone"></i>0817 764 0051</li>
+                        <li><i class="fa-brands fa-whatsapp"></i>0915 555 8929</li>
+                        <li><i class="fa-solid fa-envelope"></i>unveilnigeria@gmail.com</li>
+                        <li><i class="fa-solid fa-location-dot"></i>Suite F2 Melita Plaza, Area 11, Garki, Abuja.</li>
+                    </div>
+                </div>
+
+                <div class="footer-nav">
+                    <h3 class="footer-nav-heading">Quick-Links</h3>
+                    <div class="footer-nav-links">
+                        <a href="/index.html">Home</a>
+                        <a href="#About">About</a>
+                        <a href="#Location">Location</a>
+                        <a href="#">Speakers</a>
+                        <a href="#Faq">FAQ</a>
+                        <a href="#Partners">Partners</a>
+                        <a href="">Contact Us</a>
+                    </div>
+                </div>
+
+                <div class="footer-social">
+                    <h3 class="social-title">Connect with us on social media</h3>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com/unveilingnigeria" class="social-icon" title="Facebook"><i
+                                class="fa-brands fa-facebook-f"></i></a>
+                        <a href="https://www.instagram.com/unveilingnigeria?igsh=MXh0enhhNDBrZ29ucg==" class="social-icon"
+                            title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://x.com/unveilingng" class="social-icon" title="Twitter"><i
+                                class="fa-brands fa-x-twitter"></i></a>
+                        <a href="https://www.youtube.com/@unveilingrebrandingnigeria351" class="social-icon"
+                            title="Youtube"><i class="fa-brands fa-youtube"></i></a>
+                        <a href="https://www.tiktok.com/@unveilingnigeria?_t=ZS-8ycVqpqZ4Vt&_r=1" class="social-icon"
+                            title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
+                    </div>
+                    <div class="volunteer-section">
+                        <h3 class="volunteer-title">Become a Volunteer</h3>
+                        <a href="/volunteer.html" class="volunteer-btn">
+                            Join Us
+                            <span><img src="assets/Vector.png" alt="" class="arrow" /></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                Copyright © 2025 Unveiling and Rebranding Nigeria Initiative. All Rights
+                Reserved.
+            </div>
+        </footer>
     </div>
 
+    <!-- Preloader and Main Scripts -->
     <script>
-        // Set your target date here (example: 45 days from now)
+        // Preloader functionality
+        window.addEventListener('load', function() {
+            const preloader = document.getElementById('preloader');
+            const mainContent = document.getElementById('mainContent');
+            
+            // Minimum loading time of 1 second for better UX
+            setTimeout(function() {
+                preloader.classList.add('hide');
+                mainContent.classList.add('show');
+                
+                // Remove preloader from DOM after animation completes
+                setTimeout(function() {
+                    preloader.style.display = 'none';
+                    
+                    // Initialize scroll animations and hero animations
+                    initScrollAnimations();
+                    initHeroAnimations();
+                }, 500);
+            }, 1000);
+        });
+
+        // Hero Animation Functionality
+        function initHeroAnimations() {
+            // Animate hero elements after a short delay
+            setTimeout(function() {
+                const heroElements = document.querySelectorAll('.hero-animate-hidden');
+                heroElements.forEach(element => {
+                    element.classList.add('hero-animate-in');
+                });
+            }, 300);
+        }
+
+        // Scroll Animation Functionality
+        function initScrollAnimations() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-in');
+                    }
+                });
+            }, observerOptions);
+
+            // Add animation classes to sections
+            const sections = document.querySelectorAll('.animate-on-scroll');
+            sections.forEach(section => {
+                section.classList.add('animate-hidden');
+                observer.observe(section);
+            });
+        }
+
+        // Countdown functionality
         const targetDate = new Date();
         targetDate.setDate(targetDate.getDate() + 25);
         targetDate.setHours(targetDate.getHours() + 17);
@@ -117,13 +509,11 @@
                 const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
                 const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-                // Update the display with leading zeros for single digits
                 document.getElementById('days').textContent = days.toString().padStart(2, '0');
                 document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
                 document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
                 document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
             } else {
-                // Countdown finished
                 document.getElementById('days').textContent = '00';
                 document.getElementById('hours').textContent = '00';
                 document.getElementById('minutes').textContent = '00';
@@ -131,130 +521,58 @@
             }
         }
 
-        // Update countdown immediately and then every second
         updateCountdown();
         setInterval(updateCountdown, 1000);
 
-        // Optional: Set a custom target date
-        // To set a specific date, uncomment and modify the line below:
-        // const targetDate = new Date('2024-12-31 23:59:59');
-    </script>
-
-
-    <section id="hero">
-        <div class="top">
-            <div class="theme">
-                <img class="title-image" src="assets/RISE UP PATRIOTS CONFERENCE LOGO 1.png" alt="">
-                <img class="theme-image" src="assets/RISE UP PATRIOTS CONFERENCE THEME LOGO.png" alt="">
-            </div>
-            <div class="speakers">
-                <img class="speaker" src="assets/RISE UP PATRIOTS CONFERENCE BEN MURRAY-BRUCE.png" alt="">
-                <img class="speaker" src="assets/RISE UP PATRIOTS CONFERENCE PAT UTOMI.png" alt="">
-            </div>
-
-        </div>
-        <div class="bottom">
-            <div class="date-time-loc">
-                <span><img src="assets/RISE UP PATRIOTS CONFERENCE DATE ICON.svg" alt=""><p>SATURDAY<br>25th OCTOBER 2025</p></span>
-                <span><img src="assets/RISE UP PATRIOTS CONFERENCE TIME ICON.svg" alt=""><p>10AM</p></span>
-                <span><img src="assets/RISE UP PATRIOTS CONFERENCE LOCATION ICON.svg" alt=""><p>SHEHU MUSA YAR'ADUA CENTRE, ABUJA</p></span>
-
-            </div>
-            <div class="buttons">
-                <a href="/registration.html"><button class="hero-btn-1">Register for Event</button></a>
-                <a href="/"><button class="hero-btn-2">Watch the Teaser <span class="play">▶</span></button></a>
-            </div>
-
-        </div>
-
-    </section>
-
-
-    <div class="about-container" id="About">
-        <div class="about-header">
-            <h1>About Rise Up Patriots Conference 2.0</h1>
-        </div>
-
-        <div class="about-content">
-            <div class="about-image-section">
-                <div class="about-main-image-container" id="aboutMainImageContainer">
-                    <img src="assets/untitled-246 2.png" id="aboutMainImage" class="about-main-image"
-                        alt="Conference Image">
-                </div>
-
-                <div class="about-thumbnail-container">
-                    <div class="about-thumbnail active" data-image="image1" onclick="changeImage('image1', this)">
-                        <img src="assets/Rectangle 14.png" alt="Thumbnail 1">
-                    </div>
-                    <div class="about-thumbnail" data-image="image2" onclick="changeImage('image2', this)">
-                        <img src="assets/untitled-246 2.png" alt="Thumbnail 2">
-                    </div>
-                    <div class="about-thumbnail" data-image="image3" onclick="changeImage('image3', this)">
-                        <img src="assets/Rectangle 15.png" alt="Thumbnail 3">
-                    </div>
-                </div>
-            </div>
-
-            <div class="about-text-section">
-                <div class="about-text-content">
-                    <p>The <span class="theme-text">"Rise Up, Patriots Conference 2.0"</span> of the Unveiling and
-                        Rebranding Nigeria Initiative (URNI) is themed <span class="theme-text">"Projecting the Positive
-                            Image of Nigeria through the Creative Ecosystems"</span>.</p>
-
-                    <p>This annual forum brings together policymakers, thought leaders, creatives (entertainers, content
-                        creators, journalists, photographers and experts in AI) and over 500 young Nigerians for robust
-                        conversations on patriotism, governance, and national development.</p>
-
-                    <p>This significant event, themed <span class="theme-text">"Rise up Patriot Conference 2.0"</span>
-                        marks a pivotal moment in our collective journey to inspire patriotism and foster national pride
-                        among Nigerians.</p>
-                </div>
-
-                <a href="/registration.html" class="register-btn">Register for event</a>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        // Image mapping object
+        // About image gallery
         const imageMap = {
             'image1': 'assets/Rectangle 14.png',
             'image2': 'assets/untitled-246 2.png',
             'image3': 'assets/Rectangle 15.png'
         };
 
-        // Function to change the main image when thumbnail is clicked
         function changeImage(imageId, thumbnailElement) {
-            // Remove active class from all thumbnails
             document.querySelectorAll('.about-thumbnail').forEach(thumb => {
                 thumb.classList.remove('active');
             });
 
-            // Add active class to clicked thumbnail
             thumbnailElement.classList.add('active');
 
-            // Get the main image element
             const mainImage = document.getElementById('aboutMainImage');
             const aboutMainImageContainer = document.getElementById('aboutMainImageContainer');
 
-            // Add a subtle animation effect
             aboutMainImageContainer.style.opacity = '0.7';
 
-            // Change the main image source after the fade effect
             setTimeout(() => {
                 if (imageMap[imageId]) {
                     mainImage.src = imageMap[imageId];
                 }
                 aboutMainImageContainer.style.opacity = '1';
             }, 150);
-
-            console.log(`Switched to ${imageId} - ${imageMap[imageId]}`);
         }
 
-
-        // Add some interactive feedback for better UX
+        // FAQ functionality
         document.addEventListener('DOMContentLoaded', function () {
-            // Add hover effects to thumbnails
+            const faqItems = document.querySelectorAll('.faq-item');
+
+            faqItems.forEach(item => {
+                const question = item.querySelector('.faq-question');
+                const answer = item.querySelector('.faq-answer');
+
+                question.addEventListener('click', function () {
+                    faqItems.forEach(otherItem => {
+                        if (otherItem !== item) {
+                            otherItem.classList.remove('active');
+                            otherItem.querySelector('.faq-answer').classList.remove('open');
+                        }
+                    });
+
+                    item.classList.toggle('active');
+                    answer.classList.toggle('open');
+                });
+            });
+
+            // About thumbnail hover effects
             const aboutThumbnails = document.querySelectorAll('.about-thumbnail');
             aboutThumbnails.forEach(thumbnail => {
                 thumbnail.addEventListener('mouseenter', function () {
@@ -270,322 +588,7 @@
                 });
             });
         });
-
-        // Function to load images when you add them
-        // You can call this function after adding your images
-        function loadAboutImages(mainImageSrc, thumbnail1Src, thumbnail2Src, thumbnail3Src) {
-            // Load main image
-            const aboutMainImg = document.getElementById('aboutMainImage');
-
-            if (mainImageSrc) {
-                aboutMainImg.src = mainImageSrc;
-                aboutMainImg.style.display = 'block';
-                if (aboutPlaceholderText) aboutPlaceholderText.style.display = 'none';
-            }
-
-            // Load thumbnail images
-            const aboutThumbnails = document.querySelectorAll('.about-thumbnail');
-            const imageSources = [thumbnail1Src, thumbnail2Src, thumbnail3Src];
-
-            aboutThumbnails.forEach((thumbnail, index) => {
-                if (imageSources[index]) {
-                    const img = thumbnail.querySelector('img');
-                    const placeholder = thumbnail.querySelector('.about-thumbnail-placeholder');
-
-                    img.src = imageSources[index];
-                    img.style.display = 'block';
-                    if (placeholder) placeholder.style.display = 'none';
-                }
-            });
-        }
-
     </script>
-
-
-    <section class="Location" id="Location">
-        <div class="location-header">
-            <h1>The Venue</h1>
-        </div>
-        <div class="location-image">
-            <img src="assets/Venue.png" alt="">
-        </div>
-        <div class="location-name">
-            <h2>Shehu Musa Yar’adua Center, Abuja</h2>
-        </div>
-    </section>
-
-    <div class="panelist-container" id="Panelist">
-        <h1 class="panelist-title">Our Panelist</h1>
-
-        <!-- All 10 panelists in one grid -->
-        <div class="panelist-grid">
-            <!-- First Row -->
-            <div class="panelist-item">
-                <div class="panelist-photo">
-                    <img src="assets/Hadiza-Bala.png" alt="Hadiza Bala Usman">
-                </div>
-                <div class="panelist-name">Hadiza<br>Bala Usman</div>
-            </div>
-
-            <div class="panelist-item">
-                <div class="panelist-photo">
-                    <img src="assets/Stanley-Alieke.png" alt="Stanley Alieke">
-                </div>
-                <div class="panelist-name">Stanley Alieke</div>
-            </div>
-
-            <div class="panelist-item">
-                <div class="panelist-photo">
-                    <img src="assets/Chioma-Agwu.png" alt="Chioma Agwuegbo">
-                </div>
-                <div class="panelist-name">Chioma<br>Agwuegbo</div>
-            </div>
-
-            <div class="panelist-item">
-                <div class="panelist-photo">
-                    <img src="moses-longe.jpg" alt="Barr. Moses Longe">
-                </div>
-                <div class="panelist-name">Barr. Moses<br>Longe</div>
-            </div>
-
-            <div class="panelist-item">
-                <div class="panelist-photo">
-                    <img src="roy-maduka.jpg" alt="Prof. Roy Maduka">
-                </div>
-                <div class="panelist-name">Prof. Roy<br>Maduka</div>
-            </div>
-
-            <!-- Second Row -->
-            <div class="panelist-item">
-                <div class="panelist-photo">
-                    <img src="assets/Seun.png" alt="Seun Okinbaloye">
-                </div>
-                <div class="panelist-name">Seun Okinbaloye</div>
-            </div>
-
-            <div class="panelist-item">
-                <div class="panelist-photo">
-                    <img src="assets/NASBOI.png" alt="Lawal Micahel (Nasboi)">
-                </div>
-                <div class="panelist-name">Lawal Michael<br>(Nasboi)</div>
-            </div>
-
-            <div class="panelist-item">
-                <div class="panelist-photo">
-                    <img src="assets/Momodu.png" alt="Momodu Sadiq">
-                </div>
-                <div class="panelist-name">Momodu Sadiq</div>
-            </div>
-
-            <div class="panelist-item">
-                <div class="panelist-photo">
-                    <img src="assets/brainjotter.png" alt="Chukwuebuka Amuze (Brain Jotter)">
-                </div>
-                <div class="panelist-name">Chukwuebuka<br>Amuze<br>(Brain Jotter)</div>
-            </div>
-
-            <div class="panelist-item">
-                <div class="panelist-photo">
-                    <img src="celestine-achi.jpg" alt="Celestine Achi">
-                </div>
-                <div class="panelist-name">Celestine Achi</div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="faq-container" id="Faq">
-        <div class="faq-header">
-            <h1 class="faq-title">Frequently Asked Questions</h1>
-            <p class="faq-subtitle">Find answers to common questions about the URNI Rise Up Patriot Conference 2.0
-                below.</p>
-        </div>
-
-        <div class="faq-list">
-            <div class="faq-item">
-                <button class="faq-question">
-                    What is the URNI Rise Up Patriots Conference 2.0?
-                    <span class="plus-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>The URNI Rise Up Patriots Conference 2.0 is a comprehensive gathering focused on patriotic
-                        values, community building, and national discourse. This conference brings together thought
-                        leaders, activists, and citizens to discuss important issues facing our nation and explore
-                        solutions for positive change.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">
-                    Who can attend the event?
-                    <span class="plus-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>The conference is open to all citizens who are passionate about patriotic values and community
-                        engagement. We welcome individuals from all backgrounds, professions, and walks of life who are
-                        interested in constructive dialogue and positive action for our country.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">
-                    How do I register for the event?
-                    <span class="plus-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>Registration can be completed online through our official website. Simply visit the registration
-                        page, fill out the required information.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">
-                    What is the cost of attendance?
-                    <span class="plus-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Ut, repellat quia ex, provident
-                        vitae nisi inventore unde fuga officia adipisci tenetur sit ratione, at neque.</p>
-                </div>
-            </div>
-
-            <div class="faq-item">
-                <button class="faq-question">
-                    Will there be a virtual attendance option?
-                    <span class="plus-icon">+</span>
-                </button>
-                <div class="faq-answer">
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Delectus, consequatur ducimus,
-                        molestias voluptate doloribus totam tempore culpa neque nemo eius sit officia eos porro fuga.
-                    </p>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            const faqItems = document.querySelectorAll('.faq-item');
-
-            faqItems.forEach(item => {
-                const question = item.querySelector('.faq-question');
-                const answer = item.querySelector('.faq-answer');
-
-                question.addEventListener('click', function () {
-                    // Close all other items
-                    faqItems.forEach(otherItem => {
-                        if (otherItem !== item) {
-                            otherItem.classList.remove('active');
-                            otherItem.querySelector('.faq-answer').classList.remove('open');
-                        }
-                    });
-
-                    // Toggle current item
-                    item.classList.toggle('active');
-                    answer.classList.toggle('open');
-                });
-            });
-        });
-    </script>
-
-    <section class="partners" id="Partners">
-        <div class="container text-center">
-            <div class="title">
-                <h2>Our Partners</h2>
-                <p>
-                    Through the gracious support and commitment of our partners, we are
-                    able to spotlight Nigeria’s true <br />
-                    story as we empower communities, celebrate culture, and reshape
-                    perceptions across the nation.
-                </p>
-            </div>
-
-            <div class="logo-carousel-wrapper position-relative">
-                <div class="logo-carousel d-flex align-items-center">
-                    <!-- Repeat logos at least twice for seamless loop -->
-                    <img src="assets/Wema-Bank-Logo.png" alt="Wema bank logo" />
-                    <img src="assets/NOA 1.png" alt="Noa Logo" />
-                    <img src="assets/flag-foundation.jpeg" alt="flag-foundation logo" />
-                    <img src="assets/CGS-logo.png" alt="CGS logo" />
-                    <img src="assets/DE MIPOS LUXURY SUITE.png" alt="De mipos logo" />
-                    <img src="assets/EAGLENET LOGISTICS.png" alt="EAGLENET logo" />
-                    <img src="assets/ARISE NEWS.png" alt="Arise News logo" />
-
-                    <!-- Duplicate for infinite effect -->
-                    <img src="assets/Wema-Bank-Logo.png" alt="Wema bank logo" />
-                    <img src="assets/NOA 1.png" alt="Noa Logo" />
-                    <img src="assets/flag-foundation.jpeg" alt="flag-foundation logo" />
-                    <img src="assets/CGS-logo.png" alt="CGS logo" />
-                    <img src="assets/DE MIPOS LUXURY SUITE.png" alt="De mipos logo" />
-                    <img src="assets/EAGLENET LOGISTICS.png" alt="EAGLENET logo" />
-                    <img src="assets/ARISE NEWS.png" alt="Arise News logo" />
-
-                    <img src="assets/Wema-Bank-Logo.png" alt="Wema bank logo" />
-                    <img src="assets/NOA 1.png" alt="Noa Logo" />
-                    <img src="assets/flag-foundation.jpeg" alt="flag-foundation logo" />
-                    <img src="assets/CGS-logo.png" alt="CGS logo" />
-                    <img src="assets/DE MIPOS LUXURY SUITE.png" alt="De mipos logo" />
-                    <img src="assets/EAGLENET LOGISTICS.png" alt="EAGLENET logo" />
-                    <img src="assets/ARISE NEWS.png" alt="Arise News logo" />
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-brand">
-                <img src="assets/Footer-logo.png" alt="" />
-                <div class="office-contact">
-                    <li><i class="fa-solid fa-phone"></i>0817 764 0051</li>
-                    <li><i class="fa-brands fa-whatsapp"></i>0915 555 8929</li>
-                    <li><i class="fa-solid fa-envelope"></i>unveilnigeria@gmail.com</li>
-                    <li><i class="fa-solid fa-location-dot"></i>Suite F2 Melita Plaza, Area 11, Garki, Abuja.</li>
-                </div>
-            </div>
-
-            <div class="footer-nav">
-                <h3 class="footer-nav-heading">Quick-Links</h3>
-                <div class="footer-nav-links">
-                    <a href="/index.html">Home</a>
-                    <a href="#About">About</a>
-                    <a href="#Location">Location</a>
-                    <a href="#">Speakers</a>
-                    <a href="#Faq">FAQ</a>
-                    <a href="#Partners">Partners</a>
-                    <a href="">Contact Us</a>
-                </div>
-            </div>
-
-            <div class="footer-social">
-                <h3 class="social-title">Connect with us on social media</h3>
-                <div class="social-icons">
-                    <a href="https://www.facebook.com/unveilingnigeria" class="social-icon" title="Facebook"><i
-                            class="fa-brands fa-facebook-f"></i></a>
-                    <a href="https://www.instagram.com/unveilingnigeria?igsh=MXh0enhhNDBrZ29ucg==" class="social-icon"
-                        title="Instagram"><i class="fa-brands fa-instagram"></i></a>
-                    <a href="https://x.com/unveilingng" class="social-icon" title="Twitter"><i
-                            class="fa-brands fa-x-twitter"></i></a>
-                    <a href="https://www.youtube.com/@unveilingrebrandingnigeria351" class="social-icon"
-                        title="Youtube"><i class="fa-brands fa-youtube"></i></a>
-                    <a href="https://www.tiktok.com/@unveilingnigeria?_t=ZS-8ycVqpqZ4Vt&_r=1" class="social-icon"
-                        title="TikTok"><i class="fa-brands fa-tiktok"></i></a>
-                </div>
-                <div class="volunteer-section">
-                    <h3 class="volunteer-title">Become a Volunteer</h3>
-                    <a href="/volunteer.html" class="volunteer-btn">
-                        Join Us
-                        <span><img src="assets/Vector.png" alt="" class="arrow" /></span>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            Copyright © 2025 Unveiling and Rebranding Nigeria Initiative. All Rights
-            Reserved.
-        </div>
-    </footer>
-
 </body>
 
 </html>
