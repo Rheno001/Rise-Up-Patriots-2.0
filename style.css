@@ -323,8 +323,8 @@ body {
     
     .hero-btn-1,
     .hero-btn-2 {
-        padding: 0.8rem 1.5rem;
-        font-size: clamp(12px, 2.5vw, 16px);
+        padding: 0.5rem 1rem;
+        font-size: clamp(10px, 2vw, 14px);
         width: 100%;
     }
 }
