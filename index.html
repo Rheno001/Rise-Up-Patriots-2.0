@@ -65,7 +65,7 @@
 
                     <!--Buttons-->
                     <div class="d-flex justify-content-center align-items-center gap-2 ms-lg-3">
-                        <a href="/"><button class="btn-volunteer">Register</button></a>
+                        <a href="/registration.html"><button class="btn-volunteer">Register</button></a>
                         <a href="/"><button class="btn-donate">Sponsor</button></a>
                     </div>
                 </div>
@@ -180,7 +180,7 @@
                         among Nigerians.</p>
                 </div>
 
-                <a href="#" class="register-btn" onclick="handleRegistration()">Register for event</a>
+                <a href="/registration.html" class="register-btn">Register for event</a>
             </div>
         </div>
     </div>
@@ -221,10 +221,6 @@
             console.log(`Switched to ${imageId} - ${imageMap[imageId]}`);
         }
 
-        // Function to handle registration button click
-        function handleRegistration() {
-            alert('Registration functionality would be implemented here. This could redirect to a registration form or open a modal.');
-        }
 
         // Add some interactive feedback for better UX
         document.addEventListener('DOMContentLoaded', function () {
@@ -242,17 +238,6 @@
                         this.style.transform = 'scale(1)';
                     }
                 });
-            });
-
-            // Add click animation to register button
-            const registerBtn = document.querySelector('.register-btn');
-            registerBtn.addEventListener('click', function (e) {
-                e.preventDefault();
-                this.style.transform = 'scale(0.98)';
-                setTimeout(() => {
-                    this.style.transform = 'scale(1)';
-                    handleRegistration();
-                }, 150);
             });
         });
 
