@@ -110,10 +110,6 @@ html {
 
 /* Staggered animations for different sections */
 
-.about-container.animate-hidden {
-    transform: translateY(60px);
-}
-
 .Location.animate-hidden {
     transform: translateY(60px);
 }

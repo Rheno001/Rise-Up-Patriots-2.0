@@ -138,6 +138,12 @@
             box-shadow: 0 0 0 3px rgba(45, 90, 61, 0.1);
         }
 
+        .form-select:disabled {
+            background-color: #f8f9fa;
+            cursor: not-allowed;
+            opacity: 0.7;
+        }
+
         .submit-btn {
             background: linear-gradient(135deg, #2d5a3d 0%, #1a4028 100%);
             color: white;
@@ -148,8 +154,11 @@
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            margin-top: 30px;
-            width: 100%;
+            width: 40%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px auto;
         }
 
         .submit-btn:hover {
@@ -159,6 +168,30 @@
 
         .submit-btn:active {
             transform: translateY(0);
+        }
+
+        .loading {
+            position: relative;
+            color: transparent;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            top: 50%;
+            left: 50%;
+            margin-left: -8px;
+            margin-top: -8px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
         }
 
         /* Responsive Design */
@@ -237,6 +270,33 @@
         <form id="registrationForm" onsubmit="handleSubmit(event)">
             <div class="form-grid">
                 <div class="form-field">
+                    <label for="title" class="form-label">
+                        Title<span class="required">*</span>
+                    </label>
+                    <select id="title" name="title" class="form-select" required>
+                        <option value="">Select title</option>
+                        <option value="Mr">Mr</option>
+                        <option value="Mrs">Mrs</option>
+                        <option value="Ms">Ms</option>
+                        <option value="Dr">Dr</option>
+                        <option value="Prof">Prof</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="gender" class="form-label">
+                        Gender<span class="required">*</span>
+                    </label>
+                    <select id="gender" name="gender" class="form-select" required>
+                        <option value="">Select gender</option>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Other">Other</option>
+                        <option value="Prefer not to say">Prefer not to say</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
                     <label for="firstName" class="form-label">
                         First Name<span class="required">*</span>
                     </label>
@@ -302,52 +362,58 @@
                         <option value="24-30">24 - 30 years</option>
                         <option value="30-40">30 - 40 years</option>
                         <option value="40-60">40 - 60 years</option>
+                        <option value="60+">60+ years</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="attendance" class="form-label">
+                        Attendance Type<span class="required">*</span>
+                    </label>
+                    <select id="attendance" name="attendance" class="form-select" required>
+                        <option value="">Select attendance type</option>
+                        <option value="Virtual">Virtual</option>
+                        <option value="Physical">Physical</option>
+                        <option value="Hybrid">Hybrid (Both)</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="country" class="form-label">
+                        Country<span class="required">*</span>
+                    </label>
+                    <select id="country" name="country" class="form-select" required>
+                        <option value="">Loading countries...</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="stateOfOrigin" class="form-label">
+                        State/Province<span class="required">*</span>
+                    </label>
+                    <select id="stateOfOrigin" name="stateOfOrigin" class="form-select" required disabled>
+                        <option value="">Select country first</option>
                     </select>
                 </div>
 
                 <div class="form-field full-width">
-                    <label for="stateOfOrigin" class="form-label">
-                        State of Origin<span class="required">*</span>
+                    <label for="howDidYouHear" class="form-label">
+                        How did you hear about us?<span class="required">*</span>
                     </label>
-                    <select id="stateOfOrigin" name="stateOfOrigin" class="form-select" required>
-                        <option value="">Choose your state of origin</option>
-                        <option value="Abia">Abia</option>
-                        <option value="Adamawa">Adamawa</option>
-                        <option value="Akwa Ibom">Akwa Ibom</option>
-                        <option value="Anambra">Anambra</option>
-                        <option value="Bauchi">Bauchi</option>
-                        <option value="Bayelsa">Bayelsa</option>
-                        <option value="Benue">Benue</option>
-                        <option value="Borno">Borno</option>
-                        <option value="Cross River">Cross River</option>
-                        <option value="Delta">Delta</option>
-                        <option value="Ebonyi">Ebonyi</option>
-                        <option value="Edo">Edo</option>
-                        <option value="Ekiti">Ekiti</option>
-                        <option value="Enugu">Enugu</option>
-                        <option value="FCT">Federal Capital Territory (FCT)</option>
-                        <option value="Gombe">Gombe</option>
-                        <option value="Imo">Imo</option>
-                        <option value="Jigawa">Jigawa</option>
-                        <option value="Kaduna">Kaduna</option>
-                        <option value="Kano">Kano</option>
-                        <option value="Katsina">Katsina</option>
-                        <option value="Kebbi">Kebbi</option>
-                        <option value="Kogi">Kogi</option>
-                        <option value="Kwara">Kwara</option>
-                        <option value="Lagos">Lagos</option>
-                        <option value="Nasarawa">Nasarawa</option>
-                        <option value="Niger">Niger</option>
-                        <option value="Ogun">Ogun</option>
-                        <option value="Ondo">Ondo</option>
-                        <option value="Osun">Osun</option>
-                        <option value="Oyo">Oyo</option>
-                        <option value="Plateau">Plateau</option>
-                        <option value="Rivers">Rivers</option>
-                        <option value="Sokoto">Sokoto</option>
-                        <option value="Taraba">Taraba</option>
-                        <option value="Yobe">Yobe</option>
-                        <option value="Zamfara">Zamfara</option>
+                    <select id="howDidYouHear" name="howDidYouHear" class="form-select" required>
+                        <option value="">Select an option</option>
+                        <option value="WhatsApp">WhatsApp</option>
+                        <option value="Instagram">Instagram</option>
+                        <option value="Facebook">Facebook</option>
+                        <option value="Twitter">Twitter</option>
+                        <option value="LinkedIn">LinkedIn</option>
+                        <option value="Friend">Friend/Referral</option>
+                        <option value="Google Search">Google Search</option>
+                        <option value="Website">Website</option>
+                        <option value="Email">Email</option>
+                        <option value="Advertisement">Advertisement</option>
+                        <option value="Event">Event/Conference</option>
+                        <option value="Other">Other</option>
                     </select>
                 </div>
             </div>
@@ -359,6 +425,192 @@
     </div>
 
     <script>
+        // Global variables for countries and states data
+        let countriesData = [];
+
+        // Load countries on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            loadCountries();
+            initializeFormFeatures();
+        });
+
+        async function loadCountries() {
+            const countrySelect = document.getElementById('country');
+            
+            try {
+                // Using REST Countries API
+                const response = await fetch('https://restcountries.com/v3.1/all?fields=name,cca2');
+                const countries = await response.json();
+                
+                // Sort countries alphabetically
+                countries.sort((a, b) => a.name.common.localeCompare(b.name.common));
+                
+                // Clear loading message and populate countries
+                countrySelect.innerHTML = '<option value="">Select your country</option>';
+                
+                countries.forEach(country => {
+                    const option = document.createElement('option');
+                    option.value = country.cca2; // Country code
+                    option.textContent = country.name.common;
+                    option.dataset.countryName = country.name.common;
+                    countrySelect.appendChild(option);
+                });
+                
+                // Store countries data globally
+                countriesData = countries;
+                
+            } catch (error) {
+                console.error('Error loading countries:', error);
+                countrySelect.innerHTML = '<option value="">Error loading countries</option>';
+            }
+        }
+
+        async function loadStates(countryCode) {
+            const stateSelect = document.getElementById('stateOfOrigin');
+            const selectedCountry = countriesData.find(c => c.cca2 === countryCode);
+            
+            if (!selectedCountry) return;
+            
+            // Show loading state
+            stateSelect.innerHTML = '<option value="">Loading states...</option>';
+            stateSelect.disabled = true;
+            
+            try {
+                // Use REST Countries API for states/subdivisions
+                const response = await fetch(`https://restcountries.com/v3.1/alpha/${countryCode}?fields=name,subdivisions`);
+                const countryData = await response.json();
+                
+                // Try to get states from the subdivisions or use predefined data
+                let states = [];
+                
+                // Predefined states for major countries
+                const countryStates = {
+                    'NG': [
+                        "Abia", "Adamawa", "Akwa Ibom", "Anambra", "Bauchi", "Bayelsa", 
+                        "Benue", "Borno", "Cross River", "Delta", "Ebonyi", "Edo", 
+                        "Ekiti", "Enugu", "Federal Capital Territory (FCT)", "Gombe", 
+                        "Imo", "Jigawa", "Kaduna", "Kano", "Katsina", "Kebbi", 
+                        "Kogi", "Kwara", "Lagos", "Nasarawa", "Niger", "Ogun", 
+                        "Ondo", "Osun", "Oyo", "Plateau", "Rivers", "Sokoto", 
+                        "Taraba", "Yobe", "Zamfara"
+                    ],
+                    'US': [
+                        "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", 
+                        "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", 
+                        "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana", 
+                        "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota", "Mississippi", 
+                        "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", "New Jersey", 
+                        "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", 
+                        "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", 
+                        "South Dakota", "Tennessee", "Texas", "Utah", "Vermont", "Virginia", 
+                        "Washington", "West Virginia", "Wisconsin", "Wyoming", "District of Columbia"
+                    ],
+                    'CA': [
+                        "Alberta", "British Columbia", "Manitoba", "New Brunswick", 
+                        "Newfoundland and Labrador", "Northwest Territories", "Nova Scotia", 
+                        "Nunavut", "Ontario", "Prince Edward Island", "Quebec", 
+                        "Saskatchewan", "Yukon"
+                    ],
+                    'GB': [
+                        "England", "Scotland", "Wales", "Northern Ireland"
+                    ],
+                    'AU': [
+                        "New South Wales", "Victoria", "Queensland", "Western Australia", 
+                        "South Australia", "Tasmania", "Australian Capital Territory", 
+                        "Northern Territory"
+                    ],
+                    'IN': [
+                        "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", 
+                        "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", 
+                        "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", 
+                        "Mizoram", "Nagaland", "Odisha", "Punjab", "Rajasthan", "Sikkim", 
+                        "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", "Uttarakhand", 
+                        "West Bengal", "Andaman and Nicobar Islands", "Chandigarh", 
+                        "Dadra and Nagar Haveli and Daman and Diu", "Delhi", "Jammu and Kashmir", 
+                        "Ladakh", "Lakshadweep", "Puducherry"
+                    ],
+                    'DE': [
+                        "Baden-Württemberg", "Bavaria", "Berlin", "Brandenburg", "Bremen", 
+                        "Hamburg", "Hesse", "Lower Saxony", "Mecklenburg-Vorpommern", 
+                        "North Rhine-Westphalia", "Rhineland-Palatinate", "Saarland", 
+                        "Saxony", "Saxony-Anhalt", "Schleswig-Holstein", "Thuringia"
+                    ],
+                    'FR': [
+                        "Auvergne-Rhône-Alpes", "Bourgogne-Franche-Comté", "Brittany", 
+                        "Centre-Val de Loire", "Corsica", "Grand Est", "Hauts-de-France", 
+                        "Île-de-France", "Normandy", "Nouvelle-Aquitaine", "Occitania", 
+                        "Pays de la Loire", "Provence-Alpes-Côte d'Azur"
+                    ],
+                    'ZA': [
+                        "Eastern Cape", "Free State", "Gauteng", "KwaZulu-Natal", "Limpopo", 
+                        "Mpumalanga", "Northern Cape", "North West", "Western Cape"
+                    ],
+                    'KE': [
+                        "Baringo", "Bomet", "Bungoma", "Busia", "Elgeyo-Marakwet", "Embu", 
+                        "Garissa", "Homa Bay", "Isiolo", "Kajiado", "Kakamega", "Kericho", 
+                        "Kiambu", "Kilifi", "Kirinyaga", "Kisii", "Kisumu", "Kitui", 
+                        "Kwale", "Laikipia", "Lamu", "Machakos", "Makueni", "Mandera", 
+                        "Marsabit", "Meru", "Migori", "Mombasa", "Murang'a", "Nairobi", 
+                        "Nakuru", "Nandi", "Narok", "Nyamira", "Nyandarua", "Nyeri", 
+                        "Samburu", "Siaya", "Taita-Taveta", "Tana River", "Tharaka-Nithi", 
+                        "Trans Nzoia", "Turkana", "Uasin Gishu", "Vihiga", "Wajir", "West Pokot"
+                    ],
+                    'GH': [
+                        "Ashanti", "Brong-Ahafo", "Central", "Eastern", "Greater Accra", 
+                        "Northern", "Upper East", "Upper West", "Volta", "Western"
+                    ],
+                    'BR': [
+                        "Acre", "Alagoas", "Amapá", "Amazonas", "Bahia", "Ceará", 
+                        "Distrito Federal", "Espírito Santo", "Goiás", "Maranhão", 
+                        "Mato Grosso", "Mato Grosso do Sul", "Minas Gerais", "Pará", 
+                        "Paraíba", "Paraná", "Pernambuco", "Piauí", "Rio de Janeiro", 
+                        "Rio Grande do Norte", "Rio Grande do Sul", "Rondônia", "Roraima", 
+                        "Santa Catarina", "São Paulo", "Sergipe", "Tocantins"
+                    ]
+                };
+                
+                // Check if we have predefined states for this country
+                if (countryStates[countryCode]) {
+                    states = countryStates[countryCode];
+                } else {
+                    // For countries without predefined states, provide generic options
+                    states = ["Province/State not specified", "Not applicable"];
+                }
+                
+                // Populate the states dropdown
+                stateSelect.innerHTML = '<option value="">Select your state/province</option>';
+                states.forEach(state => {
+                    const option = document.createElement('option');
+                    option.value = state;
+                    option.textContent = state;
+                    stateSelect.appendChild(option);
+                });
+                
+                stateSelect.disabled = false;
+                
+            } catch (error) {
+                console.error('Error loading states:', error);
+                stateSelect.innerHTML = '<option value="">Error loading states</option>';
+                stateSelect.disabled = false;
+            }
+        }
+
+        // Removed GeoNames dependency - now using predefined state data
+
+        // Handle country selection change
+        document.addEventListener('change', function(e) {
+            if (e.target.id === 'country') {
+                const countryCode = e.target.value;
+                if (countryCode) {
+                    loadStates(countryCode);
+                } else {
+                    const stateSelect = document.getElementById('stateOfOrigin');
+                    stateSelect.innerHTML = '<option value="">Select country first</option>';
+                    stateSelect.disabled = true;
+                }
+            }
+        });
+
         function handleSubmit(event) {
             event.preventDefault();
             
@@ -367,11 +619,19 @@
             
             // Disable submit button and show loading state
             submitBtn.disabled = true;
+            submitBtn.classList.add('loading');
             submitBtn.textContent = 'Submitting...';
             
             // Get form data
             const formData = new FormData(form);
             const data = Object.fromEntries(formData.entries());
+            
+            // Add country name to data
+            const countrySelect = document.getElementById('country');
+            const selectedCountryOption = countrySelect.options[countrySelect.selectedIndex];
+            if (selectedCountryOption && selectedCountryOption.dataset.countryName) {
+                data.countryName = selectedCountryOption.dataset.countryName;
+            }
             
             // Simulate form submission (replace with actual submission logic)
             setTimeout(() => {
@@ -381,20 +641,25 @@
                 // Reset form and button
                 form.reset();
                 submitBtn.disabled = false;
+                submitBtn.classList.remove('loading');
                 submitBtn.textContent = 'Submit Registration';
-            }, 2000);
+                
+                // Reset state dropdown
+                const stateSelect = document.getElementById('stateOfOrigin');
+                stateSelect.innerHTML = '<option value="">Select country first</option>';
+                stateSelect.disabled = true;
+            }, 3000);
         }
 
-        // Add real-time validation
-        document.addEventListener('DOMContentLoaded', function() {
+        function initializeFormFeatures() {
             const phoneInput = document.getElementById('phone');
             const emailInput = document.getElementById('email');
             
-            // Phone number formatting (basic Nigerian format)
+            // Phone number formatting (basic international format)
             phoneInput.addEventListener('input', function(e) {
-                let value = e.target.value.replace(/\D/g, '');
-                if (value.length > 11) {
-                    value = value.slice(0, 11);
+                let value = e.target.value.replace(/[^\d+\-\s()]/g, '');
+                if (value.length > 20) {
+                    value = value.slice(0, 20);
                 }
                 e.target.value = value;
             });
@@ -420,7 +685,7 @@
                     this.parentElement.style.transform = 'translateY(0)';
                 });
             });
-        });
+        }
     </script>
 </body>
 </html>

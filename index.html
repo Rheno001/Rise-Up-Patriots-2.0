@@ -174,7 +174,7 @@
 
                         <p>This annual forum brings together policymakers, thought leaders, creatives (entertainers,
                             content
-                            creators, journalists, photographers and experts in AI) and over 500 young Nigerians for
+                            creators, journalists, photographers and experts in AI) and over 1000 young Nigerians for
                             robust
                             conversations on patriotism, governance, and national development.</p>
 
@@ -206,12 +206,12 @@
             <h1 class="panelist-title">Our Panelist</h1>
 
             <div class="panelist-grid">
-                <div class="panelist-item">
+                <!--<div class="panelist-item">
                     <div class="panelist-photo">
                         <img src="assets/Hadiza-Bala.png" alt="Hadiza Bala Usman">
                     </div>
                     <div class="panelist-name">Hadiza<br>Bala Usman</div>
-                </div>
+                </div>-->
 
                 <div class="panelist-item">
                     <div class="panelist-photo">
@@ -220,26 +220,26 @@
                     <div class="panelist-name">Stanley Alieke</div>
                 </div>
 
-                <div class="panelist-item">
+                <!--<div class="panelist-item">
                     <div class="panelist-photo">
                         <img src="assets/Chioma-Agwu.png" alt="Chioma Agwuegbo">
                     </div>
                     <div class="panelist-name">Chioma<br>Agwuegbo</div>
-                </div>
+                </div>-->
 
-                <div class="panelist-item">
+                <!--<div class="panelist-item">
                     <div class="panelist-photo">
                         <img src="moses-longe.jpg" alt="Barr. Moses Longe">
                     </div>
                     <div class="panelist-name">Barr. Moses<br>Longe</div>
-                </div>
+                </div>-->
 
-                <div class="panelist-item">
+               <!-- <div class="panelist-item">
                     <div class="panelist-photo">
                         <img src="roy-maduka.jpg" alt="Prof. Roy Maduka">
                     </div>
                     <div class="panelist-name">Prof. Roy<br>Maduka</div>
-                </div>
+                </div>-->
 
                 <div class="panelist-item">
                     <div class="panelist-photo">
@@ -248,12 +248,12 @@
                     <div class="panelist-name">Seun Okinbaloye</div>
                 </div>
 
-                <div class="panelist-item">
+                <!--<div class="panelist-item">
                     <div class="panelist-photo">
                         <img src="assets/NASBOI.png" alt="Lawal Micahel (Nasboi)">
                     </div>
                     <div class="panelist-name">Lawal Michael<br>(Nasboi)</div>
-                </div>
+                </div>-->
 
                 <div class="panelist-item">
                     <div class="panelist-photo">
@@ -262,12 +262,12 @@
                     <div class="panelist-name">Momodu Sadiq</div>
                 </div>
 
-                <div class="panelist-item">
+                <!--<div class="panelist-item">
                     <div class="panelist-photo">
                         <img src="assets/brainjotter.png" alt="Chukwuebuka Amuze (Brain Jotter)">
                     </div>
                     <div class="panelist-name">Chukwuebuka<br>Amuze<br>(Brain Jotter)</div>
-                </div>
+                </div>-->
 
                 <div class="panelist-item">
                     <div class="panelist-photo">
@@ -413,8 +413,6 @@
                         <a href="#Location">Location</a>
                         <a href="#">Speakers</a>
                         <a href="#Faq">FAQ</a>
-                        <a href="#Partners">Partners</a>
-                        <a href="">Contact Us</a>
                     </div>
                 </div>
 
@@ -535,31 +533,95 @@
         setInterval(updateCountdown, 1000);
 
         // About image gallery
-        const imageMap = {
-            'image1': 'assets/Rectangle 14.png',
-            'image2': 'assets/untitled-246 2.png',
-            'image3': 'assets/Rectangle 15.png'
-        };
+const imageMap = {
+    'image1': 'assets/Rectangle 14.png',
+    'image2': 'assets/untitled-246 2.png',
+    'image3': 'assets/Rectangle 15.png'
+};
 
-        function changeImage(imageId, thumbnailElement) {
-            document.querySelectorAll('.about-thumbnail').forEach(thumb => {
-                thumb.classList.remove('active');
-            });
+let currentImageIndex = 0;
+const imageKeys = Object.keys(imageMap);
+let autoChangeInterval;
 
-            thumbnailElement.classList.add('active');
+function changeImage(imageId, thumbnailElement) {
+    // Remove active class from all thumbnails
+    document.querySelectorAll('.about-thumbnail').forEach(thumb => {
+        thumb.classList.remove('active');
+    });
 
-            const mainImage = document.getElementById('aboutMainImage');
-            const aboutMainImageContainer = document.getElementById('aboutMainImageContainer');
+    // Add active class to clicked thumbnail
+    thumbnailElement.classList.add('active');
 
-            aboutMainImageContainer.style.opacity = '0.7';
+    const mainImage = document.getElementById('aboutMainImage');
+    const aboutMainImageContainer = document.getElementById('aboutMainImageContainer');
 
-            setTimeout(() => {
-                if (imageMap[imageId]) {
-                    mainImage.src = imageMap[imageId];
-                }
-                aboutMainImageContainer.style.opacity = '1';
-            }, 150);
+    // Smooth fade transition
+    aboutMainImageContainer.style.opacity = '0.7';
+
+    setTimeout(() => {
+        if (imageMap[imageId]) {
+            mainImage.src = imageMap[imageId];
         }
+        aboutMainImageContainer.style.opacity = '1';
+    }, 150);
+
+    // Update current index for auto-change
+    currentImageIndex = imageKeys.indexOf(imageId);
+}
+
+function autoChangeImage() {
+    // Move to next image
+    currentImageIndex = (currentImageIndex + 1) % imageKeys.length;
+    const nextImageId = imageKeys[currentImageIndex];
+    
+    // Find the corresponding thumbnail
+    const thumbnailElement = document.querySelector(`[onclick*="${nextImageId}"]`);
+    
+    if (thumbnailElement) {
+        changeImage(nextImageId, thumbnailElement);
+    }
+}
+
+function startAutoChange() {
+    // Clear any existing interval
+    if (autoChangeInterval) {
+        clearInterval(autoChangeInterval);
+    }
+    
+    // Start auto-changing every 3 seconds
+    autoChangeInterval = setInterval(autoChangeImage, 3000);
+}
+
+function stopAutoChange() {
+    if (autoChangeInterval) {
+        clearInterval(autoChangeInterval);
+        autoChangeInterval = null;
+    }
+}
+
+// Initialize auto-change when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    startAutoChange();
+    
+    // Optional: Pause auto-change on hover
+    const gallery = document.getElementById('aboutMainImageContainer');
+    if (gallery) {
+        gallery.addEventListener('mouseenter', stopAutoChange);
+        gallery.addEventListener('mouseleave', startAutoChange);
+    }
+});
+
+// Enhanced version with manual control
+function changeImageWithAutoReset(imageId, thumbnailElement) {
+    // Stop auto-change temporarily
+    stopAutoChange();
+    
+    // Change image manually
+    changeImage(imageId, thumbnailElement);
+    
+    // Restart auto-change after 5 seconds of inactivity
+    setTimeout(startAutoChange, 5000);
+}
 
         // FAQ functionality
         document.addEventListener('DOMContentLoaded', function () {
