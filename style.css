@@ -9,6 +9,9 @@ body {
     font-family: "Montserrat", Arial, sans-serif;
     overflow-x: hidden;
 }
+html {
+    scroll-padding-top: 80px; /* Adjust to match your navbar height */
+}
 
 .preloader {
     position: fixed;
