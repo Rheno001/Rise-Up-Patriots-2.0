@@ -4,8 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap"
-        rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
     <link rel="icon" type="image/svg" href="assets/URNI LOGO - ICON.svg">
     <title>Rise Up Patriots 2.0</title>
     <link rel="stylesheet" href="style.css">
@@ -13,13 +15,14 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="https://kit.fontawesome.com/29a8691164.js" crossorigin="anonymous"></script>
     <script src="lazy.js"></script>
-    
+
 </head>
 
 <body>
     <!-- Preloader -->
     <div class="preloader" id="preloader">
-        <img src="assets/RISE UP PATRIOTS CONFERENCE LOGO 1.png" alt="URNI Logo" class="preloader-logo" onerror="this.style.display='none'">
+        <img src="assets/RISE UP PATRIOTS CONFERENCE LOGO 1.png" alt="URNI Logo" class="preloader-logo"
+            onerror="this.style.display='none'">
         <div class="preloader-spinner"></div>
     </div>
 
@@ -35,8 +38,9 @@
                         </a>
 
                         <!--Toggle for mobile-->
-                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#urniNavbar"
-                            aria-controls="urniNavbar" aria-expanded="false" aria-label="Toggle navigation">
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#urniNavbar" aria-controls="urniNavbar" aria-expanded="false"
+                            aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                         </button>
                     </div>
@@ -164,15 +168,20 @@
                 <div class="about-text-section">
                     <div class="about-text-content">
                         <p>The <span class="theme-text">"Rise Up, Patriots Conference 2.0"</span> of the Unveiling and
-                            Rebranding Nigeria Initiative (URNI) is themed <span class="theme-text">"Projecting the Positive
+                            Rebranding Nigeria Initiative (URNI) is themed <span class="theme-text">"Projecting the
+                                Positive
                                 Image of Nigeria through the Creative Ecosystems"</span>.</p>
 
-                        <p>This annual forum brings together policymakers, thought leaders, creatives (entertainers, content
-                            creators, journalists, photographers and experts in AI) and over 500 young Nigerians for robust
+                        <p>This annual forum brings together policymakers, thought leaders, creatives (entertainers,
+                            content
+                            creators, journalists, photographers and experts in AI) and over 500 young Nigerians for
+                            robust
                             conversations on patriotism, governance, and national development.</p>
 
-                        <p>This significant event, themed <span class="theme-text">"Rise up Patriot Conference 2.0"</span>
-                            marks a pivotal moment in our collective journey to inspire patriotism and foster national pride
+                        <p>This significant event, themed <span class="theme-text">"Rise up Patriot Conference
+                                2.0"</span>
+                            marks a pivotal moment in our collective journey to inspire patriotism and foster national
+                            pride
                             among Nigerians.</p>
                     </div>
 
@@ -296,8 +305,10 @@
                         <span class="plus-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>The conference is open to all citizens who are passionate about patriotic values and community
-                            engagement. We welcome individuals from all backgrounds, professions, and walks of life who are
+                        <p>The conference is open to all citizens who are passionate about patriotic values and
+                            community
+                            engagement. We welcome individuals from all backgrounds, professions, and walks of life who
+                            are
                             interested in constructive dialogue and positive action for our country.</p>
                     </div>
                 </div>
@@ -308,7 +319,8 @@
                         <span class="plus-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>Registration can be completed online through our official website. Simply visit the registration
+                        <p>Registration can be completed online through our official website. Simply visit the
+                            registration
                             page, fill out the required information.</p>
                     </div>
                 </div>
@@ -331,7 +343,8 @@
                     </button>
                     <div class="faq-answer">
                         <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Delectus, consequatur ducimus,
-                            molestias voluptate doloribus totam tempore culpa neque nemo eius sit officia eos porro fuga.
+                            molestias voluptate doloribus totam tempore culpa neque nemo eius sit officia eos porro
+                            fuga.
                         </p>
                     </div>
                 </div>
@@ -410,8 +423,8 @@
                     <div class="social-icons">
                         <a href="https://www.facebook.com/unveilingnigeria" class="social-icon" title="Facebook"><i
                                 class="fa-brands fa-facebook-f"></i></a>
-                        <a href="https://www.instagram.com/unveilingnigeria?igsh=MXh0enhhNDBrZ29ucg==" class="social-icon"
-                            title="Instagram"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.instagram.com/unveilingnigeria?igsh=MXh0enhhNDBrZ29ucg=="
+                            class="social-icon" title="Instagram"><i class="fa-brands fa-instagram"></i></a>
                         <a href="https://x.com/unveilingng" class="social-icon" title="Twitter"><i
                                 class="fa-brands fa-x-twitter"></i></a>
                         <a href="https://www.youtube.com/@unveilingrebrandingnigeria351" class="social-icon"
@@ -438,19 +451,19 @@
     <!-- Preloader and Main Scripts -->
     <script>
         // Preloader functionality
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             const preloader = document.getElementById('preloader');
             const mainContent = document.getElementById('mainContent');
-            
+
             // Minimum loading time of 1 second for better UX
-            setTimeout(function() {
+            setTimeout(function () {
                 preloader.classList.add('hide');
                 mainContent.classList.add('show');
-                
+
                 // Remove preloader from DOM after animation completes
-                setTimeout(function() {
+                setTimeout(function () {
                     preloader.style.display = 'none';
-                    
+
                     // Initialize scroll animations and hero animations
                     initScrollAnimations();
                     initHeroAnimations();
@@ -461,7 +474,7 @@
         // Hero Animation Functionality
         function initHeroAnimations() {
             // Animate hero elements after a short delay
-            setTimeout(function() {
+            setTimeout(function () {
                 const heroElements = document.querySelectorAll('.hero-animate-hidden');
                 heroElements.forEach(element => {
                     element.classList.add('hero-animate-in');
@@ -493,33 +506,33 @@
         }
 
         // Countdown functionality
-// Target date: October 25, 2025 at end of day (23:59:59)
-const targetDate = new Date('2025-10-25T23:59:59');
+        // Target date: October 25, 2025 at end of day (23:59:59)
+        const targetDate = new Date('2025-10-25T23:59:59');
 
-function updateCountdown() {
-    const now = new Date().getTime();
-    const timeLeft = targetDate.getTime() - now;
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeLeft = targetDate.getTime() - now;
 
-    if (timeLeft > 0) {
-        const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            if (timeLeft > 0) {
+                const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-        document.getElementById('days').textContent = days.toString().padStart(2, '0');
-        document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
-        document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
-        document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
-    } else {
-        document.getElementById('days').textContent = '00';
-        document.getElementById('hours').textContent = '00';
-        document.getElementById('minutes').textContent = '00';
-        document.getElementById('seconds').textContent = '00';
-    }
-}
+                document.getElementById('days').textContent = days.toString().padStart(2, '0');
+                document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+            } else {
+                document.getElementById('days').textContent = '00';
+                document.getElementById('hours').textContent = '00';
+                document.getElementById('minutes').textContent = '00';
+                document.getElementById('seconds').textContent = '00';
+            }
+        }
 
-updateCountdown();
-setInterval(updateCountdown, 1000);
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
 
         // About image gallery
         const imageMap = {
