@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registration Form</title>
+    <!-- SweetAlert2 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <style>
         * {
             margin: 0;
@@ -370,7 +372,7 @@
                     <label for="attendance" class="form-label">
                         Attendance Type<span class="required">*</span>
                     </label>
-                    <select id="attendance" name="attendance" class="form-select" required>
+                    <select id="attendance" name="attendanceType" class="form-select" required>
                         <option value="">Select attendance type</option>
                         <option value="Virtual">Virtual</option>
                         <option value="Physical">Physical</option>
@@ -425,6 +427,8 @@
     </div>
 
     <script>
+    // Set API base URL for development and production
+    window.API_BASE_URL = window.API_BASE_URL || 'http://localhost:8000';
         // Global variables for countries and states data
         let countriesData = [];
 
@@ -611,7 +615,7 @@
             }
         });
 
-        function handleSubmit(event) {
+        async function handleSubmit(event) {
             event.preventDefault();
             
             const submitBtn = document.getElementById('submitBtn');
@@ -622,33 +626,84 @@
             submitBtn.classList.add('loading');
             submitBtn.textContent = 'Submitting...';
             
-            // Get form data
-            const formData = new FormData(form);
-            const data = Object.fromEntries(formData.entries());
-            
-            // Add country name to data
-            const countrySelect = document.getElementById('country');
-            const selectedCountryOption = countrySelect.options[countrySelect.selectedIndex];
-            if (selectedCountryOption && selectedCountryOption.dataset.countryName) {
-                data.countryName = selectedCountryOption.dataset.countryName;
-            }
-            
-            // Simulate form submission (replace with actual submission logic)
-            setTimeout(() => {
-                console.log('Form Data:', data);
-                alert('Registration submitted successfully!\n\nData:\n' + JSON.stringify(data, null, 2));
+            try {
+                // Get form data
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData.entries());
                 
-                // Reset form and button
-                form.reset();
+                // Add country name to data
+                const countrySelect = document.getElementById('country');
+                const selectedCountryOption = countrySelect.options[countrySelect.selectedIndex];
+                if (selectedCountryOption && selectedCountryOption.dataset.countryName) {
+                    data.countryName = selectedCountryOption.dataset.countryName;
+                }
+                
+                console.log('Submitting form data:', data);
+                
+                // Submit to backend API
+                const response = await fetch(window.API_BASE_URL + '/register.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                const result = await response.json();
+                
+                if (result.success) {
+                    // Success response
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Registration Successful!',
+                        text: 'Registration successful, check your email for confirmation.',
+                        confirmButtonText: 'Great!',
+                        confirmButtonColor: '#2d5a3d',
+                        showConfirmButton: true,
+                        timer: 5000,
+                        timerProgressBar: true
+                    });
+                    
+                    // Reset form
+                    form.reset();
+                    
+                    // Reset state dropdown
+                    const stateSelect = document.getElementById('stateOfOrigin');
+                    stateSelect.innerHTML = '<option value="">Select country first</option>';
+                    stateSelect.disabled = true;
+                    
+                } else {
+                    // Error response
+                    let errorMessage = result.error || 'Registration failed';
+                    if (result.details && Array.isArray(result.details)) {
+                        errorMessage += '\n\nDetails:\n' + result.details.join('\n');
+                    }
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Registration Failed!',
+                        text: errorMessage,
+                        confirmButtonText: 'Try Again',
+                        confirmButtonColor: '#d33',
+                        showConfirmButton: true
+                    });
+                }
+                
+            } catch (error) {
+                console.error('Submission error:', error);
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Connection Error!',
+                    text: 'Unable to connect to server. Please check your internet connection and try again.',
+                    confirmButtonText: 'Retry',
+                    confirmButtonColor: '#d33',
+                    showConfirmButton: true
+                });
+            } finally {
+                // Reset button state
                 submitBtn.disabled = false;
                 submitBtn.classList.remove('loading');
                 submitBtn.textContent = 'Submit Registration';
-                
-                // Reset state dropdown
-                const stateSelect = document.getElementById('stateOfOrigin');
-                stateSelect.innerHTML = '<option value="">Select country first</option>';
-                stateSelect.disabled = true;
-            }, 3000);
+            }
         }
 
         function initializeFormFeatures() {
