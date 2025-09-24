@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <title>Become a Sponsor</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "Montserrat", Arial, sans-serif;
+            background-color: #f5f7fa;
+            padding: 20px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .form-container {
+            max-width: 1000px;
+            width: 100%;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .back-to-home {
+            display: inline-flex;
+            align-items: center;
+            color: #025836;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .back-to-home:hover {
+            background-color: rgba(2, 88, 54, 0.05);
+            border-color: #025836;
+            transform: translateX(-2px);
+        }
+
+        .back-to-home:active {
+            transform: translateX(0);
+        }
+
+        .form-header h1 {
+            color: #025836;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .form-header p {
+            color: #666;
+            font-size: 1.1rem;
+        }
+
+        .benefits {
+            background-color: #f8f9fa;
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+        }
+
+        .benefits h3 {
+            color: #025836;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .benefits ul {
+            list-style: none;
+            padding-left: 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 8px;
+        }
+
+        .benefits li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .benefits li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #025836;
+            font-weight: bold;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .form-field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-field.full-width {
+            grid-column: 1 / -1;
+        }
+
+        .form-label {
+            font-weight: 600;
+            color: #025836;
+            margin-bottom: 8px;
+            font-size: 0.95rem;
+        }
+
+        .required {
+            color: #e74c3c;
+        }
+
+        .form-input, .form-select {
+            padding: 14px 16px;
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            background-color: #fff;
+        }
+
+        .form-input:focus, .form-select:focus {
+            outline: none;
+            border-color: #025836;
+            box-shadow: 0 0 0 3px rgba(2, 88, 54, 0.1);
+        }
+
+        .form-input::placeholder {
+            color: #a0a9b8;
+        }
+
+        .form-select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url('data:image/svg+xml;charset=US-ASCII,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 4 5"><path fill="%23666" d="m0 0 2 2 2-2z"/></svg>');
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            background-size: 12px;
+        }
+
+        .amount-group {
+            display: flex;
+            gap: 10px;
+            align-items: end;
+        }
+
+        .currency-select .form-select{
+            width: 150px;
+        }
+
+        .sponsor-levels {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .sponsor-level {
+            border: 2px solid #e1e8ed;
+            border-radius: 8px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sponsor-level:hover {
+            border-color: #025836;
+            background-color: rgba(2, 88, 54, 0.05);
+        }
+
+        .sponsor-level.selected {
+            border-color: #025836;
+            background-color: #025836;
+            color: white;
+        }
+
+        .sponsor-level h3 {
+            margin-bottom: 5px;
+            font-size: 1.2rem;
+        }
+
+        .sponsor-level p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, #2d5a3d 0%, #1a4028 100%);
+            color: white;
+            border: none;
+            padding: 16px 40px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 40%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 30px auto;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(2, 88, 54, 0.3);
+        }
+
+        .submit-btn:active {
+            transform: translateY(0);
+        }
+
+        .loading {
+            position: relative;
+            color: transparent;
+        }
+
+        .loading::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            top: 50%;
+            left: 50%;
+            margin-left: -8px;
+            margin-top: -8px;
+            border: 2px solid #ffffff;
+            border-radius: 50%;
+            border-top-color: transparent;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .form-container {
+                padding: 30px 20px;
+            }
+
+            .form-header h1 {
+                font-size: 2rem;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+
+            .form-field.full-width {
+                grid-column: 1;
+            }
+
+
+            .submit-btn {
+                width: 100%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .form-container {
+                padding: 25px 15px;
+            }
+
+            .form-header h1 {
+                font-size: 1.8rem;
+            }
+
+            .form-header p {
+                font-size: 1rem;
+            }
+
+            .form-input,
+            .form-select {
+                padding: 12px 14px;
+            }
+        }
+
+        /* Form validation styles */
+        .form-input:invalid {
+            border-color: #e74c3c;
+        }
+
+        .form-input:valid {
+            border-color: #27ae60;
+        }
+
+        /* Loading state */
+        .submit-btn:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .submit-btn:disabled:hover {
+            transform: none;
+            box-shadow: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <div class="form-header">
+            <a href="/" class="back-to-home">← Back to Home</a>
+            <h1>Sponsorship Form</h1>
+            <p>Be part of showcasing Nigeria's rich culture and heritage to the world</p>
+        </div>
+
+        <div class="benefits">
+            <h3>Why Sponsor Unveiling Nigeria?</h3>
+            <ul>
+                <li>Support cultural preservation and promotion</li>
+                <li>Gain brand visibility to diverse audiences</li>
+                <li>Contribute to educational initiatives</li>
+                <li>Receive recognition in all promotional materials</li>
+                <li>Network with cultural enthusiasts and leaders</li>
+            </ul>
+        </div>
+
+        <form id="sponsorForm" onsubmit="handleSubmit(event)">
+            <div class="form-grid">
+                <div class="form-field">
+                    <label for="firstName" class="form-label">
+                        First Name<span class="required">*</span>
+                    </label>
+                    <input 
+                        type="text" 
+                        id="firstName" 
+                        name="firstName" 
+                        class="form-input" 
+                        placeholder="Enter your first name"
+                        required
+                    >
+                </div>
+
+                <div class="form-field">
+                    <label for="lastName" class="form-label">
+                        Last Name<span class="required">*</span>
+                    </label>
+                    <input 
+                        type="text" 
+                        id="lastName" 
+                        name="lastName" 
+                        class="form-input" 
+                        placeholder="Enter your last name"
+                        required
+                    >
+                </div>
+
+                <div class="form-field">
+                    <label for="email" class="form-label">
+                        Email Address<span class="required">*</span>
+                    </label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        name="email" 
+                        class="form-input" 
+                        placeholder="Enter your email address"
+                        required
+                    >
+                </div>
+
+                <div class="form-field">
+                    <label for="phone" class="form-label">
+                        Phone Number
+                    </label>
+                    <input 
+                        type="tel" 
+                        id="phone" 
+                        name="phone" 
+                        class="form-input" 
+                        placeholder="Enter your phone number"
+                    >
+                </div>
+
+                <div class="form-field full-width">
+                    <label for="company" class="form-label">
+                        Company/Organization
+                    </label>
+                    <input 
+                        type="text" 
+                        id="company" 
+                        name="company" 
+                        class="form-input" 
+                        placeholder="Enter your company or organization name"
+                    >
+                </div>
+
+                <div class="form-field full-width">
+                    <label class="form-label">Select Sponsorship Level</label>
+                    <div class="sponsor-levels">
+                        <div class="sponsor-level" data-amount="50000" data-currency="NGN">
+                            <h3>Bronze</h3>
+                            <p>₦50,000</p>
+                        </div>
+                        <div class="sponsor-level" data-amount="150000" data-currency="NGN">
+                            <h3>Silver</h3>
+                            <p>₦150,000</p>
+                        </div>
+                        <div class="sponsor-level" data-amount="300000" data-currency="NGN">
+                            <h3>Gold</h3>
+                            <p>₦300,000</p>
+                        </div>
+                        <div class="sponsor-level" data-amount="500000" data-currency="NGN">
+                            <h3>Platinum</h3>
+                            <p>₦500,000</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-field full-width">
+                    <label class="form-label">Custom Sponsorship Amount</label>
+                    <div class="amount-group">
+                        <div class="amount-input">
+                            <input 
+                                type="number" 
+                                id="amount" 
+                                name="amount" 
+                                class="form-input" 
+                                placeholder="Enter amount" 
+                                min="0"
+                            >
+                        </div>
+                        <div class="currency-select">
+                            <select id="currency" name="currency" class="form-select">
+                                <option value="NGN">₦ NGN</option>
+                                <option value="USD">$ USD</option>
+                                <option value="EUR">€ EUR</option>
+                                <option value="GBP">£ GBP</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-field">
+                    <label for="sponsorshipType" class="form-label">
+                        Sponsorship Type<span class="required">*</span>
+                    </label>
+                    <select id="sponsorshipType" name="sponsorshipType" class="form-select" required>
+                        <option value="">Select sponsorship type</option>
+                        <option value="event">Event Sponsorship</option>
+                        <option value="content">Content Creation</option>
+                        <option value="exhibition">Exhibition Support</option>
+                        <option value="education">Educational Programs</option>
+                        <option value="general">General Support</option>
+                    </select>
+                </div>
+
+                <div class="form-field">
+                    <label for="hearAbout" class="form-label">
+                        How did you hear about us?<span class="required">*</span>
+                    </label>
+                    <select id="hearAbout" name="hearAbout" class="form-select" required>
+                        <option value="">Select an option</option>
+                        <option value="social-media">Social Media</option>
+                        <option value="website">Website</option>
+                        <option value="referral">Friend/Colleague Referral</option>
+                        <option value="event">Event/Conference</option>
+                        <option value="search">Search Engine</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-field full-width">
+                    <label for="message" class="form-label">
+                        Message/Special Requests
+                    </label>
+                    <textarea 
+                        id="message" 
+                        name="message" 
+                        class="form-input" 
+                        placeholder="Tell us about your sponsorship goals or any specific requests..."
+                    ></textarea>
+                </div>
+            </div>
+
+            <button type="submit" class="submit-btn" id="submitBtn">
+                Submit
+            </button>
+        </form>
+    </div>
+
+    <script>
+        // Handle sponsor level selection
+        const sponsorLevels = document.querySelectorAll('.sponsor-level');
+        const amountInput = document.getElementById('amount');
+        const currencySelect = document.getElementById('currency');
+
+        sponsorLevels.forEach(level => {
+            level.addEventListener('click', function() {
+                // Remove selected class from all levels
+                sponsorLevels.forEach(l => l.classList.remove('selected'));
+                
+                // Add selected class to clicked level
+                this.classList.add('selected');
+                
+                // Update amount and currency inputs
+                const amount = this.getAttribute('data-amount');
+                const currency = this.getAttribute('data-currency');
+                
+                amountInput.value = amount;
+                currencySelect.value = currency;
+            });
+        });
+
+        function handleSubmit(event) {
+            event.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const form = document.getElementById('sponsorForm');
+            
+            // Disable submit button and show loading state
+            submitBtn.disabled = true;
+            submitBtn.classList.add('loading');
+            submitBtn.textContent = 'Submitting...';
+            
+            // Get form data
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData.entries());
+            
+            // Simple validation
+            if (!data.firstName || !data.lastName || !data.email) {
+                alert('Please fill in all required fields.');
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('loading');
+                submitBtn.textContent = 'Submit Sponsorship Application';
+                return;
+            }
+            
+            if (!data.sponsorshipType) {
+                alert('Please select a sponsorship type.');
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('loading');
+                submitBtn.textContent = 'Submit Sponsorship Application';
+                return;
+            }
+
+            if (!data.hearAbout) {
+                alert('Please tell us how you heard about us.');
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('loading');
+                submitBtn.textContent = 'Submit Sponsorship Application';
+                return;
+            }
+            
+            if (!data.amount || data.amount <= 0) {
+                alert('Please enter a valid sponsorship amount or select a sponsorship level.');
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('loading');
+                submitBtn.textContent = 'Submit Sponsorship Application';
+                return;
+            }
+            
+            // Simulate form submission (replace with actual submission logic)
+            setTimeout(() => {
+                console.log('Sponsorship Application Data:', data);
+                alert('Thank you for your sponsorship application! We will contact you shortly.');
+                
+                // Reset form and button
+                form.reset();
+                sponsorLevels.forEach(l => l.classList.remove('selected'));
+                submitBtn.disabled = false;
+                submitBtn.classList.remove('loading');
+                submitBtn.textContent = 'Submit Sponsorship Application';
+            }, 3000);
+        }
+
+        // Initialize form features
+        document.addEventListener('DOMContentLoaded', function() {
+            const phoneInput = document.getElementById('phone');
+            const emailInput = document.getElementById('email');
+            
+            // Phone number formatting
+            phoneInput.addEventListener('input', function(e) {
+                let value = e.target.value.replace(/[^\d+\-\s()]/g, '');
+                if (value.length > 20) {
+                    value = value.slice(0, 20);
+                }
+                e.target.value = value;
+            });
+            
+            // Email validation feedback
+            emailInput.addEventListener('blur', function(e) {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (e.target.value && !emailRegex.test(e.target.value)) {
+                    e.target.style.borderColor = '#e74c3c';
+                } else if (e.target.value) {
+                    e.target.style.borderColor = '#27ae60';
+                }
+            });
+            
+            // Form field animations
+            const inputs = document.querySelectorAll('.form-input, .form-select');
+            inputs.forEach(input => {
+                input.addEventListener('focus', function() {
+                    this.parentElement.style.transform = 'translateY(-2px)';
+                });
+                
+                input.addEventListener('blur', function() {
+                    this.parentElement.style.transform = 'translateY(0)';
+                });
+            });
+        });
+    </script>
+</body>
+</html>
