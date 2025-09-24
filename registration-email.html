@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>URNI - Thank you for volunteering</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            padding: 10px;
+            margin: 0;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        .email-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .header {
+            text-align: center;
+            padding: 30px 20px 20px;
+            background-color: white;
+        }
+
+        .logo-container {
+            text-align: center;
+        }
+
+        .logo-container img {
+            max-width: 120px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .hero-section {
+            background: linear-gradient(38.66deg, #025836 25.39%, #04BE75 128.37%);
+            color: white;
+            text-align: center;
+            padding: 40px 20px 0 20px;
+            position: relative;
+        }
+
+        .hero-title {
+            font-size: 42px;
+            font-weight: bold;
+            line-height: 1.1;
+            margin-bottom: 30px;
+        }
+
+        .envelope-container {
+            text-align: center;
+        }
+
+        .envelope-container img {
+            max-width: 500px;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .content {
+            padding: 40px 30px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .greeting {
+            font-weight: bold;
+            margin-bottom: 20px;
+            font-size: 16px;
+        }
+
+        .content p {
+            margin-bottom: 20px;
+            text-align: left;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .signature {
+            margin-top: 30px;
+        }
+
+        .signature p:nth-child(2) {
+            font-weight: bold;
+        }
+
+        .footer {
+            background-color: #F1FFEF;
+            padding: 30px;
+            border-top: 1px solid #eee;
+        }
+
+        .contact-section h3 {
+            color: black;
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .contact-info {
+            margin-bottom: 25px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 12px;
+            font-size: 14px;
+            color: #555;
+            line-height: 1.4;
+        }
+
+        .contact-item img {
+            width: 16px;
+            height: 16px;
+            margin-right: 10px;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .social-section h3 {
+            color: black;
+            font-size: 16px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .social-icons a {
+            display: block;
+        }
+
+        .social-icons img {
+            width: 16px;
+            height: 16px;
+            display: block;
+        }
+
+        .newsletter-section {
+            border-top: 1px solid #025836;
+            padding-top: 10px;
+        }
+
+        .newsletter-section h3 {
+            color: #025836;
+            font-size: 16px;
+            margin-bottom: 10px;
+            font-weight: 600;
+            line-height: 1.3;
+        }
+
+        .newsletter-text {
+            font-size: 14px;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .terms-text {
+            font-size: 12px;
+            color: #025836;
+            margin-bottom: 20px;
+            font-style: italic;
+            line-height: 1.3;
+        }
+
+        .terms-text a {
+            color: #025836;
+        }
+
+        .subscribe-btn {
+            background-color: #025836;
+            color: white;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
+        }
+
+        .subscribe-btn:hover {
+            background-color: #1a4d33;
+        }
+
+        /* Mobile Responsiveness */
+        @media only screen and (max-width: 600px) {
+            body {
+                padding: 5px;
+            }
+
+            .email-container {
+                width: 100% !important;
+                margin: 0 !important;
+                border-radius: 4px;
+            }
+
+            .hero-section {
+                padding: 30px 15px !important;
+            }
+
+            .hero-title {
+                font-size: 32px !important;
+                line-height: 1.2 !important;
+                margin-bottom: 25px !important;
+            }
+
+            .content {
+                padding: 25px 20px !important;
+            }
+
+            .content p {
+                font-size: 14px !important;
+            }
+
+            .footer {
+                padding: 20px 15px !important;
+            }
+
+            .contact-item {
+                margin-bottom: 15px !important;
+                align-items: flex-start !important;
+            }
+
+            .contact-item span {
+                word-break: break-word;
+            }
+
+            .newsletter-section h3 {
+                font-size: 15px !important;
+            }
+
+            .header {
+                padding: 20px 15px 15px !important;
+            }
+        }
+
+        @media only screen and (max-width: 480px) {
+            .hero-title {
+                font-size: 28px !important;
+            }
+
+            .envelope-container {
+                padding: 0;
+                margin-bottom: -30px;
+            }
+
+            .envelope-container img {
+                max-width: 250px;
+                height: auto;
+                display: block;
+            }
+
+            .content {
+                padding: 20px 15px !important;
+            }
+
+            .footer {
+                padding: 15px 10px !important;
+            }
+
+            .contact-item {
+                align-items: flex-start !important;
+                gap: 10px;
+            }
+
+            .contact-item img {
+                margin-bottom: 5px;
+                margin-right: 0;
+            }
+
+            .subscribe-btn {
+                text-align: center;
+                padding: 15px 20px !important;
+            }
+        }
+
+        @media only screen and (max-width: 320px) {
+            .hero-title {
+                font-size: 24px !important;
+            }
+
+            .content p {
+                font-size: 13px !important;
+            }
+
+            .social-icons {
+                gap: 8px;
+            }
+
+            .social-icons a,
+            .social-icons img {
+                width: 28px !important;
+                height: 28px !important;
+            }
+        }
+
+        @media (prefers-color-scheme: dark) {
+            .email-container {
+                background-color: white !important;
+            }
+
+            .content {
+                color: #333 !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="email-container">
+        <!-- Header with Logo -->
+        <div class="header">
+            <div class="logo-container">
+                <img src="assets/urni-logo-vertical.png" alt="URNI Logo" style="display: block; margin: 0 auto;">
+            </div>
+        </div>
+
+        <!-- Hero Section -->
+        <div class="hero-section">
+            <h1 class="hero-title">Because of you<br>Change is Possible</h1>
+            <div class="envelope-container">
+                <img src="assets/images/message-received.png" alt="Message Received"
+                    style="display: block; margin: 0 auto;">
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="content">
+            <div class="greeting">Dear [Sender's Firstname],</div>
+
+            <p>Thank you for registering for the <strong>Rise Up Patriots 2.0</strong> event, organized by the Unveiling
+                and Rebranding Nigeria Initiative (URNI). We have received your details and your spot is confirmed.
+                Further event information and updates will be shared with you shortly.</p>
+
+            <p>Your participation means a lot. By joining us, you are standing with fellow patriots to showcase the
+                brighter side of Nigeria and drive positive change.</p>
+
+
+            <p><strong>…Rediscovering Nigerians by Nigerians</strong></p>
+
+            <div class="signature">
+                <p>With appreciation</p>
+                <p>Unveiling and Rebranding Nigeria Initiative</p>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <!-- Contact Information -->
+            <div class="contact-section">
+                <h3>Contact Us</h3>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <img src="assets/images/phone-icon.png" alt="Phone" style="display: block;">
+                        <span>0817 764 0051 | 0915 555 8929</span>
+                    </div>
+                    <div class="contact-item">
+                        <img src="assets/images/envelope.png" alt="Email" style="display: block;">
+                        <a href="mailto:info@unveilingnigeria.ng">info@unveilingnigeria.ng</a>
+                        <span style="margin: 0 2px;">|</span>
+                        <a href="mailto:info@unveilingnigeria.ng">unveilnigeria@gmail.com</a>
+                    </div>
+                    <div class="contact-item">
+                        <img src="assets/images/location.png" alt="Location" style="display: block;">
+                        <span>Suite F2 Melita Plaza, Area 11, Garki, Abuja.</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Social Media -->
+            <div class="social-section">
+                <h3>Connect with us on social media</h3>
+                <div class="social-icons">
+                    <a href="https://www.facebook.com/unveilingnigeria">
+                        <img src="assets/images/facebook-icon.png" alt="Facebook" style="display: block;">
+                    </a>
+                    <a href="https://www.instagram.com/unveilingnigeria?igsh=MXh0enhhNDBrZ29ucg==">
+                        <img src="assets/images/instagram.png" alt="Instagram" style="display: block;">
+                    </a>
+                    <a href="https://x.com/unveilingng">
+                        <img src="assets/images/x.png" alt="X (Twitter)" style="display: block;">
+                    </a>
+                    <a href="">
+                        <img src="assets/images/whatsapp.png" alt="WhatsApp" style="display: block;">
+                    </a>
+                    <a href="https://www.tiktok.com/@unveilingnigeria?_t=ZS-8ycVqpqZ4Vt&_r=1">
+                        <img src="assets/images/tiktok.png" alt="TikTok" style="display: block;">
+                    </a>
+                </div>
+            </div>
+
+            <!-- Newsletter Subscription -->
+            <div class="newsletter-section">
+                <h3>Subscribe to the newsletter for news, events and articles from URNI and our partners.</h3>
+                <div class="terms-text">
+                    By clicking the button, you agree to the <a href="#">Terms and Conditions.</a>
+                </div>
+                <button class="subscribe-btn">Subscribe</button>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
