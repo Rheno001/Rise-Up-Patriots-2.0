@@ -410,11 +410,11 @@ html {
 #hero .buttons {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     background: #025836;
     gap: 20px;
     padding: 20px;
-    width: 50%;
+    width: 45%;
 }
 
 .hero-btn-1,
@@ -498,18 +498,10 @@ html {
   color: #fff;
   cursor: pointer;
   z-index: 10;
-  background: rgba(0, 0, 0, 0.6);
-  padding: 4px 10px;
-  border-radius: 50%;
   line-height: 1;
   transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
 }
 
-.video-close:hover {
-  background: rgba(255, 255, 255, 0.15);
-  color: #ff4444;
-  transform: scale(1.15);
-}
 
 
 /* Animations */
@@ -1326,8 +1318,8 @@ html {
 /* Mobile (320px - 480px) */
 @media (max-width: 480px) {
     .time-value {
-        font-size: 28px;
-        padding: 10px 15px;
+        font-size: 20px;
+        padding: 10px;
         min-width: 60px;
     }
 
