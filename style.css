@@ -445,6 +445,78 @@ html {
     padding: 2px 5px;
     margin-left: 2px;
 }
+/* Modal background */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 999;
+  padding-top: 80px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0,0,0,0.8);
+}
+
+/* Modal content */
+.modal-content {
+  margin: auto;
+  display: block;
+  width: 90%;
+  max-width: 800px;
+  position: relative;
+  background: transparent;
+}
+
+/* Responsive iframe */
+.modal-content iframe {
+  width: 100%;
+  height: 60vh; /* take 60% of viewport height */
+  max-height: 500px;
+  border-radius: 10px;
+}
+
+/* Close button - top right corner */
+.close {
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  background: #fff;
+  color: #000;
+  border-radius: 50%;
+  width: 35px;
+  height: 35px;
+  font-size: 24px;
+  font-weight: bold;
+  line-height: 35px;
+  text-align: center;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+  transition: background 0.3s ease, color 0.3s ease;
+}
+
+.close:hover {
+  background: #025836;
+  color: #fff;
+}
+
+/* Mobile adjustments */
+@media (max-width: 600px) {
+  .modal-content iframe {
+    height: 45vh; /* smaller on phones */
+  }
+
+  .close {
+    top: -10px;
+    right: -10px;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+    line-height: 30px;
+  }
+}
+
 
 
 /* Mobile Responsiveness - Targets screens smaller than tablets */

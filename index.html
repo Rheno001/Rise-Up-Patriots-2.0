@@ -135,10 +135,21 @@
                 </div>
                 <div class="buttons">
                     <a href="/registration.html"><button class="hero-btn-1">Register for Event</button></a>
-                    <a href="/"><button class="hero-btn-2">Watch the Teaser <span class="play">▶</span></button></a>
+                    <button class="hero-btn-2" id="openModal">
+                        Watch the Teaser <span class="play">▶</span>
+                    </button>
                 </div>
             </div>
         </section>
+         <div id="videoModal" class="modal">
+                    <div class="modal-content">
+                        <span class="close">&times;</span>
+                        <iframe id="youtubeVideo" width="560" height="315" src="" frameborder="0"
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
 
         <div class="about-container animate-on-scroll" id="About">
             <div class="about-header">
@@ -234,7 +245,7 @@
                     <div class="panelist-name">Barr. Moses<br>Longe</div>
                 </div>-->
 
-               <!-- <div class="panelist-item">
+                <!-- <div class="panelist-item">
                     <div class="panelist-photo">
                         <img src="roy-maduka.jpg" alt="Prof. Roy Maduka">
                     </div>
@@ -539,95 +550,95 @@
         setInterval(updateCountdown, 1000);
 
         // About image gallery
-const imageMap = {
-    'image1': 'assets/Rectangle 14.png',
-    'image2': 'assets/untitled-246 2.png',
-    'image3': 'assets/Rectangle 15.png'
-};
+        const imageMap = {
+            'image1': 'assets/Rectangle 14.png',
+            'image2': 'assets/untitled-246 2.png',
+            'image3': 'assets/Rectangle 15.png'
+        };
 
-let currentImageIndex = 0;
-const imageKeys = Object.keys(imageMap);
-let autoChangeInterval;
+        let currentImageIndex = 0;
+        const imageKeys = Object.keys(imageMap);
+        let autoChangeInterval;
 
-function changeImage(imageId, thumbnailElement) {
-    // Remove active class from all thumbnails
-    document.querySelectorAll('.about-thumbnail').forEach(thumb => {
-        thumb.classList.remove('active');
-    });
+        function changeImage(imageId, thumbnailElement) {
+            // Remove active class from all thumbnails
+            document.querySelectorAll('.about-thumbnail').forEach(thumb => {
+                thumb.classList.remove('active');
+            });
 
-    // Add active class to clicked thumbnail
-    thumbnailElement.classList.add('active');
+            // Add active class to clicked thumbnail
+            thumbnailElement.classList.add('active');
 
-    const mainImage = document.getElementById('aboutMainImage');
-    const aboutMainImageContainer = document.getElementById('aboutMainImageContainer');
+            const mainImage = document.getElementById('aboutMainImage');
+            const aboutMainImageContainer = document.getElementById('aboutMainImageContainer');
 
-    // Smooth fade transition
-    aboutMainImageContainer.style.opacity = '0.7';
+            // Smooth fade transition
+            aboutMainImageContainer.style.opacity = '0.7';
 
-    setTimeout(() => {
-        if (imageMap[imageId]) {
-            mainImage.src = imageMap[imageId];
+            setTimeout(() => {
+                if (imageMap[imageId]) {
+                    mainImage.src = imageMap[imageId];
+                }
+                aboutMainImageContainer.style.opacity = '1';
+            }, 150);
+
+            // Update current index for auto-change
+            currentImageIndex = imageKeys.indexOf(imageId);
         }
-        aboutMainImageContainer.style.opacity = '1';
-    }, 150);
 
-    // Update current index for auto-change
-    currentImageIndex = imageKeys.indexOf(imageId);
-}
+        function autoChangeImage() {
+            // Move to next image
+            currentImageIndex = (currentImageIndex + 1) % imageKeys.length;
+            const nextImageId = imageKeys[currentImageIndex];
 
-function autoChangeImage() {
-    // Move to next image
-    currentImageIndex = (currentImageIndex + 1) % imageKeys.length;
-    const nextImageId = imageKeys[currentImageIndex];
-    
-    // Find the corresponding thumbnail
-    const thumbnailElement = document.querySelector(`[onclick*="${nextImageId}"]`);
-    
-    if (thumbnailElement) {
-        changeImage(nextImageId, thumbnailElement);
-    }
-}
+            // Find the corresponding thumbnail
+            const thumbnailElement = document.querySelector(`[onclick*="${nextImageId}"]`);
 
-function startAutoChange() {
-    // Clear any existing interval
-    if (autoChangeInterval) {
-        clearInterval(autoChangeInterval);
-    }
-    
-    // Start auto-changing every 3 seconds
-    autoChangeInterval = setInterval(autoChangeImage, 3000);
-}
+            if (thumbnailElement) {
+                changeImage(nextImageId, thumbnailElement);
+            }
+        }
 
-function stopAutoChange() {
-    if (autoChangeInterval) {
-        clearInterval(autoChangeInterval);
-        autoChangeInterval = null;
-    }
-}
+        function startAutoChange() {
+            // Clear any existing interval
+            if (autoChangeInterval) {
+                clearInterval(autoChangeInterval);
+            }
 
-// Initialize auto-change when page loads
-document.addEventListener('DOMContentLoaded', function() {
-    startAutoChange();
-    
-    // Optional: Pause auto-change on hover
-    const gallery = document.getElementById('aboutMainImageContainer');
-    if (gallery) {
-        gallery.addEventListener('mouseenter', stopAutoChange);
-        gallery.addEventListener('mouseleave', startAutoChange);
-    }
-});
+            // Start auto-changing every 3 seconds
+            autoChangeInterval = setInterval(autoChangeImage, 3000);
+        }
 
-// Enhanced version with manual control
-function changeImageWithAutoReset(imageId, thumbnailElement) {
-    // Stop auto-change temporarily
-    stopAutoChange();
-    
-    // Change image manually
-    changeImage(imageId, thumbnailElement);
-    
-    // Restart auto-change after 5 seconds of inactivity
-    setTimeout(startAutoChange, 5000);
-}
+        function stopAutoChange() {
+            if (autoChangeInterval) {
+                clearInterval(autoChangeInterval);
+                autoChangeInterval = null;
+            }
+        }
+
+        // Initialize auto-change when page loads
+        document.addEventListener('DOMContentLoaded', function () {
+            startAutoChange();
+
+            // Optional: Pause auto-change on hover
+            const gallery = document.getElementById('aboutMainImageContainer');
+            if (gallery) {
+                gallery.addEventListener('mouseenter', stopAutoChange);
+                gallery.addEventListener('mouseleave', startAutoChange);
+            }
+        });
+
+        // Enhanced version with manual control
+        function changeImageWithAutoReset(imageId, thumbnailElement) {
+            // Stop auto-change temporarily
+            stopAutoChange();
+
+            // Change image manually
+            changeImage(imageId, thumbnailElement);
+
+            // Restart auto-change after 5 seconds of inactivity
+            setTimeout(startAutoChange, 5000);
+        }
 
         // FAQ functionality
         document.addEventListener('DOMContentLoaded', function () {
@@ -667,6 +678,7 @@ function changeImageWithAutoReset(imageId, thumbnailElement) {
             });
         });
     </script>
+    <script src="modal.js"></script>
 </body>
 
 </html>
