@@ -3,10 +3,12 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+      font-family: "Montserrat", sans-serif;
+
 }
 
 body {
-    font-family: "Montserrat", Arial, sans-serif;
+  font-family: "Montserrat", sans-serif;
     overflow-x: hidden;
 }
 html {
@@ -188,6 +190,7 @@ html {
     color: white;
     border: none;
     padding: 0.5rem 1rem;
+    font-family: "Montserrat", sans-serif;
     border-radius: 4px;
     cursor: pointer;
 }
@@ -201,6 +204,7 @@ html {
     border: 2px solid #014421;
     background: none;
     color: #014421;
+    font-family: "Montserrat", sans-serif;
     padding: 0.4rem 1rem;
     border-radius: 4px;
     cursor: pointer;
@@ -241,14 +245,14 @@ html {
 .navbar-brand:hover {
     cursor: pointer;
 }
-
 .navbar-nav .nav-link {
     color: black;
     font-size: 1rem;
     padding: 0.5rem;
+    font-family: "Montserrat", sans-serif;
+
     transition: all 0.3s ease;
 }
-
 .navbar-nav .nav-link:hover {
     color: #014421;
     font-weight: bold;
@@ -286,6 +290,7 @@ html {
     justify-content: center;
     padding: 20px 0;
     background: #025836;
+    font-family: "Montserrat", sans-serif;
     backdrop-filter: blur(10px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
 }
@@ -302,6 +307,7 @@ html {
     font-weight: 700;
     padding: 20px;
     border-radius: 15px;
+    font-family: "Montserrat", sans-serif;
     min-width: 30px;
     display: block;
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
@@ -356,6 +362,7 @@ html {
 .title-image,
 .theme-image {
     width: 450px;
+    
 }
 
 .speakers {
@@ -742,8 +749,10 @@ html {
 }
 
 .location-header {
-    font-weight: bold;
+    font-weight: 700;
     margin-bottom: 10px;
+    color: #025836;
+
 }
 
 .location-image img {
@@ -953,6 +962,7 @@ html {
     font-size: 16px;
     line-height: 1.6;
     margin: 0;
+    text-align: left;
 }
 
 /* ===== PARTNERS SECTION ===== */

@@ -12,10 +12,7 @@ require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../models/Registration.php';
 require_once __DIR__ . '/../vendor/autoload.php';
 
-// Load environment variables
-use Dotenv\Dotenv;
-$dotenv = Dotenv::createImmutable(__DIR__ . '/../../');
-$dotenv->load();
+// ...existing code...
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -91,15 +88,15 @@ try {
         $mail = new PHPMailer(true);
         try {
             //Server settings
-            $mail->isSMTP();
-            $mail->Host       = $_ENV['SMTP_HOST'];
-            $mail->SMTPAuth   = true;
-            $mail->Username   = $_ENV['SMTP_USERNAME'];
-            $mail->Password   = $_ENV['SMTP_PASSWORD'];
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
-            $mail->Port       = $_ENV['SMTP_PORT'];
+            $mail->isSMTP();                                           // Send using SMTP
+            $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
+            $mail->SMTPAuth   = true;                                  // Enable SMTP authentication
+            $mail->Username   = 'unveilnigeria@gmail.com';              // SMTP username
+            $mail->Password   = 'irmr josu xfbh znmc';                 // SMTP password
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;          // Use SSL/TLS encryption
+            $mail->Port       = 465;
             //Recipients
-            $mail->setFrom($_ENV['SMTP_FROM'], $_ENV['SMTP_FROM_NAME']);
+            $mail->setFrom('unveilnigeria@gmail.com', 'Rise Up Patriots');
             $mail->addAddress($registration->email, $registration->first_name . ' ' . $registration->last_name);
 
             // Content
