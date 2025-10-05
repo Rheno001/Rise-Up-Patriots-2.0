@@ -10,9 +10,8 @@
 require_once __DIR__ . '/../config/cors.php';
 require_once __DIR__ . '/../config/database.php';
 require_once __DIR__ . '/../models/Registration.php';
+require_once __DIR__ . '/../utils/EmailTemplate.php';
 require_once __DIR__ . '/../vendor/autoload.php';
-
-// ...existing code...
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -99,16 +98,35 @@ try {
             $mail->setFrom('unveilnigeria@gmail.com', 'Rise Up Patriots');
             $mail->addAddress($registration->email, $registration->first_name . ' ' . $registration->last_name);
 
+            // Load and process email template with hosted images
+            $emailTemplate = new EmailTemplate();
+            $templateVariables = [
+                'first_name' => $registration->first_name,
+                'last_name' => $registration->last_name,
+                'full_name' => $registration->first_name . ' ' . $registration->last_name
+            ];
+            
+            $htmlBody = $emailTemplate->loadTemplateForEmail('registration_email', $templateVariables, 'hosted');
+
             // Content
             $mail->isHTML(true);
-            $mail->Subject = 'Registration Confirmation';
-            $mail->Body    = 'Dear ' . htmlspecialchars($registration->first_name) . ',<br><br>Thank you for registering for the Rise Up Patriots Conference.<br>Your registration was successful!<br><br>Best regards,<br>Rise Up Patriots Team';
+            $mail->Subject = 'Rise Up Patriots 2.0 - Registration Confirmation';
+            $mail->Body = $htmlBody;
+            
+            // Add plain text alternative for email clients that don't support HTML
+            $mail->AltBody = 'Dear ' . $registration->first_name . ',\n\n' .
+                           'Thank you for registering for the Rise Up Patriots 2.0 event, organized by the Unveiling and Rebranding Nigeria Initiative (URNI). ' .
+                           'We have received your details and your spot is confirmed. Further event information and updates will be shared with you shortly.\n\n' .
+                           'Your participation means a lot. By joining us, you are standing with fellow patriots to showcase the brighter side of Nigeria and drive positive change.\n\n' .
+                           '…Rediscovering Nigerians by Nigerians\n\n' .
+                           'With appreciation\n' .
+                           'Unveiling and Rebranding Nigeria Initiative';
 
             $mail->send();
-            $email_status = 'Confirmation email sent.';
+            $email_status = 'Confirmation email sent successfully.';
         } catch (Exception $e) {
             error_log('PHPMailer Error: ' . $mail->ErrorInfo);
-            $email_status = 'Confirmation email failed to send.';
+            $email_status = 'Confirmation email failed to send: ' . $e->getMessage();
         }
 
         // Send success response

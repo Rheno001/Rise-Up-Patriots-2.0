@@ -115,8 +115,12 @@ header('Content-Type: text/html; charset=utf-8');
                         echo '</pre>';
                         
                         echo '<div class="success">✓ Installation completed successfully!</div>';
+                        echo '<div class="info">You can now access the admin panel with the default credentials:<br>';
+                        echo '<strong>Username:</strong> admin<br>';
+                        echo '<strong>Password:</strong> admin123</div>';
                         echo '<p><a href="../api/health.php" class="btn">Test API Health</a></p>';
-                        echo '<p><a href="../../Rise-Up-Patriots-2.0/registration.html" class="btn">Go to Registration Form</a></p>';
+                        echo '<p><a href="../../admin-login.html" class="btn">Admin Login</a></p>';
+                        echo '<p><a href="../../registration.html" class="btn">Go to Registration Form</a></p>';
                         
                     } else {
                         echo '<div class="error">✗ Database connection test failed!</div>';
@@ -144,7 +148,20 @@ header('Content-Type: text/html; charset=utf-8');
                 <ul>
                     <li><code>registrations</code> - Store user registration data</li>
                     <li><code>admin_logs</code> - Track system activities</li>
+                    <li><code>admin_users</code> - Store admin user accounts for authentication</li>
                 </ul>
+                
+                <div class="info" style="margin-top: 20px;">
+                    <h4>Default Admin Account</h4>
+                    <p>A default admin account will be created automatically:</p>
+                    <ul>
+                        <li><strong>Username:</strong> admin</li>
+                        <li><strong>Email:</strong> admin@riseuppatriots.com</li>
+                        <li><strong>Password:</strong> admin123</li>
+                        <li><strong>Role:</strong> Super Admin</li>
+                    </ul>
+                    <p><strong>⚠️ Important:</strong> Please change the default password after your first login for security reasons.</p>
+                </div>
             </div>
             
             <form method="post">

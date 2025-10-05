@@ -14,6 +14,8 @@ class CorsHandler {
     public static function setCorsHeaders() {
         // Allow requests from the frontend domain
         $allowed_origins = [
+            'http://localhost:8000',
+            'http://127.0.0.1:8000',
             'http://localhost',
             'http://127.0.0.1',
             'http://localhost:3000',
@@ -28,8 +30,8 @@ class CorsHandler {
         if (in_array($origin, $allowed_origins)) {
             header("Access-Control-Allow-Origin: $origin");
         } else {
-            // For development, allow all origins (remove in production)
-            header("Access-Control-Allow-Origin: *");
+            // For development, default to localhost:8000 when no origin header
+            header("Access-Control-Allow-Origin: http://localhost:8000");
         }
 
         // Allow specific HTTP methods
@@ -45,7 +47,7 @@ class CorsHandler {
         header("Access-Control-Max-Age: 86400"); // 24 hours
 
         // Handle preflight OPTIONS request
-        if ($_SERVER['REQUEST_METHOD'] === 'OPTIONS') {
+        if (($_SERVER['REQUEST_METHOD'] ?? '') === 'OPTIONS') {
             http_response_code(200);
             exit();
         }

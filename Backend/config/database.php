@@ -115,7 +115,63 @@ class Database {
 
         $this->conn->exec($sql_logs);
 
-       
+        // Create admin_users table for admin authentication
+        $sql_admin = "CREATE TABLE IF NOT EXISTS admin_users (
+            id INT AUTO_INCREMENT PRIMARY KEY,
+            username VARCHAR(50) NOT NULL UNIQUE,
+            email VARCHAR(255) NOT NULL UNIQUE,
+            password_hash VARCHAR(255) NOT NULL,
+            full_name VARCHAR(100) NOT NULL,
+            role ENUM('admin', 'super_admin') DEFAULT 'admin',
+            is_active BOOLEAN DEFAULT TRUE,
+            last_login TIMESTAMP NULL,
+            created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+            updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+            INDEX idx_username (username),
+            INDEX idx_email (email),
+            INDEX idx_role (role),
+            INDEX idx_is_active (is_active)
+        ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci";
+
+        $this->conn->exec($sql_admin);
+
+        // Create default admin user if none exists
+        $this->createDefaultAdmin();
+    }
+
+    /**
+     * Create default admin user if none exists
+     */
+    private function createDefaultAdmin() {
+        try {
+            // Check if any admin users exist
+            $stmt = $this->conn->prepare("SELECT COUNT(*) FROM admin_users");
+            $stmt->execute();
+            $count = $stmt->fetchColumn();
+
+            if ($count == 0) {
+                // Create default admin user
+                $default_password = 'admin123'; // This should be changed after first login
+                $password_hash = password_hash($default_password, PASSWORD_DEFAULT);
+                
+                $stmt = $this->conn->prepare("
+                    INSERT INTO admin_users (username, email, password_hash, full_name, role) 
+                    VALUES (?, ?, ?, ?, ?)
+                ");
+                
+                $stmt->execute([
+                    'admin',
+                    'admin@riseuppatriots.com',
+                    $password_hash,
+                    'System Administrator',
+                    'super_admin'
+                ]);
+
+                error_log("Default admin user created - Username: admin, Password: admin123");
+            }
+        } catch(PDOException $exception) {
+            error_log("Error creating default admin: " . $exception->getMessage());
+        }
     }
 }
 ?>

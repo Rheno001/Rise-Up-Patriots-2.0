@@ -1,0 +1,2171 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - Rise Up Patriots Conference</title>
+    <link rel="icon" type="image/svg" href="assets/URNI LOGO - ICON.svg">
+    
+    <!-- Preconnect to font providers for better performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+    
+    <!-- Font imports with fallbacks -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" onerror="this.onerror=null;this.href='data:text/css,body{font-family:system-ui,-apple-system,sans-serif!important}'">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" 
+        rel="stylesheet" onerror="this.onerror=null;this.remove()">
+    
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        :root {
+            --primary-green: #025836;
+            --secondary-green: #2d5a3d;
+            --dark-green: #1a4028;
+            --light-green: #F1FFEF;
+            --accent-green: #b1ffa8;
+            --red-accent: #e74c3c;
+            --text-dark: #333;
+            --text-medium: #666;
+            --text-light: #999;
+            --bg-light: #f8f9fa;
+            --border-light: #e9ecef;
+            --white: #ffffff;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            --shadow-hover: 0 4px 20px rgba(0, 0, 0, 0.15);
+            --border-radius: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 280px;
+            height: 100vh;
+            background: var(--primary-green);
+            z-index: 1000;
+            transition: var(--transition);
+            overflow-y: auto;
+        }
+
+
+
+        .sidebar-header {
+            padding: 2rem 1.5rem;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            align-items: center;
+            background-color: var(--white);
+            gap: 1rem;
+        }
+
+        .sidebar-logo {
+            width: 100%;
+            height: 40px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .sidebar-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            white-space: nowrap;
+            opacity: 1;
+            transition: var(--transition);
+        }
+
+
+
+        .sidebar-nav {
+            padding: 1rem 0;
+        }
+
+        .nav-item {
+            margin: 0.25rem 1rem;
+        }
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.875rem 1rem;
+            color: var(--text-medium);
+            text-decoration: none;
+            border-radius: 8px;
+            transition: var(--transition);
+            font-weight: 500;
+        }
+
+        .nav-link:hover {
+            background: var(--light-green);
+            color: var(--primary-green);
+        }
+
+        .nav-link.active {
+            background: var(--primary-green);
+            color: var(--white);
+        }
+
+        .nav-icon {
+            width: 20px;
+            text-align: center;
+            flex-shrink: 0;
+            color: var(--white);
+        }
+
+        .nav-text {
+            white-space: nowrap;
+            opacity: 1;
+            color: white;
+            transition: var(--transition);
+        }
+
+
+
+        /* Main Content */
+        .main-content {
+            margin-left: 280px;
+            min-height: 100vh;
+            transition: var(--transition);
+        }
+
+
+
+        /* Header */
+        .header {
+            background: var(--primary-green);
+            padding: 1.5rem 2rem;
+            color: white;
+            position: sticky;
+
+            top: 0;
+            z-index: 100;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+
+
+        .page-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--white);
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .user-menu {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.5rem 1rem;
+            background: var(--bg-light);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .user-menu:hover {
+            background: var(--border-light);
+        }
+
+        .user-avatar {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background: var(--primary-green);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .user-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .user-name {
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .user-role {
+            font-size: 0.75rem;
+            color: var(--text-medium);
+        }
+
+        /* Dashboard Content */
+        .dashboard-content {
+            padding: 2rem;
+            max-width: 1400px;
+        }
+
+        /* Stats Container */
+        .stats-container {
+
+            margin: 0 auto;
+            padding: 0 1rem;
+            width: 100%;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 240px);
+            gap: 6rem;
+            margin-bottom: 2rem;
+            justify-content: center;
+            width: 100%;
+        }
+
+        .stat-card {
+            width: 240px;
+            height: 100px;
+            padding: 14px;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            font-family: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: var(--white);
+            border: 2px solid #025836;
+
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: #ffffff;
+        }
+
+        .stat-card.warning::before {
+            background: #ffffff;
+        }
+
+        .stat-card.danger::before {
+            background: #ffffff;
+        }
+
+        .stat-card.info::before {
+            background: #ffffff;
+        }
+
+        .stat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.875rem;
+            color: var(--white);
+            background: var(--primary-green);
+        }
+
+        .stat-card.warning .stat-icon {
+            background: #025836;
+        }
+
+        .stat-card.danger .stat-icon {
+            background: #025836;
+        }
+
+        .stat-card.info .stat-icon {
+            background: #025836;
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.125rem;
+            line-height: 1.2;
+        }
+
+        .stat-label {
+            font-size: 15px;
+            font-weight: 600;
+            color: #000;
+            margin-bottom: 0;
+            line-height: 1.2;
+        }
+
+        .stat-change {
+            font-size: 0.875rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .stat-change.positive {
+            color: #27ae60;
+        }
+
+        .stat-change.negative {
+            color: var(--red-accent);
+        }
+
+
+
+        .card {
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .card-header {
+            padding: 1.5rem 2rem;
+            border-bottom: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .card-body {
+            padding: 2rem;
+        }
+
+
+
+        /* Status Badges */
+        .status-badge {
+            padding: 0.25rem 0.75rem;
+            border-radius: 50px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .status-badge.confirmed {
+            background: #d4edda;
+            color: #155724;
+        }
+
+        .status-badge.pending {
+            background: #fff3cd;
+            color: #856404;
+        }
+
+        .status-badge.cancelled {
+            background: #f8d7da;
+            color: #721c24;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 8px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.875rem;
+        }
+
+        .btn-primary {
+            background: var(--primary-green);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--secondary-green);
+        }
+
+        .btn-secondary {
+            background: var(--bg-light);
+            color: var(--text-medium);
+            border: 1px solid var(--border-light);
+        }
+
+        .btn-secondary:hover {
+            background: var(--border-light);
+        }
+
+        .btn-danger {
+            background: var(--red-accent);
+            color: var(--white);
+        }
+
+        .btn-danger:hover {
+            background: #c0392b;
+        }
+
+
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .main-content {
+                margin-left: 0;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .dashboard-content {
+                padding: 1rem;
+            }
+
+            .header {
+                padding: 1rem;
+            }
+        }
+
+        /* Loading States */
+        .loading {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .spinner {
+            width: 32px;
+            height: 32px;
+            border: 3px solid var(--border-light);
+            border-top: 3px solid var(--primary-green);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Table Section Styles */
+        .table-section {
+            margin-top: 2rem;
+        }
+
+        .table-container {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            overflow: hidden;
+        }
+
+        .table-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 2rem;
+            background: var(--light-gray);
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .table-header h3 {
+            margin: 0;
+            color: var(--text-dark);
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .table-actions {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+            border: 1px solid #025836;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .search-input {
+            padding: 0.5rem 2.5rem 0.5rem 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 0.875rem;
+            font-family: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            width: 250px;
+            transition: var(--transition);
+            background: var(--white);
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: var(--primary-green);
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 0.75rem;
+            color: var(--text-light);
+            pointer-events: none;
+        }
+
+        .btn-refresh {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--primary-green);
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .btn-refresh:hover {
+            background: var(--dark-green);
+            transform: translateY(-1px);
+        }
+
+        /* Export Dropdown Styles */
+        .export-dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .btn-export {
+            display: flex;
+            align-items: center;
+                        font-family: 'Space Grotesk', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: #025836;
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .btn-export:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        .export-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            background: var(--white);
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            box-shadow: var(--shadow);
+            min-width: 180px;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.2s ease;
+        }
+
+        .export-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .export-option {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            width: 100%;
+            padding: 0.75rem 1rem;
+            background: none;
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            font-size: 0.875rem;
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+
+        .export-option:hover {
+            background: var(--light-gray);
+        }
+
+        .export-option:first-child {
+            border-radius: 6px 6px 0 0;
+        }
+
+        .export-option:last-child {
+            border-radius: 0 0 6px 6px;
+        }
+
+        .export-option i {
+            color: var(--text-medium);
+        }
+
+        /* Export Modal Styles */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            max-width: 600px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            transform: scale(0.9) translateY(-20px);
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.show .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 1.5rem;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .modal-header h3 {
+            margin: 0;
+            color: var(--text-dark);
+            font-size: 1.25rem;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .modal-close {
+            background: none;
+            border: none;
+            color: var(--text-medium);
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .modal-close:hover {
+            background: var(--light-gray);
+            color: var(--text-dark);
+        }
+
+        .modal-body {
+            padding: 1.5rem;
+        }
+
+        .export-format-section,
+        .field-selection-section {
+            margin-bottom: 2rem;
+        }
+
+        .export-format-section h4,
+        .field-selection-section h4 {
+            margin: 0 0 1rem 0;
+            color: var(--text-dark);
+            font-size: 1rem;
+            font-weight: 600;
+        }
+
+        .format-options {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .format-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 0.75rem 1rem;
+            border: 2px solid var(--border-light);
+            border-radius: 8px;
+            transition: var(--transition);
+            flex: 1;
+        }
+
+        .format-option:hover {
+            border-color: var(--primary-color);
+            background: rgba(37, 99, 235, 0.05);
+        }
+
+        .format-option input[type="radio"] {
+            margin-right: 0.75rem;
+            accent-color: var(--primary-color);
+        }
+
+        .format-option input[type="radio"]:checked + .format-label {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .format-label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-dark);
+            font-size: 0.875rem;
+        }
+
+        .field-selection-controls {
+            display: flex;
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .btn-select-all,
+        .btn-deselect-all {
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border-light);
+            background: var(--white);
+            color: var(--text-dark);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-select-all:hover,
+        .btn-deselect-all:hover {
+            background: var(--light-gray);
+            border-color: var(--primary-color);
+        }
+
+        .fields-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 0.75rem;
+        }
+
+        .field-option {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            padding: 0.75rem;
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            transition: var(--transition);
+        }
+
+        .field-option:hover {
+            background: var(--light-gray);
+            border-color: var(--primary-color);
+        }
+
+        .field-option input[type="checkbox"] {
+            margin-right: 0.75rem;
+            accent-color: var(--primary-color);
+        }
+
+        .field-option input[type="checkbox"]:checked + .field-label {
+            color: var(--primary-color);
+            font-weight: 600;
+        }
+
+        .field-label {
+            color: var(--text-dark);
+            font-size: 0.875rem;
+        }
+
+        .modal-footer {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 1rem;
+            padding: 1.5rem;
+            border-top: 1px solid var(--border-light);
+            background: var(--light-gray);
+        }
+
+        .btn-cancel {
+            padding: 0.75rem 1.5rem;
+            background: var(--white);
+            color: var(--text-dark);
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-cancel:hover {
+            background: var(--light-gray);
+            border-color: var(--text-medium);
+        }
+
+        .btn-export-confirm {
+            padding: 0.75rem 1.5rem;
+            background: #025836;
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            font-weight: 500;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-export-confirm:hover {
+            background: #1d4ed8;
+            transform: translateY(-1px);
+        }
+
+        .btn-export-confirm:disabled {
+            background: var(--text-light);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Modal Responsive Styles */
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                margin: 1rem;
+            }
+
+            .format-options {
+                flex-direction: column;
+            }
+
+            .fields-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .field-selection-controls {
+                flex-direction: column;
+            }
+
+            .modal-footer {
+                flex-direction: column-reverse;
+                gap: 0.75rem;
+            }
+
+            .btn-cancel,
+            .btn-export-confirm {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        .registration-table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.875rem;
+        }
+
+        .registration-table th {
+            background: var(--light-gray);
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+            color: var(--text-dark);
+            border-bottom: 2px solid var(--border-color);
+            white-space: nowrap;
+        }
+
+        .registration-table td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            color: black;
+        }
+
+        .registration-table tbody tr:hover {
+            background: var(--light-green);
+        }
+
+        .registration-table .loading {
+            text-align: center;
+            color: var(--text-light);
+            font-style: italic;
+            padding: 2rem;
+        }
+
+        .attendance-badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+        }
+
+        .attendance-physical {
+            background: var(--light-green);
+            color: var(--primary-green);
+        }
+
+        .attendance-virtual {
+            background: #e3f2fd;
+            color: #1976d2;
+        }
+
+        .attendance-inperson {
+            background: var(--light-green);
+            color: var(--primary-green);
+        }
+
+        /* Responsive design */
+        @media (max-width: 1200px) {
+            .stats-grid {
+                grid-template-columns: repeat(3, 200px);
+                gap: 3rem;
+            }
+            
+            .stat-card {
+                width: 200px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                justify-items: center;
+            }
+            
+            .stat-card {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .table-header {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start;
+            }
+
+            .table-actions {
+                flex-direction: column;
+                width: 100%;
+                gap: 0.75rem;
+            }
+
+            .btn-export {
+                width: 100%;
+                justify-content: center;
+            }
+
+            .export-menu {
+                position: fixed;
+                top: auto;
+                bottom: 20px;
+                left: 20px;
+                right: 20px;
+                width: auto;
+                min-width: auto;
+            }
+
+            .search-input {
+                width: 100%;
+                max-width: none;
+            }
+
+            .registration-table {
+                font-size: 0.75rem;
+            }
+
+            .registration-table th,
+            .registration-table td {
+                padding: 0.75rem 0.5rem;
+            }
+        }
+
+        /* Font Awesome fallbacks - in case Font Awesome fails to load */
+        .fa-sync-alt::before { content: "↻"; }
+        .fa-search::before { content: "🔍"; }
+        .fa-users::before { content: "👥"; }
+        .fa-laptop::before { content: "💻"; }
+        .fa-building::before { content: "🏢"; }
+        .fa-chart-line::before { content: "📈"; }
+        .fa-tachometer-alt::before { content: "📊"; }
+        .fa-user-friends::before { content: "👥"; }
+        .fa-download::before { content: "⬇"; }
+        .fa-chevron-down::before { content: "▼"; }
+        .fa-file-csv::before { content: "📄"; }
+        .fa-file-excel::before { content: "📊"; }
+        .fa-calendar::before { content: "📅"; }
+        .fa-cog::before { content: "⚙️"; }
+        .fa-sign-out-alt::before { content: "🚪"; }
+        
+        /* Ensure fallback icons are visible */
+        .fas, .fa {
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+            line-height: 1;
+        }
+
+        /* Pagination Styles */
+        .pagination-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+            margin-top: 1rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        .pagination-info {
+            color: var(--text-light);
+            font-size: 0.875rem;
+            padding: 0.75rem 1rem;
+        }
+
+        .pagination-controls {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .pagination-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--border-color);
+            background: white;
+            color: var(--text-dark);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+        }
+
+        .pagination-btn:hover:not(:disabled) {
+            background: var(--light-gray);
+            border-color: var(--primary-green);
+        }
+
+        .pagination-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            background: #f8f9fa;
+        }
+
+        .pagination-numbers {
+            display: flex;
+            gap: 0.25rem;
+        }
+
+        .pagination-number {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            border: 1px solid var(--border-color);
+            background: white;
+            color: var(--text-dark);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.2s ease;
+        }
+
+        .pagination-number:hover {
+            background: var(--light-gray);
+            border-color: var(--primary-green);
+        }
+
+        .pagination-number.active {
+            background: var(--primary-green);
+            color: white;
+            border-color: var(--primary-green);
+        }
+
+        .pagination-ellipsis {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 2.5rem;
+            height: 2.5rem;
+            color: var(--text-light);
+            font-size: 0.875rem;
+        }
+
+        /* Responsive pagination */
+        @media (max-width: 768px) {
+            .pagination-container {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .pagination-controls {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .pagination-btn {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.8rem;
+            }
+
+            .pagination-number {
+                width: 2rem;
+                height: 2rem;
+                font-size: 0.8rem;
+            }
+        }
+
+
+    </style>
+</head>
+
+<body>
+    <!-- Sidebar Overlay for Mobile -->
+
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="sidebar-logo">
+                <img src="assets/RISE UP PATRIOTS CONFERENCE LOGO 1.png" alt="Rise Up Patriots"
+                    style="width: 100%; height: auto; max-width: 180px;">
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+            <div class="nav-item">
+                <a href="#" class="nav-link active">
+                    <i class="nav-icon fas fa-chart-pie"></i>
+                    <span class="nav-text">Dashboard</span>
+                </a>
+            </div>
+           
+           
+            <div class="nav-item"
+                style="margin-top: auto; border-top: 1px solid var(--border-light); padding-top: 1rem;">
+                <a href="#" class="nav-link" onclick="logout()">
+                    <i class="nav-icon fas fa-sign-out-alt"></i>
+                    <span class="nav-text">Logout</span>
+                </a>
+            </div>
+        </nav>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content" id="mainContent">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="header-left">
+                    <h1 class="page-title">Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <div class="user-menu">
+                        <div class="user-avatar">A</div>
+                        <div class="user-info">
+                            <div class="user-name">Admin User</div>
+                            <div class="user-role">Administrator</div>
+                        </div>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                </div>
+
+                <!-- Registration Table Section -->
+
+        </header>
+
+        <!-- Dashboard Content -->
+        <div class="dashboard-content">
+            <!-- Stats Container -->
+            <div class="stats-container">
+                <!-- Stats Grid -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-header">
+                            <div class="stat-label">Total Registrations</div>
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="totalRegistrations">0</div>
+                    </div>
+
+                    <div class="stat-card warning">
+                        <div class="stat-header">
+                            <div class="stat-label">Physical Registration</div>
+                            <div class="stat-icon">
+                                <i class="fas fa-users"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="physicalAttended">0</div>
+                    </div>
+
+                    <div class="stat-card info">
+                        <div class="stat-header">
+                            <div class="stat-label">Virtual Registration</div>
+                            <div class="stat-icon">
+                                <i class="fas fa-laptop"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="virtualAttended">0</div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="table-section">
+                <div class="table-container">
+                    <div class="table-header">
+                        <h3>Recent Registrations</h3>
+                        <div class="table-actions">
+                            <div class="search-container">
+                                <input type="text" id="searchInput" placeholder="Search registrations..." class="search-input">
+                                <i class="fas fa-search search-icon"></i>
+                            </div>
+                            <button class="btn-export" onclick="openExportModal()">
+                                <i class="fas fa-download"></i> Export
+                            </button>
+                            <button class="btn-refresh" onclick="loadRegistrationTable()">
+                                <i class="fas fa-sync-alt"></i> Refresh
+                            </button>
+                        </div>
+                    </div>
+                    <div class="table-wrapper">
+                        <table class="registration-table">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Email</th>
+                                    <th>Phone</th>
+                                    <th>Country</th>
+                                    <th>Attendance</th>
+                                    <th>Age Range</th>
+                                    <th>Registration Date</th>
+                                </tr>
+                            </thead>
+                            <tbody id="registrationTableBody">
+                                <tr>
+                                    <td colspan="7" class="loading">Loading registrations...</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    
+                    <!-- Pagination Controls -->
+                    <div class="pagination-container" id="paginationContainer" style="display: none;">
+                        <div class="pagination-info">
+                            <span id="paginationInfo">Showing 1-10 of 0 registrations</span>
+                        </div>
+                        <div class="pagination-controls">
+                            <button class="pagination-btn" id="prevBtn" onclick="changePage(currentPage - 1)" disabled>
+                                <i class="fas fa-chevron-left"></i> Previous
+                            </button>
+                            <div class="pagination-numbers" id="paginationNumbers">
+                                <!-- Page numbers will be dynamically generated -->
+                            </div>
+                            <button class="pagination-btn" id="nextBtn" onclick="changePage(currentPage + 1)" disabled>
+                                Next <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+        </div>
+    </main>
+
+    <!-- Export Modal -->
+    <div id="exportModal" class="modal-overlay">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3><i class="fas fa-download"></i> Export Registration Data</h3>
+                <button class="modal-close" onclick="closeExportModal()">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="modal-body">
+                <div class="export-format-section">
+                    <h4>Export Format</h4>
+                    <div class="format-options">
+                        <label class="format-option">
+                            <input type="radio" name="exportFormat" value="csv" checked>
+                            <span class="format-label">
+                                <i class="fas fa-file-csv"></i> CSV Format
+                            </span>
+                        </label>
+                        <label class="format-option">
+                            <input type="radio" name="exportFormat" value="excel">
+                            <span class="format-label">
+                                <i class="fas fa-file-excel"></i> Excel Format
+                            </span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="field-selection-section">
+                    <h4>Select Fields to Export</h4>
+                    <div class="field-selection-controls">
+                        <button type="button" class="btn-select-all" onclick="selectAllFields()">
+                            <i class="fas fa-check-square"></i> Select All
+                        </button>
+                        <button type="button" class="btn-deselect-all" onclick="deselectAllFields()">
+                            <i class="fas fa-square"></i> Deselect All
+                        </button>
+                    </div>
+                    
+                    <div class="fields-grid">
+                        <label class="field-option">
+                            <input type="checkbox" name="exportField" value="id" checked>
+                            <span class="field-label">ID</span>
+                        </label>
+                        <label class="field-option">
+                            <input type="checkbox" name="exportField" value="title">
+                            <span class="field-label">Title</span>
+                        </label>
+                        <label class="field-option">
+                            <input type="checkbox" name="exportField" value="gender">
+                            <span class="field-label">Gender</span>
+                        </label>
+                        <label class="field-option">
+                            <input type="checkbox" name="exportField" value="first_name" checked>
+                            <span class="field-label">First Name</span>
+                        </label>
+                        <label class="field-option">
+                            <input type="checkbox" name="exportField" value="last_name" checked>
+                            <span class="field-label">Last Name</span>
+                        </label>
+                        <label class="field-option">
+                            <input type="checkbox" name="exportField" value="email" checked>
+                            <span class="field-label">Email</span>
+                        </label>
+                        <label class="field-option">
+                            <input type="checkbox" name="exportField" value="phone" checked>
+                            <span class="field-label">Phone</span>
+                        </label>
+                        <label class="field-option">
+                            <input type="checkbox" name="exportField" value="age_range">
+                            <span class="field-label">Age Range</span>
+                        </label>
+                        <label class="field-option">
+                            <input type="checkbox" name="exportField" value="attendance_type" checked>
+                            <span class="field-label">Attendance Type</span>
+                        </label>
+                        <label class="field-option">
+                            <input type="checkbox" name="exportField" value="country_name">
+                            <span class="field-label">Country</span>
+                        </label>
+                        <label class="field-option">
+                            <input type="checkbox" name="exportField" value="state_of_origin">
+                            <span class="field-label">State of Origin</span>
+                        </label>
+                        <label class="field-option">
+                            <input type="checkbox" name="exportField" value="how_did_you_hear">
+                            <span class="field-label">How Did You Hear</span>
+                        </label>
+                        <label class="field-option">
+                            <input type="checkbox" name="exportField" value="registration_date" checked>
+                            <span class="field-label">Registration Date</span>
+                        </label>
+                        <label class="field-option">
+                            <input type="checkbox" name="exportField" value="status" checked>
+                            <span class="field-label">Status</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal-footer">
+                <button class="btn-cancel" onclick="closeExportModal()">
+                    <i class="fas fa-times"></i> Cancel
+                </button>
+                <button class="btn-export-confirm" onclick="confirmExport()">
+                    <i class="fas fa-download"></i> Export Selected Data
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+
+
+        // Navigation
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                if (!link.getAttribute('onclick')) {
+                    e.preventDefault();
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Load dashboard data
+        async function loadDashboardData() {
+            try {
+                const response = await fetch('Backend/api/stats.php');
+                const data = await response.json();
+
+                if (data.success && data.data) {
+                    // Update total registrations
+                    document.getElementById('totalRegistrations').textContent = data.data.total || 0;
+
+                    // Update attendance type statistics
+                    let physicalCount = 0;
+                    let virtualCount = 0;
+
+                    if (data.data.by_attendance) {
+                        data.data.by_attendance.forEach(item => {
+                            if (item.attendance_type === 'Physical' || item.attendance_type === 'in-person') {
+                                physicalCount += parseInt(item.count);
+                            } else if (item.attendance_type === 'Virtual') {
+                                virtualCount += parseInt(item.count);
+                            }
+                        });
+                    }
+
+                    document.getElementById('physicalAttended').textContent = physicalCount;
+                    document.getElementById('virtualAttended').textContent = virtualCount;
+                } else {
+                    console.error('API Error:', data.error || 'Unknown error');
+                    // Set default values if API fails
+                    document.getElementById('totalRegistrations').textContent = '0';
+                    document.getElementById('physicalAttended').textContent = '0';
+                    document.getElementById('virtualAttended').textContent = '0';
+                }
+            } catch (error) {
+                console.error('Error loading dashboard data:', error);
+                // Set default values if fetch fails
+                document.getElementById('totalRegistrations').textContent = '0';
+                document.getElementById('physicalAttended').textContent = '0';
+                document.getElementById('virtualAttended').textContent = '0';
+            }
+        }
+
+        // Global variable to store all registrations for search functionality
+        let allRegistrations = [];
+        
+        // Pagination variables
+        let currentPage = 1;
+        let itemsPerPage = 10;
+        let totalPages = 1;
+        let currentFilteredRegistrations = [];
+
+        // Load registration table data
+        async function loadRegistrationTable() {
+            const tableBody = document.getElementById('registrationTableBody');
+
+            try {
+                // Show loading state
+                tableBody.innerHTML = '<tr><td colspan="7" class="loading">Loading registrations...</td></tr>';
+
+                const response = await fetch('Backend/api/registrations.php', {
+                    credentials: 'include'
+                });
+                const data = await response.json();
+                
+                console.log('Registration API Response:', data);
+                
+                if (data.success && data.data && data.data.registrations && data.data.registrations.length > 0) {
+                    // Store registrations globally for search functionality
+                    allRegistrations = data.data.registrations;
+                    
+                    // Reset pagination to first page
+                    currentPage = 1;
+                    
+                    // Render the table
+                    renderRegistrationTable(allRegistrations);
+                } else {
+                    allRegistrations = [];
+                    currentPage = 1;
+                    tableBody.innerHTML = '<tr><td colspan="7" class="loading">No registrations found</td></tr>';
+                    document.getElementById('paginationContainer').style.display = 'none';
+                }
+            } catch (error) {
+                console.error('Error loading registration table:', error);
+                allRegistrations = [];
+                tableBody.innerHTML = '<tr><td colspan="7" class="loading">Error loading registrations</td></tr>';
+            }
+        }
+
+        // Pagination functions
+        function calculatePagination(registrations) {
+            currentFilteredRegistrations = registrations;
+            totalPages = Math.ceil(registrations.length / itemsPerPage);
+            
+            // Reset to page 1 if current page is beyond total pages
+            if (currentPage > totalPages) {
+                currentPage = 1;
+            }
+            
+            // Ensure current page is at least 1
+            if (currentPage < 1) {
+                currentPage = 1;
+            }
+        }
+
+        function getPaginatedData(registrations) {
+            const startIndex = (currentPage - 1) * itemsPerPage;
+            const endIndex = startIndex + itemsPerPage;
+            return registrations.slice(startIndex, endIndex);
+        }
+
+        function updatePaginationControls() {
+            const paginationContainer = document.getElementById('paginationContainer');
+            const paginationInfo = document.getElementById('paginationInfo');
+            const paginationNumbers = document.getElementById('paginationNumbers');
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+
+            // Show/hide pagination based on total records
+            if (currentFilteredRegistrations.length <= itemsPerPage) {
+                paginationContainer.style.display = 'none';
+                return;
+            } else {
+                paginationContainer.style.display = 'flex';
+            }
+
+            // Update pagination info
+            const startItem = (currentPage - 1) * itemsPerPage + 1;
+            const endItem = Math.min(currentPage * itemsPerPage, currentFilteredRegistrations.length);
+            paginationInfo.textContent = `Showing ${startItem}-${endItem} of ${currentFilteredRegistrations.length} registrations`;
+
+            // Update previous/next buttons
+            prevBtn.disabled = currentPage <= 1;
+            nextBtn.disabled = currentPage >= totalPages;
+
+            // Generate page numbers
+            generatePageNumbers();
+        }
+
+        function generatePageNumbers() {
+            const paginationNumbers = document.getElementById('paginationNumbers');
+            paginationNumbers.innerHTML = '';
+
+            // Calculate which page numbers to show
+            let startPage = Math.max(1, currentPage - 2);
+            let endPage = Math.min(totalPages, currentPage + 2);
+
+            // Adjust if we're near the beginning or end
+            if (currentPage <= 3) {
+                endPage = Math.min(5, totalPages);
+            }
+            if (currentPage > totalPages - 3) {
+                startPage = Math.max(1, totalPages - 4);
+            }
+
+            // Add first page and ellipsis if needed
+            if (startPage > 1) {
+                addPageNumber(1);
+                if (startPage > 2) {
+                    addEllipsis();
+                }
+            }
+
+            // Add page numbers
+            for (let i = startPage; i <= endPage; i++) {
+                addPageNumber(i);
+            }
+
+            // Add ellipsis and last page if needed
+            if (endPage < totalPages) {
+                if (endPage < totalPages - 1) {
+                    addEllipsis();
+                }
+                addPageNumber(totalPages);
+            }
+        }
+
+        function addPageNumber(pageNum) {
+            const paginationNumbers = document.getElementById('paginationNumbers');
+            const pageBtn = document.createElement('button');
+            pageBtn.className = `pagination-number ${pageNum === currentPage ? 'active' : ''}`;
+            pageBtn.textContent = pageNum;
+            pageBtn.onclick = () => changePage(pageNum);
+            paginationNumbers.appendChild(pageBtn);
+        }
+
+        function addEllipsis() {
+            const paginationNumbers = document.getElementById('paginationNumbers');
+            const ellipsis = document.createElement('span');
+            ellipsis.className = 'pagination-ellipsis';
+            ellipsis.textContent = '...';
+            paginationNumbers.appendChild(ellipsis);
+        }
+
+        function changePage(newPage) {
+            if (newPage < 1 || newPage > totalPages || newPage === currentPage) {
+                return;
+            }
+            
+            currentPage = newPage;
+            renderRegistrationTable(currentFilteredRegistrations);
+        }
+
+        // Function to render registration table
+        function renderRegistrationTable(registrations) {
+            const tableBody = document.getElementById('registrationTableBody');
+            
+            if (registrations.length === 0) {
+                tableBody.innerHTML = '<tr><td colspan="7" class="loading">No registrations found</td></tr>';
+                document.getElementById('paginationContainer').style.display = 'none';
+                return;
+            }
+            
+            // Calculate pagination
+            calculatePagination(registrations);
+            
+            // Get paginated data
+            const paginatedData = getPaginatedData(registrations);
+            
+            // Clear table body
+            tableBody.innerHTML = '';
+            
+            // Render paginated rows
+            paginatedData.forEach(registration => {
+                        const row = document.createElement('tr');
+
+                        // Format date
+                        const date = new Date(registration.registration_date);
+                        const formattedDate = date.toLocaleDateString('en-US', {
+                            year: 'numeric',
+                            month: 'short',
+                            day: 'numeric'
+                        });
+
+                        // Create attendance badge
+                        const attendanceType = registration.attendance_type.toLowerCase().replace(/[^a-z]/g, '');
+                        const attendanceBadge = `<span class="attendance-badge attendance-${attendanceType}">${registration.attendance_type}</span>`;
+
+                        row.innerHTML = `
+                            <td>${registration.first_name} ${registration.last_name}</td>
+                            <td>${registration.email}</td>
+                            <td>${registration.phone}</td>
+                            <td>${registration.country_name}</td>
+                            <td>${attendanceBadge}</td>
+                            <td>${registration.age_range}</td>
+                            <td>${formattedDate}</td>
+                        `;
+
+                        // Add hover effect
+                        row.addEventListener('mouseenter', () => {
+                            row.style.backgroundColor = '#f8f9fa';
+                        });
+                        row.addEventListener('mouseleave', () => {
+                            row.style.backgroundColor = '';
+                        });
+
+                        tableBody.appendChild(row);
+                    });
+            
+            // Update pagination controls
+            updatePaginationControls();
+        }
+
+        // Search functionality
+        function searchRegistrations() {
+            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            
+            // Reset to first page when searching
+            currentPage = 1;
+            
+            if (searchTerm === '') {
+                // Show all registrations if search is empty
+                renderRegistrationTable(allRegistrations);
+                return;
+            }
+            
+            // Filter registrations based on search term
+            const filteredRegistrations = allRegistrations.filter(registration => {
+                const fullName = `${registration.first_name} ${registration.last_name}`.toLowerCase();
+                const email = registration.email.toLowerCase();
+                const phone = registration.phone.toLowerCase();
+                const country = registration.country_name.toLowerCase();
+                const attendance = registration.attendance_type.toLowerCase();
+                const ageRange = registration.age_range.toLowerCase();
+                
+                return fullName.includes(searchTerm) ||
+                       email.includes(searchTerm) ||
+                       phone.includes(searchTerm) ||
+                       country.includes(searchTerm) ||
+                       attendance.includes(searchTerm) ||
+                       ageRange.includes(searchTerm);
+            });
+            
+            renderRegistrationTable(filteredRegistrations);
+        }
+
+        // Add search event listener
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            if (searchInput) {
+                // Search as user types (with debounce)
+                let searchTimeout;
+                searchInput.addEventListener('input', function() {
+                    clearTimeout(searchTimeout);
+                    searchTimeout = setTimeout(searchRegistrations, 300);
+                });
+                
+                // Also search on Enter key
+                searchInput.addEventListener('keypress', function(e) {
+                    if (e.key === 'Enter') {
+                        clearTimeout(searchTimeout);
+                        searchRegistrations();
+                    }
+                });
+            }
+        });
+
+        // Refresh button functionality
+        function refreshRegistrationTable() {
+            loadRegistrationTable();
+        }
+
+        // Quick action functions
+        function showRegistrations() {
+            window.location.href = 'Backend/api/registrations.php';
+        }
+
+        function exportRegistrations() {
+            window.open('Backend/api/registrations.php?export=csv', '_blank');
+        }
+
+       
+
+       
+
+       
+
+        // Export modal functionality
+        function openExportModal() {
+            const modal = document.getElementById('exportModal');
+            modal.classList.add('show');
+            document.body.style.overflow = 'hidden'; // Prevent background scrolling
+        }
+
+        function closeExportModal() {
+            const modal = document.getElementById('exportModal');
+            modal.classList.remove('show');
+            document.body.style.overflow = ''; // Restore scrolling
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(event) {
+            const modal = document.getElementById('exportModal');
+            const modalContent = modal.querySelector('.modal-content');
+            
+            if (event.target === modal && !modalContent.contains(event.target)) {
+                closeExportModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeExportModal();
+            }
+        });
+
+        // Field selection functions
+        function selectAllFields() {
+            const checkboxes = document.querySelectorAll('input[name="exportField"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = true;
+            });
+        }
+
+        function deselectAllFields() {
+            const checkboxes = document.querySelectorAll('input[name="exportField"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = false;
+            });
+        }
+
+        // Confirm export function (called from modal)
+        async function confirmExport() {
+            // Get selected format
+            const formatRadio = document.querySelector('input[name="exportFormat"]:checked');
+            if (!formatRadio) {
+                Swal.fire({
+                    title: 'Export Format Required',
+                    text: 'Please select an export format',
+                    icon: 'warning',
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#025836'
+                });
+                return;
+            }
+            const format = formatRadio.value;
+
+            // Get selected fields
+            const selectedFields = [];
+            const fieldCheckboxes = document.querySelectorAll('input[name="exportField"]:checked');
+            fieldCheckboxes.forEach(checkbox => {
+                selectedFields.push(checkbox.value);
+            });
+
+            if (selectedFields.length === 0) {
+                Swal.fire({
+                    title: 'Fields Required',
+                    text: 'Please select at least one field to export',
+                    icon: 'warning',
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#025836'
+                });
+                return;
+            }
+
+            // Close the modal
+            closeExportModal();
+
+            // Export with selected fields
+            await exportData(format, selectedFields);
+        }
+
+        // Export data function
+        async function exportData(format, selectedFields) {
+            try {
+                // Get current registration data
+                const response = await fetch('Backend/api/registrations.php', {
+                    credentials: 'include'
+                });
+                
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
+                const result = await response.json();
+                
+                if (result.success && result.data && result.data.registrations) {
+                    const registrations = result.data.registrations;
+                    
+                    if (registrations.length === 0) {
+                        Swal.fire({
+                            title: 'No Data Available',
+                            text: 'No registration data available to export',
+                            icon: 'info',
+                            confirmButtonText: 'OK',
+                            confirmButtonColor: '#025836'
+                        });
+                        return;
+                    }
+                    
+                    if (format === 'csv') {
+                        exportToCSV(registrations, selectedFields);
+                    } else if (format === 'excel') {
+                        exportToExcel(registrations, selectedFields);
+                    }
+                } else {
+                    console.error('API Response:', result);
+                    Swal.fire({
+                        title: 'Export Failed',
+                        text: 'Failed to fetch registration data for export: ' + (result.error || 'Unknown error'),
+                        icon: 'error',
+                        confirmButtonText: 'OK',
+                        confirmButtonColor: '#025836'
+                    });
+                }
+            } catch (error) {
+                console.error('Export error:', error);
+                Swal.fire({
+                    title: 'Export Error',
+                    text: 'Error occurred while exporting data: ' + error.message,
+                    icon: 'error',
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#025836'
+                });
+            }
+        }
+
+        // Export to CSV
+        function exportToCSV(registrations, selectedFields) {
+            // Field mapping for headers and data extraction
+            const fieldMapping = {
+                'id': { header: 'ID', getValue: (reg) => reg.id || '' },
+                'title': { header: 'Title', getValue: (reg) => reg.title || '' },
+                'gender': { header: 'Gender', getValue: (reg) => reg.gender || '' },
+                'first_name': { header: 'First Name', getValue: (reg) => reg.first_name || '' },
+                'last_name': { header: 'Last Name', getValue: (reg) => reg.last_name || '' },
+                'email': { header: 'Email', getValue: (reg) => reg.email || '' },
+                'phone': { header: 'Phone', getValue: (reg) => reg.phone || '' },
+                'age_range': { header: 'Age Range', getValue: (reg) => reg.age_range || '' },
+                'attendance_type': { header: 'Attendance Type', getValue: (reg) => reg.attendance_type || '' },
+                'country_name': { header: 'Country', getValue: (reg) => reg.country_name || '' },
+                'state_of_origin': { header: 'State of Origin', getValue: (reg) => reg.state_of_origin || '' },
+                'how_did_you_hear': { header: 'How Did You Hear', getValue: (reg) => reg.how_did_you_hear || '' },
+                'registration_date': { header: 'Registration Date', getValue: (reg) => reg.registration_date || '' },
+                'status': { header: 'Status', getValue: (reg) => reg.status || '' }
+            };
+
+            // Build headers and data based on selected fields
+            const headers = selectedFields.map(field => fieldMapping[field]?.header || field);
+            
+            const csvContent = [
+                headers.join(','),
+                ...registrations.map(reg => 
+                    selectedFields.map(field => {
+                        const value = fieldMapping[field]?.getValue(reg) || '';
+                        return `"${value.toString().replace(/"/g, '""')}"`;
+                    }).join(',')
+                )
+            ].join('\n');
+            
+            downloadFile(csvContent, 'registrations.csv', 'text/csv');
+        }
+
+        // Export to Excel (CSV format with .xlsx extension for Excel compatibility)
+        function exportToExcel(registrations, selectedFields) {
+            // Field mapping for headers and data extraction (same as CSV)
+            const fieldMapping = {
+                'id': { header: 'ID', getValue: (reg) => reg.id || '' },
+                'title': { header: 'Title', getValue: (reg) => reg.title || '' },
+                'gender': { header: 'Gender', getValue: (reg) => reg.gender || '' },
+                'first_name': { header: 'First Name', getValue: (reg) => reg.first_name || '' },
+                'last_name': { header: 'Last Name', getValue: (reg) => reg.last_name || '' },
+                'email': { header: 'Email', getValue: (reg) => reg.email || '' },
+                'phone': { header: 'Phone', getValue: (reg) => reg.phone || '' },
+                'age_range': { header: 'Age Range', getValue: (reg) => reg.age_range || '' },
+                'attendance_type': { header: 'Attendance Type', getValue: (reg) => reg.attendance_type || '' },
+                'country_name': { header: 'Country', getValue: (reg) => reg.country_name || '' },
+                'state_of_origin': { header: 'State of Origin', getValue: (reg) => reg.state_of_origin || '' },
+                'how_did_you_hear': { header: 'How Did You Hear', getValue: (reg) => reg.how_did_you_hear || '' },
+                'registration_date': { header: 'Registration Date', getValue: (reg) => reg.registration_date || '' },
+                'status': { header: 'Status', getValue: (reg) => reg.status || '' }
+            };
+
+            // Build headers and data based on selected fields
+            const headers = selectedFields.map(field => fieldMapping[field]?.header || field);
+            
+            // Create tab-separated values for better Excel compatibility
+            const tsvContent = [
+                headers.join('\t'),
+                ...registrations.map(reg => 
+                    selectedFields.map(field => {
+                        const value = fieldMapping[field]?.getValue(reg) || '';
+                        return value.toString().replace(/\t/g, ' ');
+                    }).join('\t')
+                )
+            ].join('\n');
+            
+            downloadFile(tsvContent, 'registrations.xlsx', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+        }
+
+        // Download file helper function
+        function downloadFile(content, filename, mimeType) {
+            const blob = new Blob([content], { type: mimeType });
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.download = filename;
+            link.style.display = 'none';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
+        }
+
+        async function logout() {
+            const result = await Swal.fire({
+                title: 'Logout Confirmation',
+                text: 'Are you sure you want to logout?',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Yes, logout',
+                cancelButtonText: 'Cancel'
+            });
+
+            if (result.isConfirmed) {
+                try {
+                    // Call backend logout API to destroy server session
+                    await fetch('Backend/api/admin_auth.php?action=logout', {
+                        method: 'POST',
+                        credentials: 'include'
+                    });
+                } catch (error) {
+                    console.error('Logout API error:', error);
+                    // Continue with logout even if API call fails
+                }
+
+                // Clear local storage
+                localStorage.removeItem('adminToken');
+                localStorage.removeItem('adminInfo');
+
+                // Show success message before redirecting
+                await Swal.fire({
+                    title: 'Logged Out!',
+                    text: 'You have been successfully logged out.',
+                    icon: 'success',
+                    timer: 1500,
+                    showConfirmButton: false
+                });
+
+                // Redirect to login page
+                window.location.href = 'admin-login.html';
+            }
+        }
+
+        // Check authentication
+        async function checkAuth() {
+            try {
+                // Check with backend for session-based authentication
+                const response = await fetch('Backend/api/admin_auth.php?action=check', {
+                    credentials: 'include'
+                });
+                const data = await response.json();
+
+                if (data.success && data.data.authenticated) {
+                    // Set authentication token for consistency
+                    localStorage.setItem('adminToken', 'authenticated');
+                    // Store admin info for dashboard use
+                    localStorage.setItem('adminInfo', JSON.stringify(data.data.admin));
+                    return true;
+                } else {
+                    // Not authenticated, clear any stored data and redirect to login
+                    localStorage.removeItem('adminToken');
+                    localStorage.removeItem('adminInfo');
+                    window.location.href = 'admin-login.html';
+                    return false;
+                }
+            } catch (error) {
+                console.error('Auth check error:', error);
+                // On error, clear stored data and redirect to login
+                localStorage.removeItem('adminToken');
+                localStorage.removeItem('adminInfo');
+                window.location.href = 'admin-login.html';
+                return false;
+            }
+        }
+
+
+
+        // Initialize dashboard
+        document.addEventListener('DOMContentLoaded', async () => {
+            const isAuthenticated = await checkAuth();
+            if (isAuthenticated) {
+                loadDashboardData();
+                loadRegistrationTable();
+            }
+        });
+
+
+    </script>
+
+
+</body>
+
+</html>

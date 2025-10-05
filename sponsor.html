@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Become a Sponsor - Unveiling Nigeria</title>
     <style>
         * {
@@ -545,7 +547,13 @@
 
             // Simple validation
             if (!data.firstName || !data.lastName || !data.email) {
-                alert('Please fill in all required fields.');
+                Swal.fire({
+                    title: 'Required Fields Missing',
+                    text: 'Please fill in all required fields.',
+                    icon: 'warning',
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#025836'
+                });
                 submitBtn.disabled = false;
                 submitBtn.classList.remove('loading');
                 submitBtn.textContent = 'Submit Sponsorship Application';
@@ -553,7 +561,13 @@
             }
 
             if (!data.sponsorshipType) {
-                alert('Please select a sponsorship type.');
+                Swal.fire({
+                    title: 'Sponsorship Type Required',
+                    text: 'Please select a sponsorship type.',
+                    icon: 'warning',
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#025836'
+                });
                 submitBtn.disabled = false;
                 submitBtn.classList.remove('loading');
                 submitBtn.textContent = 'Submit Sponsorship Application';
@@ -561,7 +575,13 @@
             }
 
             if (!data.hearAbout) {
-                alert('Please tell us how you heard about us.');
+                Swal.fire({
+                    title: 'Information Required',
+                    text: 'Please tell us how you heard about us.',
+                    icon: 'warning',
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#025836'
+                });
                 submitBtn.disabled = false;
                 submitBtn.classList.remove('loading');
                 submitBtn.textContent = 'Submit Sponsorship Application';
@@ -569,7 +589,13 @@
             }
 
             if (!data.amount || data.amount <= 0) {
-                alert('Please enter a valid sponsorship amount or select a sponsorship level.');
+                Swal.fire({
+                    title: 'Amount Required',
+                    text: 'Please enter a valid sponsorship amount or select a sponsorship level.',
+                    icon: 'warning',
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#025836'
+                });
                 submitBtn.disabled = false;
                 submitBtn.classList.remove('loading');
                 submitBtn.textContent = 'Submit Sponsorship Application';
@@ -579,7 +605,13 @@
             // Simulate form submission (replace with actual submission logic)
             setTimeout(() => {
                 console.log('Sponsorship Application Data:', data);
-                alert('Thank you for your sponsorship application! We will contact you shortly.');
+                Swal.fire({
+                    title: 'Application Submitted!',
+                    text: 'Thank you for your sponsorship application! We will contact you shortly.',
+                    icon: 'success',
+                    confirmButtonText: 'OK',
+                    confirmButtonColor: '#025836'
+                });
 
                 // Reset form and button
                 form.reset();

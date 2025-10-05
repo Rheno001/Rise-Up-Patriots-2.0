@@ -217,6 +217,19 @@ class Registration {
         // Total registrations
         $stats['total'] = $this->getTotalCount();
 
+        // Status-based statistics
+        $query = "SELECT 
+                    COUNT(CASE WHEN status = 'pending' OR status IS NULL THEN 1 END) as pending,
+                    COUNT(CASE WHEN status = 'confirmed' THEN 1 END) as confirmed,
+                    COUNT(CASE WHEN status = 'cancelled' THEN 1 END) as cancelled
+                  FROM " . $this->table_name;
+        $stmt = $this->conn->prepare($query);
+        $stmt->execute();
+        $row = $stmt->fetch();
+        $stats['pending'] = $row['pending'];
+        $stats['confirmed'] = $row['confirmed'];
+        $stats['cancelled'] = $row['cancelled'];
+
         // Registrations by attendance type
         $query = "SELECT attendance_type, COUNT(*) as count 
                   FROM " . $this->table_name . " 
