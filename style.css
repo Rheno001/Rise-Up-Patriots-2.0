@@ -373,7 +373,7 @@ html {
 }
 
 .speaker {
-    height: 300px;
+    height: 400px;
 }
 
 .bottom {
@@ -573,7 +573,7 @@ html {
 
     .speaker {
         height: 300px;
-        width: 100%;
+        width: 90%;
     }
 
     /* Responsive text */
