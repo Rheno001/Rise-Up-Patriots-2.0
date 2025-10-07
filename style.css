@@ -14,6 +14,19 @@ body {
 html {
     scroll-padding-top: 80px; /* Adjust to match your navbar height */
 }
+@font-face {
+  font-family: "Babel";
+  src: url("/src/assets/fonts/BabelSans-BoldOblique.wofff") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Babel";
+  src: url("/src/assets/fonts/BabelSans-Oblique.woff") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+}
 
 .preloader {
     position: fixed;
@@ -391,6 +404,7 @@ html {
     padding: 10px;
     gap: 10px;
     background-color: white;
+    font-family: "Babel", sans-serif;
 }
 
 .date-time-loc span {
