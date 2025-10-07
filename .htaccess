@@ -88,8 +88,11 @@ ErrorDocument 404 /index.html
     Deny from all
 </Files>
 
-# Block access to Backend directory from direct access
+# Block access to Backend directory from direct access, except API endpoints
 <IfModule mod_rewrite.c>
+    # Allow access to Backend/api/ endpoints
+    RewriteRule ^Backend/api/ - [L]
+    # Block access to all other Backend files and directories
     RewriteRule ^Backend/ - [F,L]
 </IfModule>
 
