@@ -418,11 +418,12 @@ html {
 }
 
 .date-time-loc span img {
-    width: clamp(20px, 3vw, 50px);
-    height: auto;
-    display: block;
-    object-fit: contain;
+  width: clamp(14px, 2vw, 30px);
+  height: auto;
+  display: block;
+  object-fit: contain;
 }
+
 
 .date-time-loc span p {
     margin-top: 10px;
