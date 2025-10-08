@@ -473,7 +473,12 @@
 
     <script>
     // Set API base URL for development and production
-       window.API_BASE_URL = window.API_BASE_URL || 'http://localhost:8000/Backend/api';        // Global variables for countries and states data
+    // Use relative URL for production, fallback to localhost for development
+    window.API_BASE_URL = window.API_BASE_URL || (
+        window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1' 
+            ? 'http://localhost:8000/Backend/api' 
+            : '/Backend/api'
+    );        // Global variables for countries and states data
         let countriesData = [];
 
         // Load countries on page load
