@@ -2,8 +2,8 @@
 /**
  * CORS Configuration
  * 
- * This file handles Cross-Origin Resource Sharing (CORS) settings
- * to allow the frontend to communicate with the backend API
+ * Handles Cross-Origin Resource Sharing (CORS) settings
+ * to allow the frontend to communicate with the backend API.
  */
 
 class CorsHandler {
@@ -12,38 +12,41 @@ class CorsHandler {
      * Set CORS headers for API requests
      */
     public static function setCorsHeaders() {
-        // Allow requests from the frontend domain
+        // Detect current protocol and host
+        $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on') ? 'https' : 'http';
+        $host = $_SERVER['HTTP_HOST'] ?? 'localhost';
+        $current_origin = "$protocol://$host";
+
+        // Define allowed frontend origins
         $allowed_origins = [
             'http://localhost:8000',
             'http://127.0.0.1:8000',
-            'http://localhost',
-            'http://127.0.0.1',
             'http://localhost:3000',
             'http://localhost:8080',
             'http://localhost:5000',
-            // Add your production domain here
-            // 'https://yourdomain.com'
+            'http://localhost',
+            'http://127.0.0.1',
+            // ✅ Production domain
+            'https://riseup.unveilingnigeria.ng',
+            'https://www.riseup.unveilingnigeria.ng',
+            // ✅ Also allow backend domain itself (same-origin)
+            $current_origin,
         ];
 
-        $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
-        
-        if (in_array($origin, $allowed_origins)) {
+        $origin = $_SERVER['HTTP_ORIGIN'] ?? $current_origin;
+
+        // Match allowed origins dynamically
+        if (in_array($origin, $allowed_origins, true)) {
             header("Access-Control-Allow-Origin: $origin");
         } else {
-            // For development, default to localhost:8000 when no origin header
-            header("Access-Control-Allow-Origin: http://localhost:8000");
+            // Fallback to same-origin policy
+            header("Access-Control-Allow-Origin: $current_origin");
         }
 
-        // Allow specific HTTP methods
-        header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
-        
-        // Allow specific headers
-        header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
-        
-        // Allow credentials
+        // Allow credentials and headers
         header("Access-Control-Allow-Credentials: true");
-        
-        // Set max age for preflight requests
+        header("Access-Control-Allow-Methods: GET, POST, PUT, DELETE, OPTIONS");
+        header("Access-Control-Allow-Headers: Content-Type, Authorization, X-Requested-With");
         header("Access-Control-Max-Age: 86400"); // 24 hours
 
         // Handle preflight OPTIONS request
@@ -62,9 +65,6 @@ class CorsHandler {
 
     /**
      * Send JSON response
-     * 
-     * @param array $data Response data
-     * @param int $status_code HTTP status code
      */
     public static function sendJsonResponse($data, $status_code = 200) {
         http_response_code($status_code);
@@ -75,10 +75,6 @@ class CorsHandler {
 
     /**
      * Send error response
-     * 
-     * @param string $message Error message
-     * @param int $status_code HTTP status code
-     * @param array $details Additional error details
      */
     public static function sendErrorResponse($message, $status_code = 400, $details = []) {
         $response = [
@@ -96,9 +92,6 @@ class CorsHandler {
 
     /**
      * Send success response
-     * 
-     * @param array $data Response data
-     * @param string $message Success message
      */
     public static function sendSuccessResponse($data = [], $message = 'Success') {
         $response = [

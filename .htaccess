@@ -1,0 +1,108 @@
+# Rise Up Patriots 2.0 - .htaccess Configuration
+
+# Enable URL Rewriting
+RewriteEngine On
+
+# Clean URLs - Remove .html extension
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.html [NC,L]
+
+# Redirect .html extension to clean URLs
+RewriteCond %{THE_REQUEST} /([^.]+)\.html [NC]
+RewriteRule ^ /%1? [NC,L,R=301]
+
+# Security Headers
+<IfModule mod_headers.c>
+    # Prevent clickjacking
+    Header always append X-Frame-Options SAMEORIGIN
+    
+    # XSS Protection
+    Header set X-XSS-Protection "1; mode=block"
+    
+    # Content Type Options
+    Header set X-Content-Type-Options nosniff
+    
+    # Referrer Policy
+    Header set Referrer-Policy "strict-origin-when-cross-origin"
+    
+  Header set Content-Security-Policy "default-src 'self'; \
+        script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://kit.fontawesome.com https://ka-f.fontawesome.com; \
+        style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://ka-f.fontawesome.com; \
+        img-src 'self' data: https:; \
+        font-src 'self' https://fonts.gstatic.com https://ka-f.fontawesome.com; \
+        connect-src 'self' https://ka-f.fontawesome.com https://restcountries.com https://riseup.unveilingnigeria.ng https://www.riseup.unveilingnigeria.ng;"
+</IfModule>
+
+# Cache Control for Performance
+<IfModule mod_expires.c>
+    ExpiresActive On
+    
+    # Images
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/svg+xml "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+    
+    # CSS and JavaScript
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType text/javascript "access plus 1 month"
+    
+    # Fonts
+    ExpiresByType font/woff "access plus 1 year"
+    ExpiresByType font/woff2 "access plus 1 year"
+    ExpiresByType application/font-woff "access plus 1 year"
+    
+    # HTML
+    ExpiresByType text/html "access plus 1 hour"
+</IfModule>
+
+# Compression
+<IfModule mod_deflate.c>
+    AddOutputFilterByType DEFLATE text/plain
+    AddOutputFilterByType DEFLATE text/html
+    AddOutputFilterByType DEFLATE text/xml
+    AddOutputFilterByType DEFLATE text/css
+    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE application/xhtml+xml
+    AddOutputFilterByType DEFLATE application/rss+xml
+    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+</IfModule>
+
+# Error Pages
+ErrorDocument 404 /index.html
+
+# Prevent access to sensitive files
+<Files ".env">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files "composer.json">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files "composer.lock">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Block access to Backend directory from direct access, except API endpoints
+<IfModule mod_rewrite.c>
+    # Allow access to Backend/api/ endpoints
+    RewriteRule ^Backend/api/ - [L]
+    # Block access to all other Backend files and directories
+    RewriteRule ^Backend/ - [F,L]
+</IfModule>
+
+# MIME Types
+<IfModule mod_mime.c>
+    AddType application/font-woff .woff
+    AddType application/font-woff2 .woff2
+    AddType image/svg+xml .svg
+</IfModule>
