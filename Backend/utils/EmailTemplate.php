@@ -49,10 +49,16 @@ class EmailTemplate {
         $templateFile = $this->templatePath . $templateName . '.html';
         
         if (!file_exists($templateFile)) {
+            error_log("Email template not found: " . $templateFile);
             throw new Exception("Email template not found: " . $templateFile);
         }
         
         $content = file_get_contents($templateFile);
+        
+        if ($content === false) {
+            error_log("Failed to read email template: " . $templateFile);
+            throw new Exception("Failed to read email template: " . $templateFile);
+        }
         
         // Replace base URL
         $content = str_replace('{{BASE_URL}}', $this->baseUrl, $content);
