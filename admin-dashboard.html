@@ -1562,35 +1562,55 @@
         let currentPage = 1;
         let itemsPerPage = 10;
         let totalPages = 1;
+        let serverTotalPages = 1;
+        let totalRecords = 0;
+        let currentSearchTerm = '';
         let currentFilteredRegistrations = [];
 
+
         // Load registration table data
-        async function loadRegistrationTable() {
+        async function loadRegistrationTable(resetPage = false) {
             const tableBody = document.getElementById('registrationTableBody');
 
             try {
                 // Show loading state
                 tableBody.innerHTML = '<tr><td colspan="7" class="loading">Loading registrations...</td></tr>';
 
-                const response = await fetch('Backend/api/registrations.php', {
+                if (resetPage) {
+                    currentPage = 1;
+                }
+
+                const queryParams = new URLSearchParams({
+                    page: String(currentPage),
+                    limit: String(itemsPerPage)
+                });
+                if (currentSearchTerm && currentSearchTerm.trim() !== '') {
+                    queryParams.set('search', currentSearchTerm.trim());
+                }
+
+                const response = await fetch(`Backend/api/registrations.php?${queryParams.toString()}`, {
                     credentials: 'include'
                 });
                 const data = await response.json();
                 
                 console.log('Registration API Response:', data);
                 
-                if (data.success && data.data && data.data.registrations && data.data.registrations.length > 0) {
+                if (data.success && data.data) {
                     // Store registrations globally for search functionality
-                    allRegistrations = data.data.registrations;
+                    allRegistrations = data.data.registrations || [];
                     
-                    // Reset pagination to first page
-                    currentPage = 1;
+                    // Update pagination from server response
+                    if (data.data.pagination) {
+                        itemsPerPage = data.data.pagination.per_page || itemsPerPage;
+                        serverTotalPages = data.data.pagination.total_pages || 1;
+                        totalRecords = data.data.pagination.total || allRegistrations.length;
+                        totalPages = serverTotalPages;
+                    }
                     
                     // Render the table
                     renderRegistrationTable(allRegistrations);
                 } else {
                     allRegistrations = [];
-                    currentPage = 1;
                     tableBody.innerHTML = '<tr><td colspan="7" class="loading">No registrations found</td></tr>';
                     document.getElementById('paginationContainer').style.display = 'none';
                 }
@@ -1604,23 +1624,21 @@
         // Pagination functions
         function calculatePagination(registrations) {
             currentFilteredRegistrations = registrations;
-            totalPages = Math.ceil(registrations.length / itemsPerPage);
+            totalPages = serverTotalPages || Math.ceil(registrations.length / itemsPerPage);
             
-            // Reset to page 1 if current page is beyond total pages
+            // Ensure current page is within bounds
             if (currentPage > totalPages) {
-                currentPage = 1;
+                currentPage = totalPages;
             }
             
-            // Ensure current page is at least 1
             if (currentPage < 1) {
                 currentPage = 1;
             }
         }
 
         function getPaginatedData(registrations) {
-            const startIndex = (currentPage - 1) * itemsPerPage;
-            const endIndex = startIndex + itemsPerPage;
-            return registrations.slice(startIndex, endIndex);
+            // Server-side pagination returns the current page already
+            return registrations;
         }
 
         function updatePaginationControls() {
@@ -1630,18 +1648,18 @@
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
 
-            // Show/hide pagination based on total records
-            if (currentFilteredRegistrations.length <= itemsPerPage) {
+            // Show/hide pagination based on total records from server
+            if (totalRecords <= itemsPerPage) {
                 paginationContainer.style.display = 'none';
                 return;
             } else {
                 paginationContainer.style.display = 'flex';
             }
 
-            // Update pagination info
+            // Update pagination info using server totals
             const startItem = (currentPage - 1) * itemsPerPage + 1;
-            const endItem = Math.min(currentPage * itemsPerPage, currentFilteredRegistrations.length);
-            paginationInfo.textContent = `Showing ${startItem}-${endItem} of ${currentFilteredRegistrations.length} registrations`;
+            const endItem = Math.min(currentPage * itemsPerPage, totalRecords);
+            paginationInfo.textContent = `Showing ${startItem}-${endItem} of ${totalRecords} registrations`;
 
             // Update previous/next buttons
             prevBtn.disabled = currentPage <= 1;
@@ -1712,7 +1730,7 @@
             }
             
             currentPage = newPage;
-            renderRegistrationTable(currentFilteredRegistrations);
+            loadRegistrationTable(false);
         }
 
         // Function to render registration table
@@ -1777,35 +1795,10 @@
 
         // Search functionality
         function searchRegistrations() {
-            const searchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
+            currentSearchTerm = document.getElementById('searchInput').value.toLowerCase().trim();
             
-            // Reset to first page when searching
-            currentPage = 1;
-            
-            if (searchTerm === '') {
-                // Show all registrations if search is empty
-                renderRegistrationTable(allRegistrations);
-                return;
-            }
-            
-            // Filter registrations based on search term
-            const filteredRegistrations = allRegistrations.filter(registration => {
-                const fullName = `${registration.first_name} ${registration.last_name}`.toLowerCase();
-                const email = registration.email.toLowerCase();
-                const phone = registration.phone.toLowerCase();
-                const country = registration.country_name.toLowerCase();
-                const attendance = registration.attendance_type.toLowerCase();
-                const ageRange = registration.age_range.toLowerCase();
-                
-                return fullName.includes(searchTerm) ||
-                       email.includes(searchTerm) ||
-                       phone.includes(searchTerm) ||
-                       country.includes(searchTerm) ||
-                       attendance.includes(searchTerm) ||
-                       ageRange.includes(searchTerm);
-            });
-            
-            renderRegistrationTable(filteredRegistrations);
+            // Reset to first page and fetch from server with search
+            loadRegistrationTable(true);
         }
 
         // Add search event listener
@@ -1840,7 +1833,8 @@
         }
 
         function exportRegistrations() {
-            window.open('Backend/api/registrations.php?export=csv', '_blank');
+            // Open the export modal to choose format and fields
+            openExportModal();
         }
 
        
@@ -1938,45 +1932,82 @@
         // Export data function
         async function exportData(format, selectedFields) {
             try {
-                // Get current registration data
-                const response = await fetch('Backend/api/registrations.php', {
-                    credentials: 'include'
-                });
-                
-                if (!response.ok) {
-                    throw new Error(`HTTP error! status: ${response.status}`);
+                // Determine current search term
+                const searchInput = document.getElementById('searchInput');
+                const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : '';
+
+                // Fast path: use server-side streaming for CSV
+                if (format === 'csv') {
+                    const params = new URLSearchParams();
+                    params.set('export', 'csv');
+                    if (selectedFields && selectedFields.length) {
+                        params.set('fields', selectedFields.join(','));
+                    }
+                    if (searchTerm) {
+                        params.set('search', searchTerm);
+                    }
+                    // Open in a new tab to download
+                    window.open(`Backend/api/registrations.php?${params.toString()}`, '_blank');
+                    return;
                 }
-                
-                const result = await response.json();
-                
-                if (result.success && result.data && result.data.registrations) {
-                    const registrations = result.data.registrations;
+
+                // Client-side aggregation (only for Excel)
+                const exportLimit = 100; // API max limit to minimize requests
+                let page = 1;
+                let totalPages = 1;
+                const allRegistrations = [];
+
+                do {
+                    const params = new URLSearchParams({
+                        page: String(page),
+                        limit: String(exportLimit)
+                    });
+                    if (searchTerm) {
+                        params.set('search', searchTerm);
+                    }
+
+                    const response = await fetch(`Backend/api/registrations.php?${params.toString()}`, {
+                        credentials: 'include'
+                    });
                     
-                    if (registrations.length === 0) {
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    
+                    const result = await response.json();
+
+                    if (!(result.success && result.data)) {
+                        console.error('API Response:', result);
                         Swal.fire({
-                            title: 'No Data Available',
-                            text: 'No registration data available to export',
-                            icon: 'info',
+                            title: 'Export Failed',
+                            text: 'Failed to fetch registration data for export: ' + (result.error || 'Unknown error'),
+                            icon: 'error',
                             confirmButtonText: 'OK',
                             confirmButtonColor: '#025836'
                         });
                         return;
                     }
                     
-                    if (format === 'csv') {
-                        exportToCSV(registrations, selectedFields);
-                    } else if (format === 'excel') {
-                        exportToExcel(registrations, selectedFields);
-                    }
-                } else {
-                    console.error('API Response:', result);
+                    const registrations = result.data.registrations || [];
+                    allRegistrations.push(...registrations);
+
+                    totalPages = result.data.pagination ? (result.data.pagination.total_pages || 1) : 1;
+                    page += 1;
+                } while (page <= totalPages);
+                
+                if (allRegistrations.length === 0) {
                     Swal.fire({
-                        title: 'Export Failed',
-                        text: 'Failed to fetch registration data for export: ' + (result.error || 'Unknown error'),
-                        icon: 'error',
+                        title: 'No Data Available',
+                        text: 'No registration data available to export',
+                        icon: 'info',
                         confirmButtonText: 'OK',
                         confirmButtonColor: '#025836'
                     });
+                    return;
+                }
+                
+                if (format === 'excel') {
+                    exportToExcel(allRegistrations, selectedFields);
                 }
             } catch (error) {
                 console.error('Export error:', error);

@@ -56,7 +56,11 @@ try {
 
     switch ($method) {
         case 'GET':
-            handleGetRegistrations($conn);
+            if (isset($_GET['export']) && $_GET['export'] === 'csv') {
+                handleExportCSV($conn);
+            } else {
+                handleGetRegistrations($conn);
+            }
             break;
             
         case 'DELETE':
@@ -226,4 +230,108 @@ function handleDeleteRegistration($conn) {
         CorsHandler::sendErrorResponse('Failed to delete registration', 500);
     }
 }
+
+function handleExportCSV($conn) {
+    try {
+        // Avoid timeouts for large exports
+        if (function_exists('set_time_limit')) { @set_time_limit(0); }
+        
+        // Allowed and default fields for export (safeguard against SQL injection)
+        $allowedFields = [
+            'id', 'title', 'gender', 'first_name', 'last_name', 'email', 'phone', 'age_range',
+            'attendance_type', 'country_name', 'state_of_origin', 'how_did_you_hear', 'registration_date', 'status'
+        ];
+
+        $fieldsParam = isset($_GET['fields']) ? $_GET['fields'] : '';
+        $requested = array_filter(array_map('trim', explode(',', $fieldsParam)));
+        $selectedFields = array_values(array_intersect($allowedFields, $requested));
+        if (empty($selectedFields)) {
+            $selectedFields = $allowedFields;
+        }
+
+        // Filters (mirror GET endpoint behavior)
+        $search = isset($_GET['search']) ? trim($_GET['search']) : '';
+        $status = isset($_GET['status']) ? trim($_GET['status']) : '';
+        $country = isset($_GET['country']) ? trim($_GET['country']) : '';
+        $attendanceType = isset($_GET['attendance_type']) ? trim($_GET['attendance_type']) : '';
+        $dateFrom = isset($_GET['date_from']) ? trim($_GET['date_from']) : '';
+        $dateTo = isset($_GET['date_to']) ? trim($_GET['date_to']) : '';
+
+        $whereClauses = [];
+        $params = [];
+
+        if ($search !== '') {
+            $whereClauses[] = "(first_name LIKE ? OR last_name LIKE ? OR email LIKE ? OR phone LIKE ?)";
+            $searchLike = "%$search%";
+            array_push($params, $searchLike, $searchLike, $searchLike, $searchLike);
+        }
+        if ($status !== '') {
+            $whereClauses[] = "status = ?";
+            $params[] = $status;
+        }
+        if ($country !== '') {
+            // Assuming country_code exists; if country_name is used, adjust accordingly
+            $whereClauses[] = "country_code = ?";
+            $params[] = $country;
+        }
+        if ($attendanceType !== '') {
+            $whereClauses[] = "attendance_type = ?";
+            $params[] = $attendanceType;
+        }
+        if ($dateFrom !== '') {
+            $whereClauses[] = "DATE(registration_date) >= ?";
+            $params[] = $dateFrom;
+        }
+        if ($dateTo !== '') {
+            $whereClauses[] = "DATE(registration_date) <= ?";
+            $params[] = $dateTo;
+        }
+
+        $whereSql = !empty($whereClauses) ? ('WHERE ' . implode(' AND ', $whereClauses)) : '';
+
+        // Prepare CSV streaming response
+        header('Content-Type: text/csv; charset=utf-8');
+        header('Content-Disposition: attachment; filename="registrations.csv"');
+        // Allow download in browsers while authenticated
+        header('Cache-Control: no-store, no-cache, must-revalidate, max-age=0');
+        header('Pragma: no-cache');
+
+        $out = fopen('php://output', 'w');
+        if ($out === false) {
+            CorsHandler::sendErrorResponse('Failed to open output stream', 500);
+            return;
+        }
+
+        // Write header row
+        fputcsv($out, $selectedFields);
+
+        // Build and execute streaming query
+        $sql = 'SELECT ' . implode(', ', $selectedFields) . ' FROM registrations ' . $whereSql . ' ORDER BY registration_date DESC';
+        $stmt = $conn->prepare($sql);
+        $stmt->execute($params);
+
+        // Stream rows out to CSV
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+            $line = [];
+            foreach ($selectedFields as $f) {
+                $line[] = isset($row[$f]) ? $row[$f] : '';
+            }
+            fputcsv($out, $line);
+        }
+
+        // Optional: log admin export action if such a utility exists
+        if (function_exists('logAdminActivity')) {
+            $ip = isset($_SERVER['REMOTE_ADDR']) ? $_SERVER['REMOTE_ADDR'] : '';
+            $ua = isset($_SERVER['HTTP_USER_AGENT']) ? $_SERVER['HTTP_USER_AGENT'] : '';
+            @logAdminActivity($conn, 'export_registrations_csv', 'Exported registrations CSV', $ip, $ua);
+        }
+
+        fclose($out);
+        exit();
+    } catch (Throwable $e) {
+        error_log('CSV Export Error: ' . $e->getMessage());
+        CorsHandler::sendErrorResponse('Failed to export registrations', 500);
+    }
+}
+
 ?>
