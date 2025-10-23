@@ -1317,6 +1317,16 @@
                         </div>
                         <div class="stat-value" id="virtualAttended">0</div>
                     </div>
+
+                    <div class="stat-card success">
+                        <div class="stat-header">
+                            <div class="stat-label">Hybrid Registration</div>
+                            <div class="stat-icon">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                        </div>
+                        <div class="stat-value" id="hybridAttended">0</div>
+                    </div>
                 </div>
             </div>
 
@@ -1527,24 +1537,30 @@
                     let physicalCount = 0;
                     let virtualCount = 0;
 
+                    let hybridCount = 0;
+                    
                     if (data.data.by_attendance) {
                         data.data.by_attendance.forEach(item => {
                             if (item.attendance_type === 'Physical' || item.attendance_type === 'in-person') {
                                 physicalCount += parseInt(item.count);
                             } else if (item.attendance_type === 'Virtual') {
                                 virtualCount += parseInt(item.count);
+                            } else if (item.attendance_type === 'Hybrid') {
+                                hybridCount += parseInt(item.count);
                             }
                         });
                     }
 
                     document.getElementById('physicalAttended').textContent = physicalCount;
                     document.getElementById('virtualAttended').textContent = virtualCount;
+                    document.getElementById('hybridAttended').textContent = hybridCount;
                 } else {
                     console.error('API Error:', data.error || 'Unknown error');
                     // Set default values if API fails
                     document.getElementById('totalRegistrations').textContent = '0';
                     document.getElementById('physicalAttended').textContent = '0';
                     document.getElementById('virtualAttended').textContent = '0';
+                    document.getElementById('hybridAttended').textContent = '0';
                 }
             } catch (error) {
                 console.error('Error loading dashboard data:', error);
@@ -1552,6 +1568,7 @@
                 document.getElementById('totalRegistrations').textContent = '0';
                 document.getElementById('physicalAttended').textContent = '0';
                 document.getElementById('virtualAttended').textContent = '0';
+                document.getElementById('hybridAttended').textContent = '0';
             }
         }
 
