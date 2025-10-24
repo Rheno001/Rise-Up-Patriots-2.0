@@ -6,11 +6,42 @@
  */
 
 class Database {
-    private $host = "localhost";
-    private $db_name = "rise_up_patriots";
-    private $username = "root";
-    private $password = "";
+    private $host;
+    private $db_name;
+    private $username;
+    private $password;
     private $conn;
+
+    public function __construct() {
+        // Load environment variables if available
+        $this->loadEnvironmentVariables();
+        
+        // Set database configuration with fallbacks
+        $this->host = $_ENV['DB_HOST'] ?? getenv('DB_HOST') ?: "localhost";
+        $this->db_name = $_ENV['DB_NAME'] ?? getenv('DB_NAME') ?: "rise_up_patriots";
+        $this->username = $_ENV['DB_USERNAME'] ?? getenv('DB_USERNAME') ?: "root";
+        $this->password = $_ENV['DB_PASSWORD'] ?? getenv('DB_PASSWORD') ?: "";
+    }
+
+    /**
+     * Load environment variables from .env file
+     */
+    private function loadEnvironmentVariables() {
+        $envFile = __DIR__ . '/../../.env';
+        if (file_exists($envFile)) {
+            $lines = file($envFile, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+            foreach ($lines as $line) {
+                if (strpos($line, '=') !== false && strpos($line, '#') !== 0) {
+                    list($key, $value) = explode('=', $line, 2);
+                    $key = trim($key);
+                    $value = trim($value, " \t\n\r\0\x0B\"'");
+                    if (!array_key_exists($key, $_ENV)) {
+                        $_ENV[$key] = $value;
+                    }
+                }
+            }
+        }
+    }
 
     /**
      * Get database connection

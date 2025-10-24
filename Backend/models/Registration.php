@@ -31,6 +31,10 @@ class Registration {
     public function __construct() {
         $database = new Database();
         $this->conn = $database->getConnection();
+        
+        if ($this->conn === null) {
+            throw new Exception("Failed to establish database connection");
+        }
     }
 
     /**
@@ -83,12 +87,21 @@ class Registration {
         $stmt->bindParam(":state_of_origin", $this->state_of_origin);
         $stmt->bindParam(":how_did_you_hear", $this->how_did_you_hear);
 
-        if ($stmt->execute()) {
-            $this->id = $this->conn->lastInsertId();
-            return true;
+        try {
+            if ($stmt->execute()) {
+                $this->id = $this->conn->lastInsertId();
+                return true;
+            }
+            
+            // Log the error info if execution failed
+            $errorInfo = $stmt->errorInfo();
+            error_log("Registration creation failed - SQL Error: " . json_encode($errorInfo));
+            return false;
+            
+        } catch (PDOException $e) {
+            error_log("Registration creation PDO exception: " . $e->getMessage());
+            throw new Exception("Database error during registration: " . $e->getMessage());
         }
-
-        return false;
     }
 
     /**
