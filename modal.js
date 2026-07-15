@@ -12,6 +12,14 @@ document.addEventListener("DOMContentLoaded", function () {
         });
     }
 
+    const aboutVideoBtn = document.getElementById("openAboutVideo");
+    if (aboutVideoBtn) {
+        aboutVideoBtn.addEventListener("click", function () {
+            videoFrame.src = videoUrl; // load video with autoplay
+            videoModal.style.display = "flex";
+        });
+    }
+
     // Close modal when X is clicked
     closeBtn.addEventListener("click", function () {
         videoModal.style.display = "none";

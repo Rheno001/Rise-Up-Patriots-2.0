@@ -125,25 +125,28 @@
                     <div class="speakers-grid">
                         <div class="speakers-top-row">
                             <div class="speaker-card">
-                                <img src="assets/olalekan.png" alt="Barr. Olalekan Ogunleye">
+                                <div class="speaker-image-wrapper">
+                                    <img src="assets/olalekan.png" alt="Guest Speaker">
+                                </div>
                                 <div class="speaker-info">
-                                    <p class="speaker-name">BARR. OLALEKAN OGUNLEYE</p>
                                     <p class="speaker-role">Guest Speaker</p>
                                 </div>
                             </div>
                         </div>
                         <div class="speakers-bottom-row">
                             <div class="speaker-card">
-                                <img src="assets/seun.png" alt="Seun Okinbaloye">
+                                <div class="speaker-image-wrapper">
+                                    <img src="assets/seun.png" alt="Guest Speaker">
+                                </div>
                                 <div class="speaker-info">
-                                    <p class="speaker-name">SEUN OKINBALOYE</p>
                                     <p class="speaker-role">Guest Speaker</p>
                                 </div>
                             </div>
                             <div class="speaker-card">
-                                <img src="assets/itodo.png" alt="Samson Itodo">
+                                <div class="speaker-image-wrapper">
+                                    <img src="assets/itodo.png" alt="Guest Speaker">
+                                </div>
                                 <div class="speaker-info">
-                                    <p class="speaker-name">SAMSON ITODO</p>
                                     <p class="speaker-role">Guest Speaker</p>
                                 </div>
                             </div>
@@ -300,6 +303,21 @@
             </div>
         </section>
 
+        <!-- ===== CTA BANNER SECTION ===== -->
+        <section class="cta-banner animate-on-scroll">
+            <div class="cta-banner-inner">
+                <div class="cta-banner-left">
+                    <img src="assets/three-heads.png" alt="Join URNI icon">
+                </div>
+                <div class="cta-banner-middle">
+                    <h2>Ready to Join URNI and Make an Impact?</h2>
+                    <p>Join thousands of patriots who are committed to shaping a better nation.<br>Click the Link to Register.</p>
+                </div>
+                <div class="cta-banner-right">
+                    <a href="/registration.html" class="cta-banner-btn">Register Now &rarr;</a>
+                </div>
+            </div>
+        </section>
 
         <!-- ===== GALLERY SECTION ===== -->
         <section class="gallery-section animate-on-scroll" id="Gallery">
@@ -318,7 +336,7 @@
                 </div>
             </div>
             <div class="gallery-cta">
-                <a href="gallery.html" class="gallery-btn">View Gallery <span>&rarr;</span></a>
+                <button id="openGalleryModal" class="gallery-btn">View Gallery <span>&rarr;</span></button>
             </div>
         </section>
 
@@ -1014,6 +1032,115 @@
         });
     </script>
     <script src="modal.js"></script>
+
+    <!-- ===== GALLERY MODAL ===== -->
+    <div id="galleryModal" class="gallery-modal-overlay">
+        <div class="gallery-modal-box">
+            <button class="gallery-modal-close" id="closeGalleryModal">&times;</button>
+            <div class="gallery-modal-header">
+                <h2>Event Gallery</h2>
+                <p>Relive the unforgettable moments. Click any image to expand.</p>
+            </div>
+            <div class="gallery-modal-grid">
+                <div class="gallery-modal-item" data-src="assets/URNI LAUCH 1.png">
+                    <img src="assets/URNI LAUCH 1.png" alt="Conference audience">
+                    <div class="gallery-modal-overlay-hover"><span>&#128269;</span></div>
+                </div>
+                <div class="gallery-modal-item" data-src="assets/URNI LAUCH 2.png">
+                    <img src="assets/URNI LAUCH 2.png" alt="Conference registration">
+                    <div class="gallery-modal-overlay-hover"><span>&#128269;</span></div>
+                </div>
+                <div class="gallery-modal-item" data-src="assets/untitled-246 2.png">
+                    <img src="assets/untitled-246 2.png" alt="Conference speaker">
+                    <div class="gallery-modal-overlay-hover"><span>&#128269;</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== LIGHTBOX (single image view) ===== -->
+    <div id="galleryLightbox" class="gallery-lightbox">
+        <button class="gallery-lightbox-close" id="closeLightbox">&times;</button>
+        <button class="gallery-lightbox-nav" id="lightboxPrev">&#8249;</button>
+        <img id="galleryLightboxImg" src="" alt="Full view">
+        <button class="gallery-lightbox-nav" id="lightboxNext">&#8250;</button>
+    </div>
+
+    <script>
+        // ===== GALLERY MODAL LOGIC =====
+        const galleryModal = document.getElementById('galleryModal');
+        const openGalleryBtn = document.getElementById('openGalleryModal');
+        const closeGalleryBtn = document.getElementById('closeGalleryModal');
+        const galleryItems = document.querySelectorAll('.gallery-modal-item');
+        const lightbox = document.getElementById('galleryLightbox');
+        const lightboxImg = document.getElementById('galleryLightboxImg');
+        const closeLightboxBtn = document.getElementById('closeLightbox');
+        const prevBtn = document.getElementById('lightboxPrev');
+        const nextBtn = document.getElementById('lightboxNext');
+
+        let currentLightboxIndex = 0;
+        const images = Array.from(galleryItems).map(item => item.dataset.src);
+
+        openGalleryBtn.addEventListener('click', () => {
+            galleryModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        closeGalleryBtn.addEventListener('click', closeGallery);
+        galleryModal.addEventListener('click', (e) => {
+            if (e.target === galleryModal) closeGallery();
+        });
+
+        function closeGallery() {
+            galleryModal.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        // Open lightbox when clicking a gallery item
+        galleryItems.forEach((item, index) => {
+            item.addEventListener('click', () => {
+                currentLightboxIndex = index;
+                openLightbox(index);
+            });
+        });
+
+        function openLightbox(index) {
+            lightboxImg.src = images[index];
+            lightbox.classList.add('active');
+        }
+
+        closeLightboxBtn.addEventListener('click', () => {
+            lightbox.classList.remove('active');
+            lightboxImg.src = '';
+        });
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) {
+                lightbox.classList.remove('active');
+                lightboxImg.src = '';
+            }
+        });
+
+        prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentLightboxIndex = (currentLightboxIndex - 1 + images.length) % images.length;
+            lightboxImg.src = images[currentLightboxIndex];
+        });
+
+        nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            currentLightboxIndex = (currentLightboxIndex + 1) % images.length;
+            lightboxImg.src = images[currentLightboxIndex];
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'ArrowLeft') prevBtn.click();
+            if (e.key === 'ArrowRight') nextBtn.click();
+            if (e.key === 'Escape') closeLightboxBtn.click();
+        });
+    </script>
 </body>
 
 </html>
