@@ -9,7 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
     <link rel="icon" type="image/svg" href="assets/URNI LOGO - ICON.svg">
-    <title>Rise Up Patriots 2.0</title>
+    <title>Rise Up Patriots 3.0</title>
     <link rel="stylesheet" href="style.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
@@ -21,7 +21,7 @@
 <body>
     <!-- Preloader -->
     <div class="preloader" id="preloader">
-        <img src="assets/RISE UP PATRIOTS CONFERENCE LOGO 1.png" alt="URNI Logo" class="preloader-logo"
+        <img src="assets/RISE UP PATRIOTS CONFERENCE 3.0 LOGO 1.png" alt="URNI Logo" class="preloader-logo"
             onerror="this.style.display='none'">
         <div class="preloader-spinner"></div>
     </div>
@@ -62,9 +62,6 @@
                                 <a class="nav-link" href="#Location">Location</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="#Panelist">Panelists</a>
-                            </li>
-                            <li class="nav-item">
                                 <a class="nav-link" href="#Faq">FAQ</a>
                             </li>
                             <li class="nav-item">
@@ -85,61 +82,83 @@
             </div>
         </nav>
 
+        <section id="hero">
+            <div class="hero-inner">
+                <div class="hero-left hero-animate-hidden">
+                    <!-- Logo & Theme -->
+                    <div class="hero-top">
+                        <img class="title-image" src="assets/RISE UP PATRIOTS CONFERENCE 3.0 LOGO 1.png" alt="Rise Up Patriots Conference 3.0">
+                        <img class="theme-image" src="assets/RISE UP PATRIOTS CONFERENCE 3.0 THEME 1.png" alt="When Patriots Rise, Nations Transform">
+                    </div>
+
+                    <!-- Date / Venue -->
+                    <div class="hero-meta">
+                        <p class="hero-date-text">31ST OCT. 2026 &bull; 10AM</p>
+                        <p class="hero-venue-text">SHEHU MUSA YAR'ADUA CENTRE, <span>ABUJA</span></p>
+                    </div>
+
+                    <!-- Buttons -->
+                    <div class="hero-buttons">
+                        <a href="/registration.html" class="hero-btn-register">Register Now &nbsp;&rarr;</a>
+                        <a href="#" class="hero-btn-sponsor">Become a Sponsor</a>
+                    </div>
+                </div>
+
+                <div class="hero-right hero-animate-hidden">
+                    <!-- Panelists -->
+                    <div class="speakers-grid">
+                        <div class="speakers-top-row">
+                            <div class="speaker-card">
+                                <img src="assets/olalekan.png" alt="Barr. Olalekan Ogunleye">
+                                <div class="speaker-info">
+                                    <p class="speaker-name">BARR. OLALEKAN OGUNLEYE</p>
+                                    <p class="speaker-role">Guest Speaker</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="speakers-bottom-row">
+                            <div class="speaker-card">
+                                <img src="assets/seun.png" alt="Seun Okinbaloye">
+                                <div class="speaker-info">
+                                    <p class="speaker-name">SEUN OKINBALOYE</p>
+                                    <p class="speaker-role">Guest Speaker</p>
+                                </div>
+                            </div>
+                            <div class="speaker-card">
+                                <img src="assets/itodo.png" alt="Samson Itodo">
+                                <div class="speaker-info">
+                                    <p class="speaker-name">SAMSON ITODO</p>
+                                    <p class="speaker-role">Guest Speaker</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
         <div class="countdown-container animate-on-scroll">
             <div class="time-unit">
                 <span class="time-value" id="days">25</span>
                 <div class="time-label">Days</div>
             </div>
             <span class="separator">:</span>
-
             <div class="time-unit">
                 <span class="time-value" id="hours">17</span>
                 <div class="time-label">Hours</div>
             </div>
             <span class="separator">:</span>
-
             <div class="time-unit">
                 <span class="time-value" id="minutes">21</span>
                 <div class="time-label">Minutes</div>
             </div>
             <span class="separator">:</span>
-
             <div class="time-unit">
                 <span class="time-value" id="seconds">07</span>
                 <div class="time-label">Seconds</div>
             </div>
         </div>
-
-        <section id="hero">
-            <div class="top hero-animate-hidden">
-                <div class="theme">
-                    <img class="title-image" src="assets/RISE UP PATRIOTS CONFERENCE LOGO 1.png" alt="">
-                    <img class="theme-image" src="assets/RISE UP PATRIOTS CONFERENCE THEME LOGO.png" alt="">
-                </div>
-                <div class="speakers">
-                    <img class="speaker" src="assets/Amb. Hassan Ardo Tukur, MFR, OFR.png" alt="">
-                </div>
-            </div>
-            <div class="bottom hero-animate-hidden">
-                <div class="date-time-loc">
-                    <span><img src="assets/RISE UP PATRIOTS CONFERENCE DATE ICON.svg" alt="">
-                        <p>SATURDAY 25TH OCTOBER 2025</p>
-                    </span>
-                    <span style="margin: 0 10px;"><img src="assets/RISE UP PATRIOTS CONFERENCE TIME ICON.svg" alt="">
-                        <p>10:00AM</p>
-                    </span>
-                    <span><img src="assets/RISE UP PATRIOTS CONFERENCE LOCATION ICON.svg" alt="">
-                        <p>SHEHU MUSA YAR'ADUA CENTRE, ABUJA</p>
-                    </span>
-                </div>
-                <div class="buttons">
-                    <a href="/registration.html"><button class="hero-btn-1">Register for Event</button></a>
-                    <button class="hero-btn-2" id="openModal">
-                        Watch the Teaser <span class="play">▶</span>
-                    </button>
-                </div>
-            </div>
-        </section>
         <!-- Custom Video Modal -->
         <div id="videoModal" class="video-modal">
             <div class="video-modal-content">
@@ -155,161 +174,274 @@
 
 
 
-        <div class="about-container animate-on-scroll" id="About">
-            <div class="about-header">
-                <h1>About Rise Up Patriots Conference 2.0</h1>
-            </div>
-
+        <section class="about-container animate-on-scroll" id="About">
             <div class="about-content">
-                <div class="about-image-section">
-                    <div class="about-main-image-container" id="aboutMainImageContainer">
-                        <img src="assets/untitled-246 2.png" id="aboutMainImage" class="about-main-image"
-                            alt="Conference Image">
-                    </div>
-
-                    <div class="about-thumbnail-container">
-                        <div class="about-thumbnail active" data-image="image1" onclick="changeImage('image1', this)">
-                            <img src="assets/URNI LAUCH 1.png" alt="Thumbnail 1">
-                        </div>
-                        <div class="about-thumbnail" data-image="image2" onclick="changeImage('image2', this)">
-                            <img src="assets/untitled-246 2.png" alt="Thumbnail 2">
-                        </div>
-                        <div class="about-thumbnail" data-image="image3" onclick="changeImage('image3', this)">
-                            <img src="assets/URNI LAUCH 2.png" alt="Thumbnail 3">
-                        </div>
-                    </div>
-                </div>
-
                 <div class="about-text-section">
+                    <h1 class="about-title">ABOUT RISE UP PATRIOTS CONFERENCE</h1>
                     <div class="about-text-content">
-                        <p>The <span class="theme-text">"Rise Up, Patriots Conference 2.0"</span> of the Unveiling and
-                            Rebranding Nigeria Initiative (URNI) is themed <span class="theme-text">"Projecting the
-                                Positive
-                                Image of Nigeria through the Creative Ecosystems"</span>.</p>
-
-                        <p>This annual forum brings together policymakers, thought leaders, creatives (entertainers,
-                            content
-                            creators, journalists, photographers and experts in AI) and over 1000 young Nigerians for
-                            robust
-                            conversations on patriotism, governance, and national development.</p>
-
-                        <p>This significant event, themed <span class="theme-text">"Rise up Patriot Conference
-                                2.0"</span>
-                            marks a pivotal moment in our collective journey to inspire patriotism and foster national
-                            pride
-                            among Nigerians.</p>
+                        <p>The <strong>Rise Up, Patriots Conference 3.0</strong> is a flagship programme of <strong>Unveiling and Rebranding Nigeria Initiative (URNI)</strong>, themed "When Patriots Rise, Nations Transform."</p>
+                        <p>As part of URNI's commitment to promoting patriotism, national rebranding, and active citizenship, this annual conference convenes policymakers, thought leaders, creatives for meaningful dialogue on patriotism, governance, innovation, and national development.</p>
+                        <p>The conference serves as a platform for inspiring national pride, promoting positive narratives about Nigeria, and encouraging active citizenship. Through engaging discussions, networking opportunities, and practical learning experiences, participants are empowered to contribute to national development.</p>
                     </div>
-
-                    <a href="/registration.html" class="register-btn">Register for event</a>
+                    <div class="about-btn-container">
+                        <a href="/registration.html" class="register-btn">Register for event</a>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <section class="Location animate-on-scroll" id="Location">
-            <div class="location-header">
-                <h1>The Venue</h1>
-            </div>
-            <div class="location-image">
-                <img src="assets/Venue.png" alt="">
-            </div>
-            <div class="location-name">
-                <h2>Shehu Musa Yar'adua Center, Abuja</h2>
+                <div class="about-video-section">
+                    <div class="about-video-container" id="openAboutVideo">
+                        <img src="assets/untitled-246 2.png" alt="About Conference Video" class="about-video-thumbnail">
+                        <div class="play-button-overlay">
+                            <div class="play-icon"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </section>
 
-        <div class="panelist-container animate-on-scroll" id="Panelist">
-            <h1 class="panelist-title">Our Panelist</h1>
-
-            <div class="panelist-grid">
-                <!--<div class="panelist-item">
-                    <div class="panelist-photo">
-                        <img src="assets/Hadiza-Bala.png" alt="Hadiza Bala Usman">
+        <!-- ===== STATS BANNER ===== -->
+        <section class="stats-banner animate-on-scroll">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <i class="fa-solid fa-users stat-icon"></i>
+                    <div class="stat-text">
+                        <span class="stat-number"><span class="count-up" data-target="1000">0</span><sup>+</sup></span>
+                        <span class="stat-label">Participants</span>
                     </div>
-                    <div class="panelist-name">Hadiza<br>Bala Usman</div>
-                </div>-->
-
-                <div class="panelist-item">
-                    <div class="panelist-photo">
-                        <img src="assets/Stanley-Alieke.png" alt="Stanley Alieke">
-                    </div>
-                    <div class="panelist-name">Stanley Alieke</div>
                 </div>
-
-                <div class="panelist-item">
-                    <div class="panelist-photo">
-                        <img src="assets/emeka rollas.png" alt="DR. EJEZIE EMEKA ROLLAS (MON)">
+                <div class="stat-item">
+                    <i class="fa-solid fa-microphone stat-icon"></i>
+                    <div class="stat-text">
+                        <span class="stat-number"><span class="count-up" data-target="5">0</span><sup>+</sup></span>
+                        <span class="stat-label">Speakers</span>
                     </div>
-                    <div class="panelist-name">Dr. Ejezie
-                        Emeka <br>Rollas
-
-                        (MON)</div>
                 </div>
-
-                <div class="panelist-item">
-                    <div class="panelist-photo">
-                        <img src="assets/KASHIFU INUWA ABDULLAHI, CCIE.png" alt="Kashifu Inuwa Abdullahi, CCIE">
+                <div class="stat-item">
+                    <i class="fa-solid fa-users stat-icon"></i>
+                    <div class="stat-text">
+                        <span class="stat-number"><span class="count-up" data-target="25">0</span><sup>+</sup></span>
+                        <span class="stat-label">Partners</span>
                     </div>
-                    <div class="panelist-name">Kashifu Inuwa<br>Abdullahi, CCIE</div>
-                </div>
-
-                <div class="panelist-item">
-                    <div class="panelist-photo">
-                        <img src="assets/Seun.png" alt="Seun Okinbaloye">
-                    </div>
-                    <div class="panelist-name">Seun Okinbaloye</div>
-                </div>
-
-                <div class="panelist-item">
-                    <div class="panelist-photo">
-                        <img src="assets/CHINWE  ONWUCHEKWA.png" alt="Chinwe Onwuchekwa">
-                    </div>
-                    <div class="panelist-name">Chinwe Onwuchekwa</div>
-                </div>
-
-                <div class="panelist-item">
-                    <div class="panelist-photo">
-                        <img src="assets/Momodu.png" alt="Momodu Sadiq">
-                    </div>
-                    <div class="panelist-name">Momodu Sadiq</div>
-                </div>
-
-                <!--<div class="panelist-item">
-                    <div class="panelist-photo">
-                        <img src="assets/brainjotter.png" alt="Chukwuebuka Amuze (Brain Jotter)">
-                    </div>
-                    <div class="panelist-name">Chukwuebuka<br>Amuze<br>(Brain Jotter)</div>
-                </div>-->
-
-                <div class="panelist-item">
-                    <div class="panelist-photo">
-                        <img src="assets/Celestine.jpeg" alt="Celestine Achi">
-                    </div>
-                    <div class="panelist-name">Celestine Achi</div>
-                </div>
-                <div class="panelist-item">
-                    <div class="panelist-photo">
-                        <img src="assets/Felixuloko.png" alt="Felix Uloko">
-                    </div>
-                    <div class="panelist-name">Felix Uloko</div>
                 </div>
             </div>
-        </div>
+        </section>
+
+        <!-- ===== WHY ATTEND SECTION ===== -->
+        <section class="why-attend-section animate-on-scroll" id="WhyAttend">
+            <div class="why-attend-header">
+                <h1 class="why-attend-title">WHY YOU SHOULD ATTEND</h1>
+            </div>
+            <div class="why-attend-grid">
+                <div class="why-attend-card">
+                    <img src="assets/insight.png" alt="Gain Insights" class="why-attend-icon">
+                    <h3 class="why-attend-card-title">GAIN INSIGHTS</h3>
+                    <p class="why-attend-card-text">Learn from thought leaders and industry experts.</p>
+                </div>
+                <div class="why-attend-card">
+                    <img src="assets/network.png" alt="Build Networks" class="why-attend-icon">
+                    <h3 class="why-attend-card-title">BUILD NETWORKS</h3>
+                    <p class="why-attend-card-text">Connect with leaders, investors, and change-makers.</p>
+                </div>
+                <div class="why-attend-card">
+                    <img src="assets/bulb.png" alt="Be Inspired" class="why-attend-icon">
+                    <h3 class="why-attend-card-title">BE INSPIRED</h3>
+                    <p class="why-attend-card-text">Hear Stories that ignite purpose and action.</p>
+                </div>
+                <div class="why-attend-card">
+                    <img src="assets/impact.png" alt="Make Impact" class="why-attend-icon">
+                    <h3 class="why-attend-card-title">MAKE IMPACT</h3>
+                    <p class="why-attend-card-text">Discover practical solutions to nation building.</p>
+                </div>
+                <div class="why-attend-card">
+                    <img src="assets/change.png" alt="Become The Change" class="why-attend-icon">
+                    <h3 class="why-attend-card-title">BECOME THE CHANGE</h3>
+                    <p class="why-attend-card-text">Join URNI in fostering positive greater change.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="venue-section animate-on-scroll" id="Location">
+            <div class="venue-card">
+                <div class="venue-info">
+                    <span class="venue-label">CONFERENCE VENUE</span>
+                    <h2 class="venue-name">SHEHU MUSA YAR'ADUA CENTRE</h2>
+                    <p class="venue-description">Located in the heart of Abuja, the Shehu Musa Yar'Adua Centre provides a world-class conference environment equipped with modern facilities, ample parking, accessibility, security, and comfortable meeting spaces.</p>
+                    <a href="https://maps.google.com/?q=Shehu+Musa+Yar'Adua+Centre+Abuja" target="_blank" class="venue-direction-btn">Get Direction <span>&rarr;</span></a>
+                </div>
+                <div class="venue-image">
+                    <img src="assets/Venue.png" alt="Shehu Musa Yar'Adua Centre, Abuja">
+                </div>
+            </div>
+        </section>
+
+
+        <!-- ===== GALLERY SECTION ===== -->
+        <section class="gallery-section animate-on-scroll" id="Gallery">
+            <div class="gallery-header">
+                <h1 class="gallery-title">GALLERY</h1>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="assets/URNI LAUCH 1.png" alt="Conference audience">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/URNI LAUCH 2.png" alt="Conference registration">
+                </div>
+                <div class="gallery-item">
+                    <img src="assets/untitled-246 2.png" alt="Conference speaker">
+                </div>
+            </div>
+            <div class="gallery-cta">
+                <a href="gallery.html" class="gallery-btn">View Gallery <span>&rarr;</span></a>
+            </div>
+        </section>
+
+        <!-- ===== TESTIMONIALS SECTION ===== -->
+        <section class="testimonials-section animate-on-scroll" id="Testimonials">
+            <div class="testimonials-header">
+                <h1 class="testimonials-title">TESTIMONIALS</h1>
+                <p class="testimonials-subtitle">Voices From Past Participants</p>
+            </div>
+
+            <div class="testimonials-carousel-wrapper">
+                <!-- Prev Button -->
+                <button class="testimonial-nav-btn prev-btn" id="prevTestimonial" aria-label="Previous testimonial">
+                    <img src="assets/greater.png" alt="previous" class="nav-arrow nav-arrow-left">
+                </button>
+
+                <div class="testimonials-track-container">
+                    <div class="testimonials-track" id="testimonialsTrack">
+
+                        <!-- Card 1 -->
+                        <div class="testimonial-card active-card">
+                            <p class="testimonial-quote">"Attending the Conference was a life-changing experience. It empowered me with fresh perspectives, connected me with remarkable people, and inspired me to become a more effective leader."</p>
+                            <div class="testimonial-stars">
+                                <span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star">★</span>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">
+                                    <img src="assets/success.png" alt="Amarachi Paul">
+                                </div>
+                                <div class="testimonial-info">
+                                    <strong>Amarachi Paul</strong>
+                                    <span>Civil Servant</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 2 -->
+                        <div class="testimonial-card active-card">
+                            <p class="testimonial-quote">"The insights shared, meaningful interactions, and engaging sessions provided an exceptional learning experience that left a lasting impact."</p>
+                            <div class="testimonial-stars">
+                                <span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">
+                                    <img src="assets/success.png" alt="Michael Jackson">
+                                </div>
+                                <div class="testimonial-info">
+                                    <strong>Michael Jackson</strong>
+                                    <span>Minister of Youth and sport</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 3 -->
+                        <div class="testimonial-card active-card">
+                            <p class="testimonial-quote">"I left inspired, empowered, and better prepared to navigate leadership challenges while creating meaningful change in my community and organization."</p>
+                            <div class="testimonial-stars">
+                                <span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star">★</span><span class="star">★</span>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">
+                                    <img src="assets/success.png" alt="Onyedika Chigelu">
+                                </div>
+                                <div class="testimonial-info">
+                                    <strong>Onyedika Chigelu</strong>
+                                    <span>Civil Servant</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 4 -->
+                        <div class="testimonial-card">
+                            <p class="testimonial-quote">"An extraordinary gathering of patriots. The discussions were deep, impactful, and gave me a renewed sense of purpose for nation-building."</p>
+                            <div class="testimonial-stars">
+                                <span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">
+                                    <img src="assets/success.png" alt="Emeka Nwachukwu">
+                                </div>
+                                <div class="testimonial-info">
+                                    <strong>Emeka Nwachukwu</strong>
+                                    <span>Entrepreneur</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 5 -->
+                        <div class="testimonial-card">
+                            <p class="testimonial-quote">"The conference brought together brilliant minds passionate about Nigeria's future. I left with actionable ideas and lifelong connections."</p>
+                            <div class="testimonial-stars">
+                                <span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star">★</span>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">
+                                    <img src="assets/success.png" alt="Fatima Bello">
+                                </div>
+                                <div class="testimonial-info">
+                                    <strong>Fatima Bello</strong>
+                                    <span>Media Professional</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Card 6 -->
+                        <div class="testimonial-card">
+                            <p class="testimonial-quote">"A must-attend for every young Nigerian. The energy, the speakers, and the conversations all pointed toward one thing — a brighter Nigeria."</p>
+                            <div class="testimonial-stars">
+                                <span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span><span class="star filled">★</span>
+                            </div>
+                            <div class="testimonial-author">
+                                <div class="testimonial-avatar">
+                                    <img src="assets/success.png" alt="Chidi Okonkwo">
+                                </div>
+                                <div class="testimonial-info">
+                                    <strong>Chidi Okonkwo</strong>
+                                    <span>Youth Advocate</span>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><!-- end track -->
+                </div><!-- end track-container -->
+
+                <!-- Next Button -->
+                <button class="testimonial-nav-btn next-btn" id="nextTestimonial" aria-label="Next testimonial">
+                    <img src="assets/greater.png" alt="next" class="nav-arrow nav-arrow-right">
+                </button>
+            </div><!-- end carousel wrapper -->
+
+            <!-- Dots -->
+            <div class="testimonial-dots" id="testimonialDots"></div>
+        </section>
 
         <div class="faq-container animate-on-scroll" id="Faq">
             <div class="faq-header">
                 <h1 class="faq-title">Frequently Asked Questions</h1>
-                <p class="faq-subtitle">Find answers to common questions about the URNI Rise Up Patriot Conference 2.0
+                <p class="faq-subtitle">Find answers to common questions about the URNI Rise Up Patriot Conference 3.0
                     below.</p>
             </div>
 
             <div class="faq-list">
                 <div class="faq-item">
                     <button class="faq-question">
-                        What is the URNI Rise Up Patriots Conference 2.0?
+                        What is the URNI Rise Up Patriots Conference 3.0?
                         <span class="plus-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>The URNI Rise Up Patriots Conference 2.0 is a comprehensive gathering focused on patriotic
+                        <p>The URNI Rise Up Patriots Conference 3.0 is a comprehensive gathering focused on patriotic
                             values, community building, and national discourse. This conference brings together thought
                             leaders, activists, and citizens to discuss important issues facing our nation and explore
                             solutions for positive change.</p>
@@ -323,10 +455,8 @@
                     </button>
                     <div class="faq-answer">
                         <p>The conference is open to all citizens who are passionate about patriotic values and
-                            community
-                            engagement. We welcome individuals from all backgrounds, professions, and walks of life who
-                            are
-                            interested in constructive dialogue and positive action for our country.</p>
+                            community engagement. We welcome individuals from all backgrounds, professions, and walks of
+                            life who are interested in constructive dialogue and positive action for our country.</p>
                     </div>
                 </div>
 
@@ -337,8 +467,7 @@
                     </button>
                     <div class="faq-answer">
                         <p>Registration can be completed online through our official website. Simply visit the
-                            registration
-                            page, fill out the required information.</p>
+                            registration page, fill out the required information, and submit your application.</p>
                     </div>
                 </div>
 
@@ -348,7 +477,7 @@
                         <span class="plus-icon">+</span>
                     </button>
                     <div class="faq-answer">
-                        <p>Attendance at the Rise Up Patriots Conference 2.0 is completely free of charge. We welcome
+                        <p>Attendance at the Rise Up Patriots Conference 3.0 is completely free of charge. We welcome
                             all interested participants to register and be part of this impactful event.</p>
                     </div>
                 </div>
@@ -360,8 +489,42 @@
                     </button>
                     <div class="faq-answer">
                         <p>Yes, there will be a virtual attendance option. Once you complete your registration, a secure
-                            streaming link will be sent to you prior to the event.
-                        </p>
+                            streaming link will be sent to you prior to the event.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Can organizations register multiple participants?
+                        <span class="plus-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, organizations are welcome to register multiple participants. Each participant must
+                            complete an individual registration form. Please contact us for group registration assistance
+                            or special arrangements for large delegations.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        Will the event be livestreamed?
+                        <span class="plus-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>Yes, the Rise Up Patriots Conference 3.0 will be livestreamed on our official social media
+                            platforms. Details and links will be shared closer to the event date.</p>
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question">
+                        How can my organization become a sponsor?
+                        <span class="plus-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>We welcome organizations interested in sponsoring the Rise Up Patriots Conference 3.0.
+                            Please reach out to us via email at unveilnigeria@gmail.com or call 0817 764 0051 to
+                            discuss sponsorship packages and opportunities.</p>
                     </div>
                 </div>
             </div>
@@ -526,8 +689,8 @@
         }
 
         // Countdown functionality
-        // Target date: October 25, 2025 at end of day (23:59:59)
-        const targetDate = new Date('2025-10-25T23:59:59');
+        // Target date: October 31, 2026 at end of day (23:59:59)
+        const targetDate = new Date('2026-10-31T23:59:59');
 
         function updateCountdown() {
             const now = new Date().getTime();
@@ -645,6 +808,90 @@
             setTimeout(startAutoChange, 5000);
         }
 
+        // Testimonials Carousel
+        (function () {
+            const track = document.getElementById('testimonialsTrack');
+            const prevBtn = document.getElementById('prevTestimonial');
+            const nextBtn = document.getElementById('nextTestimonial');
+            const dotsContainer = document.getElementById('testimonialDots');
+
+            if (!track || !prevBtn || !nextBtn) return;
+
+            const cards = Array.from(track.querySelectorAll('.testimonial-card'));
+            const totalCards = cards.length;
+            let currentIndex = 0;
+
+            function getCardsPerView() {
+                if (window.innerWidth <= 600) return 1;
+                if (window.innerWidth <= 900) return 2;
+                return 3;
+            }
+
+            function totalPages() {
+                return Math.ceil(totalCards / getCardsPerView());
+            }
+
+            // Build dots
+            function buildDots() {
+                dotsContainer.innerHTML = '';
+                const pages = totalPages();
+                for (let i = 0; i < pages; i++) {
+                    const dot = document.createElement('button');
+                    dot.className = 'testimonial-dot' + (i === 0 ? ' active' : '');
+                    dot.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+                    dot.addEventListener('click', () => goTo(i * getCardsPerView()));
+                    dotsContainer.appendChild(dot);
+                }
+            }
+
+            function updateDots() {
+                const dots = dotsContainer.querySelectorAll('.testimonial-dot');
+                const activePage = Math.floor(currentIndex / getCardsPerView());
+                dots.forEach((d, i) => d.classList.toggle('active', i === activePage));
+            }
+
+            function goTo(index) {
+                const cpv = getCardsPerView();
+                const maxIndex = totalCards - cpv;
+                currentIndex = Math.max(0, Math.min(index, maxIndex));
+
+                // Calculate card width including gap
+                const cardWidth = cards[0].offsetWidth;
+                const gap = 20;
+                const offset = currentIndex * (cardWidth + gap);
+                track.style.transform = `translateX(-${offset}px)`;
+                updateDots();
+            }
+
+            prevBtn.addEventListener('click', () => {
+                goTo(currentIndex - getCardsPerView());
+            });
+
+            nextBtn.addEventListener('click', () => {
+                const cpv = getCardsPerView();
+                const next = currentIndex + cpv;
+                if (next >= totalCards) {
+                    goTo(0); // loop back
+                } else {
+                    goTo(next);
+                }
+            });
+
+            // Rebuild on resize
+            let resizeTimer;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimer);
+                resizeTimer = setTimeout(() => {
+                    currentIndex = 0;
+                    track.style.transform = 'translateX(0)';
+                    buildDots();
+                    updateDots();
+                }, 150);
+            });
+
+            buildDots();
+        })();
+
         // FAQ functionality
         document.addEventListener('DOMContentLoaded', function () {
             const faqItems = document.querySelectorAll('.faq-item');
@@ -680,6 +927,43 @@
                         this.style.transform = 'scale(1)';
                     }
                 });
+            });
+            // Stats Count Up Animation
+            const counters = document.querySelectorAll('.count-up');
+            const speed = 200; // The lower the slower
+
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.5
+            };
+
+            const statsObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const targetElement = entry.target;
+                        const target = +targetElement.getAttribute('data-target');
+                        
+                        const updateCount = () => {
+                            const count = +targetElement.innerText;
+                            const inc = target / speed;
+
+                            if (count < target) {
+                                targetElement.innerText = Math.ceil(count + inc);
+                                setTimeout(updateCount, 15);
+                            } else {
+                                targetElement.innerText = target;
+                            }
+                        };
+                        
+                        updateCount();
+                        observer.unobserve(targetElement); // Only animate once
+                    }
+                });
+            }, observerOptions);
+
+            counters.forEach(counter => {
+                statsObserver.observe(counter);
             });
         });
     </script>
