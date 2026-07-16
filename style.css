@@ -834,7 +834,7 @@ html {
 }
 
 .about-btn-container {
-    text-align: center;
+    text-align: left;
 }
 
 .about-video-section {
@@ -1274,7 +1274,8 @@ html {
 .cta-banner {
     background-color: #025836;
     width: 100%;
-    margin-top: -20px; /* Adjust if there's too much gap below venue */
+    margin-top: -20px;
+    /* Adjust if there's too much gap below venue */
     position: relative;
     z-index: 10;
 }
@@ -1348,7 +1349,7 @@ html {
         text-align: center;
         padding: 40px 5%;
     }
-    
+
     .cta-banner-middle h2 {
         font-size: 22px;
     }
@@ -2436,7 +2437,7 @@ html {
 .gallery-modal-overlay-hover span {
     font-size: 36px;
     color: #fff;
-    filter: drop-shadow(0 2px 6px rgba(0,0,0,0.4));
+    filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.4));
 }
 
 .gallery-modal-item:hover img {
@@ -2510,8 +2511,13 @@ html {
     background: rgba(255, 255, 255, 0.3);
 }
 
-#lightboxPrev { left: 20px; }
-#lightboxNext { right: 20px; }
+#lightboxPrev {
+    left: 20px;
+}
+
+#lightboxNext {
+    right: 20px;
+}
 
 /* Make the gallery-btn behave like a button while keeping the same look */
 button.gallery-btn {
