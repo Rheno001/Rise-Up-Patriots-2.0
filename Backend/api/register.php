@@ -88,14 +88,17 @@ try {
         try {
             //Server settings
             $mail->isSMTP();                                           // Send using SMTP
-            $mail->Host       = 'smtp.gmail.com';                    // Set the SMTP server to send through
+            $mail->Host       = $_ENV['SMTP_HOST'] ?? getenv('SMTP_HOST') ?: 'smtp.gmail.com';
             $mail->SMTPAuth   = true;                                  // Enable SMTP authentication
-            $mail->Username   = 'unveilnigeria@gmail.com';              // SMTP username
-            $mail->Password   = 'irmr josu xfbh znmc';                 // SMTP password
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;          // Use SSL/TLS encryption
-            $mail->Port       = 465;
+            $mail->Username   = $_ENV['SMTP_USERNAME'] ?? getenv('SMTP_USERNAME') ?: '';
+            $mail->Password   = $_ENV['SMTP_PASSWORD'] ?? getenv('SMTP_PASSWORD') ?: '';
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;        // Use STARTTLS encryption
+            $mail->Port       = $_ENV['SMTP_PORT'] ?? getenv('SMTP_PORT') ?: 587;
             //Recipients
-            $mail->setFrom('unveilnigeria@gmail.com', 'Rise Up Patriots');
+            $mail->setFrom(
+                $_ENV['SMTP_FROM'] ?? getenv('SMTP_FROM') ?: 'unveilnigeria@gmail.com',
+                $_ENV['SMTP_FROM_NAME'] ?? getenv('SMTP_FROM_NAME') ?: 'Rise Up Patriots'
+            );
             $mail->addAddress($registration->email, $registration->first_name . ' ' . $registration->last_name);
 
             // Load and process email template with hosted images
