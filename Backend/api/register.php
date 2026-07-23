@@ -101,7 +101,8 @@ try {
             );
             $mail->addAddress($registration->email, $registration->first_name . ' ' . $registration->last_name);
 
-            // Load and process email template with hosted images
+            // Load and process email template using CID inline-image mode
+            // (images are attached directly to the email — no external hosting needed)
             $emailTemplate = new EmailTemplate();
             $templateVariables = [
                 'first_name' => $registration->first_name,
@@ -109,21 +110,34 @@ try {
                 'full_name' => $registration->first_name . ' ' . $registration->last_name
             ];
             
-            $htmlBody = $emailTemplate->loadTemplateForEmail('registration_email', $templateVariables, 'hosted');
+            $htmlBody = $emailTemplate->loadTemplateForEmail('registration_email', $templateVariables, 'cid');
+
+            // Attach each image as an inline/embedded part via its Content-ID
+            foreach ($emailTemplate->getCidImages() as $cid => $filePath) {
+                $mail->addEmbeddedImage($filePath, $cid, basename($filePath));
+            }
 
             // Content
             $mail->isHTML(true);
-            $mail->Subject = 'Rise Up Patriots 2.0 - Registration Confirmation';
+            $mail->Subject = 'Rise Up Patriots 3.0 - Registration Confirmation';
             $mail->Body = $htmlBody;
             
             // Add plain text alternative for email clients that don't support HTML
-            $mail->AltBody = 'Dear ' . $registration->first_name . ',\n\n' .
-                           'Thank you for registering for the Rise Up Patriots 2.0 event, organized by the Unveiling and Rebranding Nigeria Initiative (URNI). ' .
-                           'We have received your details and your spot is confirmed. Further event information and updates will be shared with you shortly.\n\n' .
-                           'Your participation means a lot. By joining us, you are standing with fellow patriots to showcase the brighter side of Nigeria and drive positive change.\n\n' .
-                           '…Rediscovering Nigerians by Nigerians\n\n' .
-                           'With appreciation\n' .
-                           'Unveiling and Rebranding Nigeria Initiative';
+            $mail->AltBody =
+                'Congratulations!' . "\n\n" .
+                'Dear ' . $registration->first_name . ',' . "\n\n" .
+                'Your registration for the URNI Rise Up Patriots Conference 3.0 has been successfully confirmed. We are excited to welcome you to this transformative gathering of citizens, leaders, innovators, and change-makers committed to building a better Nigeria.' . "\n\n" .
+                'Theme: WHEN PATRIOTS RISE, NATIONS TRANSFORM' . "\n" .
+                'Date: Saturday, 31st October 2026' . "\n" .
+                'Time: 10:00 AM' . "\n" .
+                "Venue: Shehu Musa Yar'Adua Center, FCT Abuja" . "\n\n" .
+                'As Nigeria prepares for the 2027 elections, this conference will inspire meaningful conversations on patriotism, responsible citizenship, youth leadership, and nation-building.' . "\n\n" .
+                'For virtual participants:' . "\n" .
+                'If you registered to attend virtually, your access link and participation guide will be sent to your email 48 hours before the event. Kindly keep an eye on your inbox (and spam folder).' . "\n\n" .
+                'Thank you for choosing to be part of this movement. We look forward to hosting you at Rise Up Patriots Conference 3.0.' . "\n\n" .
+                'See you on October 31st!' . "\n\n" .
+                'Warm regards,' . "\n" .
+                'The URNI Team';
 
             $mail->send();
             $email_status = 'Confirmation email sent successfully.';

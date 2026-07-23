@@ -1,113 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>URNI - Thank you for volunteering</title>
+    <title>URNI - Registration Confirmation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
         /* Fallback styles for email clients that support CSS */
-        body { margin: 0; padding: 0; font-family: Arial, sans-serif; }
-        table { border-collapse: collapse; }
-        img { border: 0; outline: none; text-decoration: none; }
-        .ReadMsgBody { width: 100%; }
-        .ExternalClass { width: 100%; }
-        .ExternalClass, .ExternalClass p, .ExternalClass span, .ExternalClass font, .ExternalClass td, .ExternalClass div { line-height: 100%; }
-        
+        body,
+        td,
+        p,
+        h1,
+        h2,
+        h3,
+        div {
+            margin: 0;
+            padding: 0;
+            font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f4;
+            color: #333333;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        img {
+            border: 0;
+            outline: none;
+            text-decoration: none;
+            max-width: 100%;
+        }
+
+        .ReadMsgBody {
+            width: 100%;
+        }
+
+        .ExternalClass {
+            width: 100%;
+        }
+
+        .ExternalClass,
+        .ExternalClass p,
+        .ExternalClass span,
+        .ExternalClass font,
+        .ExternalClass td,
+        .ExternalClass div {
+            line-height: 100%;
+        }
+
         /* Gmail-specific fixes */
-        u + .body .gmail-fix { display: none; }
+        u+.body .gmail-fix {
+            display: none;
+        }
+
         @media only screen and (max-width: 600px) {
-            .mobile-center { text-align: center !important; }
-            .mobile-full { width: 100% !important; }
-            .mobile-padding { padding: 15px !important; }
+            .mobile-center {
+                text-align: center !important;
+            }
+
+            .mobile-full {
+                width: 100% !important;
+            }
+
+            .mobile-padding {
+                padding: 20px 15px !important;
+            }
+
+            .img-grid-col {
+                width: 100% !important;
+                display: block !important;
+                padding-bottom: 12px !important;
+            }
+
+            .hero-logo-col {
+                width: 100% !important;
+                display: block !important;
+                padding-bottom: 15px !important;
+            }
         }
     </style>
 </head>
-<body style="margin: 0; padding: 0; font-family: Arial, sans-serif; background-color: #f4f4f4;">
-    <!-- Main Container -->
-    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="background-color: #f4f4f4;">
+
+<body
+    style="margin: 0; padding: 0; font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-weight: 400; font-style: normal; background-color: #f4f4f4; color: #333333;">
+    <!-- Main Outer Container -->
+    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%"
+        style="background-color: #f4f4f4; padding: 20px 0;">
         <tr>
-            <td align="center" style="padding: 10px;">
-                <!-- Email Container -->
-                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600" style="max-width: 600px; background-color: white; border-radius: 8px; overflow: hidden;" class="mobile-full">
-                    
-                    <!-- Header with Logo -->
+            <td align="center">
+                <!-- Main Email Card Container (600px max) -->
+                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="600"
+                    style="max-width: 600px; background-color: #ffffff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 12px rgba(0,0,0,0.05);"
+                    class="mobile-full">
+
+                    <!-- HERO HEADER SECTION (JPEG BANNER) -->
                     <tr>
-                        <td align="center" style="padding: 20px 20px 10px; background-color: white;">
-                            <img src="https://i.ibb.co/YB45NGM0/urni-logo-vertical.png" alt="URNI Logo" width="120" style="display: block; max-width: 120px; height: auto;">
+                        <td align="center" style="background-color: #ffffff; padding: 0;">
+                            <img src="hero-banner.jpeg" alt="Rise Up Patriots Conference 3.0 Header" width="600"
+                                style="display: block; width: 100%; max-width: 600px; height: auto; border: 0;">
                         </td>
                     </tr>
-                    
-                    <!-- Hero Section with Background -->
+
+                    <!-- MAIN CONTENT SECTION (WHITE BACKGROUND) -->
                     <tr>
-                        <td style="background-image: url('https://i.ibb.co/qFsFSBwv/RISE-UP-PATRIOTS-CONFERENCE-BACKGROUND.png'); background-size: cover; background-position: center; background-repeat: no-repeat; padding: 20px; text-align: center; color: white;" background="https://i.ibb.co/qFsFSBwv/RISE-UP-PATRIOTS-CONFERENCE-BACKGROUND.png">
-                            <!-- Fallback background color for Gmail -->
-                            <div style="padding: 20px; border-radius: 8px;">
+                        <td style="padding: 40px 40px 10px 40px; line-height: 1.6; color: #333333;"
+                            class="mobile-padding">
+                            <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                <!-- Main Title -->
+                                <tr>
+                                    <td
+                                        style="font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-size: 24px; font-weight: 700; color: #222222; padding-bottom: 25px; line-height: 1.2;">
+                                        Congratulations!
+                                    </td>
+                                </tr>
+                                <!-- Greeting -->
+                                <tr>
+                                    <td
+                                        style="font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-size: 15px; font-weight: 500; color: #333333; padding-bottom: 20px;">
+                                        Dear {{FIRST_NAME}},
+                                    </td>
+                                </tr>
+                                <!-- Paragraph 1 -->
+                                <tr>
+                                    <td
+                                        style="font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.7; color: #444444; text-align: justify; padding-bottom: 25px;">
+                                        Your registration for the URNI Rise Up Patriots Conference 3.0 has been
+                                        successfully confirmed. We are excited to welcome you to this transformative
+                                        gathering of citizens, leaders, innovators, and change-makers committed to
+                                        building a better Nigeria.
+                                    </td>
+                                </tr>
+                                <!-- Details Block -->
+                                <tr>
+                                    <td
+                                        style="font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-size: 15px; line-height: 1.8; color: #222222; padding-bottom: 25px;">
+                                        <strong>Theme: WHEN PATRIOTS RISE, NATIONS TRANSFORM</strong><br>
+                                        <strong>Date: Saturday, 31st October 2026</strong><br>
+                                        <strong>Time: 10:00 AM</strong><br>
+                                        <strong>Venue: Shehu Musa Yar'Adua Center, FCT Abuja</strong>
+                                    </td>
+                                </tr>
+                                <!-- Paragraph 2 -->
+                                <tr>
+                                    <td
+                                        style="font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.7; color: #444444; text-align: justify; padding-bottom: 30px;">
+                                        As Nigeria prepares for the 2027 elections, this conference will inspire
+                                        meaningful conversations on patriotism, responsible citizenship, youth
+                                        leadership, and nation-building.
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+
+                    <!-- TWO PHOTOS & VIRTUAL PARTICIPANTS BAND (LIGHT GREY BACKGROUND) -->
+                    <tr>
+                        <td style="background-color: #f9f9fa; padding: 25px 0 35px 0;">
+                            <!-- Two Photos Grid -->
+                            <div style="padding: 0 30px;" class="mobile-padding">
                                 <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                                     <tr>
-                                        <td align="center" style="padding: 30px 0;">
-                                            <img src="https://i.ibb.co/mVBc6YQw/RISE-UP-PATRIOTS-CONFERENCE-LOGO-1.png" alt="Rise Up Patriots Conference" width="300" style="display: block; max-width: 300px; height: auto; margin-bottom: 20px;">
+                                        <td class="img-grid-col" width="49%" align="left" style="vertical-align: top;">
+                                            <img src="URNI LAUNCH 3.png" alt="Conference Presentation" width="255"
+                                                height="170"
+                                                style="width: 100%; height: 170px; object-fit: cover; border-radius: 6px; display: block; border: 0;">
+                                        </td>
+                                        <td width="2%">&nbsp;</td>
+                                        <td class="img-grid-col" width="49%" align="right" style="vertical-align: top;">
+                                            <img src="URNI LAUNCH 4.png" alt="Conference Audience" width="255"
+                                                height="170"
+                                                style="width: 100%; height: 170px; object-fit: cover; border-radius: 6px; display: block; border: 0;">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+
+                            <!-- For Virtual Participants Content -->
+                            <div style="padding: 30px 40px 10px 40px;" class="mobile-padding">
+                                <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                                    <tr>
+                                        <td
+                                            style="font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-size: 20px; font-weight: 700; color: #1a1a1a; padding-bottom: 12px;">
+                                            For virtual participants:
                                         </td>
                                     </tr>
                                     <tr>
-                                        <td align="center" style="padding-bottom: 10px;">
-                                            <img src="https://i.ibb.co/bg3c3zxG/RISE-UP-PATRIOTS-CONFERENCE-THEME-LOGO.png" alt="Conference Theme" width="250" style="display: block; max-width: 250px; height: auto;">
+                                        <td
+                                            style="font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.7; color: #444444; text-align: justify;">
+                                            If you registered to attend virtually, your access link and participation
+                                            guide will be sent to your email 48 hours before the event. Kindly keep an
+                                            eye on your inbox (and spam folder).
                                         </td>
                                     </tr>
                                 </table>
                             </div>
                         </td>
                     </tr>
-                    
-                    <!-- Main Content -->
+
+                    <!-- CLOSING SECTION (WHITE BACKGROUND) -->
                     <tr>
-                        <td style="padding: 40px 30px; line-height: 1.6; color: #333;" class="mobile-padding">
+                        <td style="padding: 35px 40px 40px 40px; line-height: 1.65; color: #333333;"
+                            class="mobile-padding">
                             <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                                 <tr>
-                                    <td style="font-weight: bold; margin-bottom: 20px; font-size: 16px; padding-bottom: 20px;">
-                                        Dear {{FIRST_NAME}},
+                                    <td
+                                        style="font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.7; color: #444444; text-align: justify; padding-bottom: 20px;">
+                                        Thank you for choosing to be part of this movement. We look forward to hosting
+                                        you at Rise Up Patriots Conference 3.0.
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="font-size: 15px; line-height: 1.6; padding-bottom: 20px;">
-                                     Congratulations! 
+                                    <td
+                                        style="font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-weight: 400; font-size: 15px; line-height: 1.7; color: #444444; padding-bottom: 25px;">
+                                        See you on October 31st!
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td style="font-size: 15px; line-height: 1.6; padding-bottom: 20px;">
-                                        We're delighted to confirm your successful registration for the <strong>URNI Rise Up Patriot Conference 2.0</strong> a thought-leadership gathering designed to inspire national rebirth, unity, and positive storytelling about Nigeria.
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="font-size: 15px; line-height: 1.6; padding-bottom: 20px;">
-                                        This year's conference is themed: <strong>"Projecting the Positive Image of Nigeria Through the Creative Ecosystem."</strong> 
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="font-size: 15px; line-height: 1.6; padding-bottom: 20px;">
-                                        Join us as visionary leaders, creatives, policymakers, and changemakers explore how innovation and creativity can redefine Nigeria's global identity and ignite patriotic action across all sectors.
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="font-size: 15px; line-height: 1.6; padding-bottom: 20px;">
-                                        
-                                        <strong>Date: October 25th, 2025<br></strong>
-                                        <strong>Time: 10:00 AM<br></strong>
-                                        <strong>Venue: Shehu Musa Yar'Adua Center, FCT Abuja</strong>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="font-size: 15px; line-height: 1.6; padding-bottom: 20px;">
-                                        <strong>For Virtual Participants:</strong><br>
-                                        If you registered to attend virtually, you'll receive your access link and participation guide 48 hours before the event. Ensure you check your inbox (and spam folder) for an email from URNI. You can join the conversation from anywhere in the world and be part of the movement to Rise Up for Nigeria!
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="font-size: 15px; line-height: 1.6; padding-bottom: 30px;">
-                                        Get ready for a transformative experience featuring keynote addresses, panel sessions, and inspiring conversations all geared toward reshaping the Nigerian narrative and celebrating our shared identity. We can't wait to welcome you to this life-changing event!
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td style="font-size: 15px; line-height: 1.6;">
+                                    <td
+                                        style="font-family: 'Montserrat', Arial, Helvetica, sans-serif; font-size: 15px; line-height: 1.6; color: #333333;">
                                         Warm regards,<br>
                                         <strong>The URNI Team</strong>
                                     </td>
@@ -115,47 +236,59 @@
                             </table>
                         </td>
                     </tr>
-                    
-                    <!-- Footer -->
+
+                    <!-- FOOTER SECTION -->
                     <tr>
-                        <td style="background-color: #F1FFEF; padding: 30px; border-top: 1px solid #eee;" class="mobile-padding">
+                        <td style="background-color: #F1FFEF; padding: 30px; border-top: 1px solid #eee;"
+                            class="mobile-padding">
                             <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                                
+
                                 <!-- Contact Information -->
                                 <tr>
                                     <td style="padding-bottom: 25px;">
-                                        <h3 style="color: black; font-size: 16px; margin: 0 0 15px 0; font-weight: 600;">Contact Us</h3>
-                                        
+                                        <h3
+                                            style="color: black; font-size: 16px; margin: 0 0 15px 0; font-weight: 600;">
+                                            Contact Us
+                                        </h3>
+
                                         <!-- Phone -->
-                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin-bottom: 12px;">
+                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0"
+                                            style="margin-bottom: 12px;">
                                             <tr>
                                                 <td style="width: 26px; vertical-align: top; padding-top: 2px;">
-                                                    <img src="https://i.ibb.co/7xTT4g1c/phone-icon.png" alt="Phone" width="16" height="16" style="display: block;">
+                                                    <img src="https://i.ibb.co/7xTT4g1c/phone-icon.png" alt="Phone"
+                                                        width="16" height="16" style="display: block;">
                                                 </td>
                                                 <td style="font-size: 14px; color: #555; line-height: 1.4;">
                                                     0817 764 0051 | 0915 555 8929
                                                 </td>
                                             </tr>
                                         </table>
-                                        
+
                                         <!-- Email -->
-                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0" style="margin-bottom: 12px;">
+                                        <table role="presentation" cellspacing="0" cellpadding="0" border="0"
+                                            style="margin-bottom: 12px;">
                                             <tr>
                                                 <td style="width: 26px; vertical-align: top; padding-top: 2px;">
-                                                    <img src="https://i.ibb.co/bgVYfhq5/envelope.png" alt="Email" width="16" height="16" style="display: block;">
+                                                    <img src="https://i.ibb.co/bgVYfhq5/envelope.png" alt="Email"
+                                                        width="16" height="16" style="display: block;">
                                                 </td>
                                                 <td style="font-size: 14px; color: #555; line-height: 1.4;">
-                                                    <a href="mailto:info@unveilingnigeria.ng" style="color: #555; text-decoration: none;">info@unveilingnigeria.ng</a> | 
-                                                    <a href="mailto:unveilnigeria@gmail.com" style="color: #555; text-decoration: none;">unveilnigeria@gmail.com</a>
+                                                    <a href="mailto:info@unveilingnigeria.ng"
+                                                        style="color: #555; text-decoration: none;">info@unveilingnigeria.ng</a>
+                                                    |
+                                                    <a href="mailto:unveilnigeria@gmail.com"
+                                                        style="color: #555; text-decoration: none;">unveilnigeria@gmail.com</a>
                                                 </td>
                                             </tr>
                                         </table>
-                                        
+
                                         <!-- Location -->
                                         <table role="presentation" cellspacing="0" cellpadding="0" border="0">
                                             <tr>
                                                 <td style="width: 26px; vertical-align: top; padding-top: 2px;">
-                                                    <img src="https://i.ibb.co/GQd3J9qd/location.png" alt="Location" width="16" height="16" style="display: block;">
+                                                    <img src="https://i.ibb.co/GQd3J9qd/location.png" alt="Location"
+                                                        width="16" height="16" style="display: block;">
                                                 </td>
                                                 <td style="font-size: 14px; color: #555; line-height: 1.4;">
                                                     Suite F2 Melita Plaza, Area 11, Garki, Abuja.
@@ -164,54 +297,74 @@
                                         </table>
                                     </td>
                                 </tr>
-                                
+
                                 <!-- Social Media -->
                                 <tr>
                                     <td style="padding-bottom: 25px;">
-                                        <h3 style="color: black; font-size: 16px; margin: 0 0 15px 0; font-weight: 600;">Connect with us on social media</h3>
+                                        <h3
+                                            style="color: black; font-size: 16px; margin: 0 0 15px 0; font-weight: 600;">
+                                            Connect with us on social media
+                                        </h3>
                                         <table role="presentation" cellspacing="0" cellpadding="0" border="0">
                                             <tr>
                                                 <td style="padding-right: 10px;">
-                                                    <a href="https://www.facebook.com/unveilingnigeria" style="text-decoration: none;">
-                                                        <img src="https://i.ibb.co/rKLyYrpK/facebook-icon.png" alt="Facebook" width="24" height="24" style="display: block;">
+                                                    <a href="https://www.facebook.com/unveilingnigeria"
+                                                        style="text-decoration: none;">
+                                                        <img src="https://i.ibb.co/rKLyYrpK/facebook-icon.png"
+                                                            alt="Facebook" width="24" height="24"
+                                                            style="display: block;">
                                                     </a>
                                                 </td>
                                                 <td style="padding-right: 10px;">
-                                                    <a href="https://www.instagram.com/unveilingnigeria?igsh=MXh0enhhNDBrZ29ucg==" style="text-decoration: none;">
-                                                        <img src="https://i.ibb.co/5gnSV8ch/instagram.png" alt="Instagram" width="24" height="24" style="display: block;">
+                                                    <a href="https://www.instagram.com/unveilingnigeria?igsh=MXh0enhhNDBrZ29ucg=="
+                                                        style="text-decoration: none;">
+                                                        <img src="https://i.ibb.co/5gnSV8ch/instagram.png"
+                                                            alt="Instagram" width="24" height="24"
+                                                            style="display: block;">
                                                     </a>
                                                 </td>
                                                 <td style="padding-right: 10px;">
                                                     <a href="https://x.com/unveilingng" style="text-decoration: none;">
-                                                        <img src="https://i.ibb.co/S7PTxKWN/x.png" alt="X (Twitter)" width="24" height="24" style="display: block;">
+                                                        <img src="https://i.ibb.co/S7PTxKWN/x.png" alt="X (Twitter)"
+                                                            width="24" height="24" style="display: block;">
                                                     </a>
                                                 </td>
                                                 <td style="padding-right: 10px;">
                                                     <a href="#" style="text-decoration: none;">
-                                                        <img src="https://i.ibb.co/xKyYLD8t/whatsapp.png" alt="WhatsApp" width="24" height="24" style="display: block;">
+                                                        <img src="https://i.ibb.co/xKyYLD8t/whatsapp.png" alt="WhatsApp"
+                                                            width="24" height="24" style="display: block;">
                                                     </a>
                                                 </td>
                                                 <td>
-                                                    <a href="https://www.tiktok.com/@unveilingnigeria?_t=ZS-8ycVqpqZ4Vt&_r=1" style="text-decoration: none;">
-                                                        <img src="https://i.ibb.co/5ggpG43V/tiktok.png" alt="TikTok" width="24" height="24" style="display: block;">
+                                                    <a href="https://www.tiktok.com/@unveilingnigeria?_t=ZS-8ycVqpqZ4Vt&_r=1"
+                                                        style="text-decoration: none;">
+                                                        <img src="https://i.ibb.co/5ggpG43V/tiktok.png" alt="TikTok"
+                                                            width="24" height="24" style="display: block;">
                                                     </a>
                                                 </td>
                                             </tr>
                                         </table>
                                     </td>
                                 </tr>
-                                
+
                                 <!-- Newsletter Subscription -->
                                 <tr>
                                     <td style="border-top: 1px solid #025836; padding-top: 20px;">
-                                        <h3 style="color: #025836; font-size: 16px; margin: 0 0 10px 0; font-weight: 600; line-height: 1.3;">Subscribe to the newsletter for news, events and articles from URNI and our partners.</h3>
-                                        <p style="font-size: 12px; color: #025836; margin: 0 0 15px 0; font-style: italic; line-height: 1.3;">
-                                            By clicking the button, you agree to the <a href="#" style="color: #025836;">Terms and Conditions.</a>
+                                        <h3
+                                            style="color: #025836; font-size: 16px; margin: 0 0 10px 0; font-weight: 600; line-height: 1.3;">
+                                            Subscribe to the newsletter for news, events and articles from URNI and our
+                                            partners.
+                                        </h3>
+                                        <p
+                                            style="font-size: 12px; color: #025836; margin: 0 0 15px 0; font-style: italic; line-height: 1.3;">
+                                            By clicking the button, you agree to the <a href="#"
+                                                style="color: #025836;">Terms and Conditions.</a>
                                         </p>
                                         <table role="presentation" cellspacing="0" cellpadding="0" border="0">
                                             <tr>
                                                 <td style="background-color: #025836; border-radius: 4px;">
-                                                    <a href="{{BASE_URL}}" style="display: inline-block; padding: 12px 30px; color: white; text-decoration: none; font-size: 14px; font-weight: 600;">Subscribe</a>
+                                                    <a href="{{BASE_URL}}"
+                                                        style="display: inline-block; padding: 12px 30px; color: white; text-decoration: none; font-size: 14px; font-weight: 600;">Subscribe</a>
                                                 </td>
                                             </tr>
                                         </table>
@@ -225,4 +378,5 @@
         </tr>
     </table>
 </body>
+
 </html>

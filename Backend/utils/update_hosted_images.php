@@ -8,18 +8,17 @@
 
 // Update these URLs with your actual ImgBB URLs after uploading
 $hostedImageUrls = [
-    'RISE UP PATRIOTS CONFERENCE BACKGROUND.png' => 'https://i.ibb.co/YOUR_IMAGE_ID/background.png',
-    'urni-logo-vertical.png' => 'https://i.ibb.co/YOUR_IMAGE_ID/urni-logo-vertical.png',
-    'RISE UP PATRIOTS CONFERENCE LOGO 1.png' => 'https://i.ibb.co/YOUR_IMAGE_ID/logo1.png',
-    'RISE UP PATRIOTS CONFERENCE THEME LOGO.png' => 'https://i.ibb.co/YOUR_IMAGE_ID/theme-logo.png',
-    'phone-icon.png' => 'https://i.ibb.co/YOUR_IMAGE_ID/phone-icon.png',
-    'envelope.png' => 'https://i.ibb.co/YOUR_IMAGE_ID/envelope.png',
-    'location.png' => 'https://i.ibb.co/YOUR_IMAGE_ID/location.png',
-    'facebook-icon.png' => 'https://i.ibb.co/YOUR_IMAGE_ID/facebook-icon.png',
-    'instagram.png' => 'https://i.ibb.co/YOUR_IMAGE_ID/instagram.png',
-    'x.png' => 'https://i.ibb.co/YOUR_IMAGE_ID/x.png',
-    'whatsapp.png' => 'https://i.ibb.co/YOUR_IMAGE_ID/whatsapp.png',
-    'tiktok.png' => 'https://i.ibb.co/YOUR_IMAGE_ID/tiktok.png',
+  'RISE UP PATRIOTS CONFERENCE BACKGROUND.png' => 'https://i.ibb.co/1Yfd9LCs/Frame-4918-2x.png',
+            'urni-logo-vertical.png' => 'https://i.ibb.co/4ZGL3kfQ/URNI-LOGO-VERTICAL-COLOURED-1.png',
+            'RISE UP PATRIOTS CONFERENCE LOGO 1.png' => 'https://i.ibb.co/1Yfd9LCs/Frame-4918-2x.png',
+            'RISE UP PATRIOTS CONFERENCE THEME LOGO.png' => 'https://i.ibb.co/1Yfd9LCs/Frame-4918-2x.png',
+            'phone-icon.png' => 'https://i.ibb.co/B267syXV/Phone-ICON.png',
+            'envelope.png' => 'https://i.ibb.co/nsVBmFvQ/Social-Icon.png',
+            'location.png' => 'https://i.ibb.co/YzmnD36/Social-Icon-1.png',
+            'facebook-icon.png' => 'https://i.ibb.co/N65cWjRZ/Facebook-Icon.png',
+            'instagram.png' => 'https://i.ibb.co/5gnSV8ch/instagram.png',
+            'whatsapp.png' => 'https://i.ibb.co/d4cWRPcM/Whatsapp-Icon.png',
+            'tiktok.png' => 'https://i.ibb.co/Y48Nd1XT/Tiktok-Icon.png',
 ];
 
 // Function to update EmailTemplate.php with new URLs
