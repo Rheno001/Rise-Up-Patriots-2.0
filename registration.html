@@ -455,9 +455,10 @@
         // Use relative URL for production, fallback to localhost for development
         window.API_BASE_URL = window.API_BASE_URL || (
             window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1'
-                ? 'http://localhost:8000/Backend/api'
+                ? `http://${window.location.hostname}:${window.location.port || 8080}/Backend/api`
                 : '/Backend/api'
         );
+        console.log('[API] Base URL resolved to:', window.API_BASE_URL);
 
         // Global variable for countries data
         let countriesData = [];
@@ -817,7 +818,18 @@
                 }
 
             } catch (error) {
-                console.error('Submission error:', error);
+                // Detailed diagnostics — open browser DevTools > Console to see these
+                console.error('=== SUBMISSION ERROR DETAILS ===');
+                console.error('Error type     :', error.name);
+                console.error('Error message  :', error.message);
+                console.error('API URL tried  :', window.API_BASE_URL + '/register.php');
+                console.error('Current origin :', window.location.origin);
+                console.error('Full error obj :', error);
+                if (error.name === 'TypeError' && error.message.includes('fetch')) {
+                    console.error('LIKELY CAUSE: The PHP server is not running on the expected port, or there is a CORS/network block.');
+                    console.error('Check that your PHP server is running at:', window.API_BASE_URL);
+                }
+                console.error('================================');
                 Swal.fire({
                     icon: 'error',
                     title: 'Connection Error!',
